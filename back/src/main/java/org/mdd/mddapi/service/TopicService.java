@@ -20,6 +20,8 @@ public class TopicService {
     public List<TopicDto> getAllTopic() {
         List<Topic> topics = topicRepository.findAll();
 
-        return topicMapper.toDto(topics);
+        return topics.stream()
+                .map(topicMapper::toDto)
+                .toList();
     }
 }
