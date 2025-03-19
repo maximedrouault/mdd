@@ -1,0 +1,6 @@
+<ul *ngIf="(topics$ | async)">
+  <li *ngFor="let topic of topics$ | async">
+    <h2>{{ topic.name }}</h2>
+    <p>{{ topic.description }}</p>
+  </li>
+</ul>

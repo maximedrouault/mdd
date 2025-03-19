@@ -8,7 +8,7 @@ import {Topic} from '../interfaces/topic.interface';
 })
 export class TopicsService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private readonly http: HttpClient) { }
 
   public getAllTopic(): Observable<Topic[]> {
     return this.http.get<Topic[]>('http://localhost:9000/api/topics');
