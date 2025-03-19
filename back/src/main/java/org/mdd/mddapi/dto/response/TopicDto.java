@@ -5,5 +5,10 @@ import java.io.Serializable;
 /**
  * DTO for {@link org.mdd.mddapi.entity.Topic}
  */
-public record TopicDto(Long id, String name, String description) implements Serializable {
-}
+public record TopicDto(
+
+        Long id,
+        String name,
+        String description
+
+) implements Serializable {}
