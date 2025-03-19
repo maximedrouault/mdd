@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Topic} from '../../../interfaces/topic';
+import {Topic} from '../interfaces/topic.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TopicService {
+export class TopicsService {
 
   constructor(private http: HttpClient) { }
 
