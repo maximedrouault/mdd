@@ -1004,7 +1004,7 @@ export const MyPreset = definePreset(Lara, {
                 borderRadius: "{form.field.border.radius}",
                 roundedBorderRadius: "2rem",
                 gap: "0.5rem",
-                paddingX: "1rem",
+                paddingX: "2.5rem",
                 paddingY: "{form.field.padding.y}",
                 iconOnlyWidth: "2.75rem",
                 sm: {

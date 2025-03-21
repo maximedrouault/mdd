@@ -1,5 +1,5 @@
 <div class="cards-container">
-  <ng-container *ngIf="(topics$ | async) as topics">
-    <app-topic-details *ngFor="let topic of topics" [topic]="topic" />
-  </ng-container>
+  @for (topic of topics$ | async; track topic.id) {
+    <app-topic-details [topic]="topic"></app-topic-details>
+  }
 </div>
