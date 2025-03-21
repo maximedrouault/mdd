@@ -1,0 +1,8 @@
+<p-card *ngIf="topic" header="{{ topic.name }}">
+  <ng-template pTemplate="content">
+    <p class="card-content">{{ topic.description }}</p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"></p-button>
+  </ng-template>
+</p-card>

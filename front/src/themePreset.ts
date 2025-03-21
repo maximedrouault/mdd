@@ -466,7 +466,7 @@ export const MyPreset = definePreset(Lara, {
                     hoverMutedColor: "{surface.600}"
                 },
                 content: {
-                    background: "{surface.0}",
+                    background: "{neutral.100}",
                     hoverBackground: "{surface.100}",
                     borderColor: "{surface.200}",
                     color: "{text.color}",

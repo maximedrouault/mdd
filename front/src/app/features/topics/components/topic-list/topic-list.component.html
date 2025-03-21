@@ -1,10 +1,5 @@
-<div class="card-container">
+<div class="cards-container">
   <ng-container *ngIf="(topics$ | async) as topics">
-    <ng-container *ngFor="let topic of topics">
-      <p-card>
-        <h2>{{ topic.name }}</h2>
-        <p>{{ topic.description }}</p>
-      </p-card>
-    </ng-container>
+    <app-topic-details *ngFor="let topic of topics" [topic]="topic" />
   </ng-container>
 </div>
