@@ -1,8 +1,10 @@
-<div class="cards-container">
-  @for (topic of allTopics$ | async; track topic.id) {
-    <app-topic-details
-      [topic]="topic"
-      [isSubscribed]="isSubscribed(topic.id)">
-    </app-topic-details>
-  }
-</div>
+@if (allTopics$) {
+  <div class="cards-container">
+    @for (topic of allTopics$ | async; track topic.id) {
+      <app-topic-details
+        [topic]="topic"
+        [isSubscribed]="isSubscribed(topic.id)">
+      </app-topic-details>
+    }
+  </div>
+}
