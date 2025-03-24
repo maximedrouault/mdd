@@ -16,11 +16,24 @@ import {TopicDetailsComponent} from '../topic-details/topic-details.component';
 })
 export class TopicListComponent implements OnInit{
 
-  topics$: Observable<Topic[]> = of();
+  allTopics$: Observable<Topic[]> = of();
+  userId: number = 1; // TODO: get the user id from the logged in user when the authentication is implemented
+  subscribedTopics$: Observable<Topic[]> = of();
 
   constructor(private readonly topicService: TopicsService) {}
 
   ngOnInit(): void {
-    this.topics$ = this.topicService.getAllTopic();
+    this.allTopics$ = this.topicService.getAllTopics();
+    this.subscribedTopics$ = this.topicService.getSubscribedTopics(this.userId);
   }
+
+  isSubscribed(topicId: number): boolean {
+    let isSubscribed: boolean = false;
+
+    this.subscribedTopics$.subscribe((subscribedTopics: Topic[]): void => {
+      isSubscribed = subscribedTopics.some((subscribedTopic: Topic): boolean => subscribedTopic.id === topicId);
+    });
+
+    return isSubscribed;
+  };
 }
