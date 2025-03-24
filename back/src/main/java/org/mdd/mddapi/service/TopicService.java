@@ -20,6 +20,6 @@ public class TopicService {
     public List<TopicDto> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
 
-        return topicMapper.toDtos(topics);
+        return topicMapper.toDtoList(topics);
     }
 }
