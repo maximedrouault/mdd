@@ -277,6 +277,7 @@ export const MyPreset = definePreset(Lara, {
             200: "#e5e5e5",
             300: "#d4d4d4",
             400: "#a3a3a3",
+            450: "#939393",
             500: "#737373",
             600: "#525252",
             700: "#404040",
@@ -306,7 +307,7 @@ export const MyPreset = definePreset(Lara, {
             color: "transparent",
             offset: "0"
         },
-        disabledOpacity: "0.6",
+        disabledOpacity: "1",
         iconSize: "1rem",
         anchorGutter: "2px",
         primary: {
@@ -1048,18 +1049,18 @@ export const MyPreset = definePreset(Lara, {
                             }
                         },
                         secondary: {
-                            background: "{surface.100}",
-                            hoverBackground: "{surface.200}",
-                            activeBackground: "{surface.300}",
-                            borderColor: "{surface.100}",
-                            hoverBorderColor: "{surface.200}",
-                            activeBorderColor: "{surface.300}",
-                            color: "{surface.600}",
-                            hoverColor: "{surface.700}",
-                            activeColor: "{surface.800}",
+                            background: "{neutral.450}",
+                            hoverBackground: "{neutral.500}",
+                            activeBackground: "{neutral.600}",
+                            borderColor: "{neutral.450}",
+                            hoverBorderColor: "{neutral.500}",
+                            activeBorderColor: "{neutral.600}",
+                            color: "#ffffff",
+                            hoverColor: "#ffffff",
+                            activeColor: "#ffffff",
                             focusRing: {
                                 color: "transparent",
-                                shadow: "0 0 0 0.2rem {surface.200}"
+                                shadow: "0 0 0 0.2rem {surface.600}"
                             }
                         },
                         info: {
