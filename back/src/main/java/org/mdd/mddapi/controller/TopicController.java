@@ -20,6 +20,6 @@ public class TopicController {
 
     @GetMapping("/topics")
     public ResponseEntity<List<TopicDto>> getAllTopics() {
-        return ResponseEntity.ok(topicService.getAllTopic());
+        return ResponseEntity.ok(topicService.getAllTopics());
     }
 }
