@@ -3,7 +3,8 @@ INSERT INTO users (id, username, email, password) VALUES
     (1, 'John Doe', 'john.doe@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
     (2, 'Jane Smith', 'jane.smith@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
     (3, 'Alice Johnson', 'alice.johnson@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
-    (4, 'Bob Brown', 'bob.brown@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K');
+    (4, 'Bob Brown', 'bob.brown@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
+    (5, 'Charlie Green', 'charlie.green@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K');
 
 -- TABLE: topics (Topics of posts)
 INSERT INTO topics (id, name, description) VALUES
@@ -19,6 +20,7 @@ INSERT INTO users_topics (user_id, topic_id) VALUES
     (2, 2), (2, 3), (2, 5),                 -- Jane Smith is subscribed to Frontend, Databases, and Security
     (3, 1), (3, 4), (3, 5),                 -- Alice Johnson is subscribed to Java, Cloud, and Security
     (4, 1), (4, 2), (4, 3), (4, 4);         -- Bob Brown is subscribed to Java, Frontend, Databases, and Cloud
+                                                                                                -- Charlie Green is not subscribed to any topic
 
 -- TABLE: posts (Articles on associated topics)
 INSERT INTO posts (id, creation_date, title, content, author_id, topic_id) VALUES
