@@ -19,8 +19,8 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping("/user/{id}")
-    public ResponseEntity<Set<TopicDto>> getUser(@PathVariable Long id) {
+    @GetMapping("/user/{id}/subscribed-topics")
+    public ResponseEntity<Set<TopicDto>> getSubscribedTopics(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getSubscribedTopics(id));
     }
 }
