@@ -3268,7 +3268,7 @@ export const MyPreset = definePreset(Lara, {
             colorScheme: {
                 light: {
                     root: {
-                        background: "{surface.50}"
+                        background: "{#ffffff}"
                     }
                 },
                 dark: {
