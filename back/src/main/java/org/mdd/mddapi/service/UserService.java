@@ -1,10 +1,11 @@
 package org.mdd.mddapi.service;
 
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.response.TopicDto;
 import org.mdd.mddapi.entity.Topic;
 import org.mdd.mddapi.entity.User;
+import org.mdd.mddapi.exception.TopicNotFoundException;
+import org.mdd.mddapi.exception.UserNotFoundException;
 import org.mdd.mddapi.mapper.TopicMapper;
 import org.mdd.mddapi.repository.TopicRepository;
 import org.mdd.mddapi.repository.UserRepository;
@@ -23,18 +24,18 @@ public class UserService {
 
     public Set<TopicDto> getSubscribedTopics(Long userId) {
         Set<Topic> subscribedTopics = userRepository.findById(userId)
-                .orElseThrow(EntityNotFoundException::new) // TODO: implement custom exception handling
+                .orElseThrow(() -> new UserNotFoundException(userId))
                 .getSubscribedTopics();
 
         return topicMapper.toDtoSet(subscribedTopics);
     }
 
     public void saveTopicSubscription(Long userId, Long topicId) {
-        User foundUser = userRepository.findById(userId).orElseThrow(EntityNotFoundException::new); // TODO: implement custom exception handling
-        Topic foundTopic = topicRepository.findById(topicId).orElseThrow(EntityNotFoundException::new); // TODO: implement custom exception handling
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Topic topic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
 
-        foundUser.getSubscribedTopics().add(foundTopic);
+        user.getSubscribedTopics().add(topic);
 
-        userRepository.save(foundUser);
+        userRepository.save(user);
     }
 }
