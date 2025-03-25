@@ -1,10 +1,12 @@
-@if (allTopics$) {
+@if (allTopics$ | async; as allTopics) {
   <div class="cards-container">
-    @for (topic of allTopics$ | async; track topic.id) {
+    @for (topic of allTopics; track topic.id) {
       <app-topic-details
         [topic]="topic"
-        [isSubscribed]="isSubscribed(topic.id)">
+        [isSubscribed]="(isSubscribed(topic.id))">
       </app-topic-details>
+    } @empty {
+      <p>La liste des thèmes est vide.</p>
     }
   </div>
 }

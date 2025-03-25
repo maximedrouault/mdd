@@ -16,7 +16,6 @@ import {PrimeTemplate} from 'primeng/api';
 })
 export class TopicDetailsComponent {
 
-  @Input() topic: Topic | undefined;
-  @Input() isSubscribed: boolean | undefined;
-
+  @Input() topic!: Topic;
+  @Input() isSubscribed!: boolean;
 }
