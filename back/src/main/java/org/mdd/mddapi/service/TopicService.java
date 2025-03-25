@@ -17,9 +17,9 @@ public class TopicService {
     private final TopicMapper topicMapper;
 
 
-    public List<TopicDto> getAllTopic() {
+    public List<TopicDto> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
 
-        return topicMapper.toDtos(topics);
+        return topicMapper.toDtoList(topics);
     }
 }

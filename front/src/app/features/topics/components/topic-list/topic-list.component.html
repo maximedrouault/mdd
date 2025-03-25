@@ -1,10 +1,13 @@
-<div class="card-container">
-  <ng-container *ngIf="(topics$ | async) as topics">
-    <ng-container *ngFor="let topic of topics">
-      <p-card>
-        <h2>{{ topic.name }}</h2>
-        <p>{{ topic.description }}</p>
-      </p-card>
-    </ng-container>
-  </ng-container>
-</div>
+@if (allTopics$ | async; as allTopics) {
+  <div class="cards-container">
+    @for (topic of allTopics; track topic.id) {
+      <app-topic-details
+        [topic]="topic"
+        [isSubscribed]="(isSubscribed(topic.id))"
+        (topicId)="handleSubscription($event)" >
+      </app-topic-details>
+    } @empty {
+      <p>La liste des thèmes est vide.</p>
+    }
+  </div>
+}

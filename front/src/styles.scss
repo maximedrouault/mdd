@@ -4,4 +4,16 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  max-width: 1000px;
+  margin: auto;
+  padding: 10px;
+}
+
+.p-card-footer {
+  display: flex;
+  justify-content: center;
+}
+
+.p-card {
+  height: 100%;
 }

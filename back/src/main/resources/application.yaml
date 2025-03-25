@@ -19,6 +19,8 @@ spring:
 # Server configuration
 server:
   port: 9000
+  error:
+    include-stacktrace: never
 
 # Logging configuration
 logging:

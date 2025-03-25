@@ -1,0 +1,13 @@
+<p-card [header]="topic.name">
+  <ng-template pTemplate="content">
+    <p class="card-content">{{ topic.description }}</p>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <p-button
+      label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"
+      [disabled]="isSubscribed"
+      [severity]="isSubscribed ? 'secondary' : 'primary'"
+      (onClick)="onSubscribe()" >
+    </p-button>
+  </ng-template>
+</p-card>
