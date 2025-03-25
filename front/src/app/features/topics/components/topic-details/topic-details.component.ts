@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Topic} from '../../interfaces/topic.interface';
 import {Card} from 'primeng/card';
 import {Button} from 'primeng/button';
@@ -18,4 +18,9 @@ export class TopicDetailsComponent {
 
   @Input() topic!: Topic;
   @Input() isSubscribed!: boolean;
+  @Output() topicId: EventEmitter<number> = new EventEmitter<number>();
+
+  onSubscribe() {
+    this.topicId.emit(this.topic.id);
+  }
 }

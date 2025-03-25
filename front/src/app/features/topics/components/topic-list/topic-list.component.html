@@ -3,7 +3,8 @@
     @for (topic of allTopics; track topic.id) {
       <app-topic-details
         [topic]="topic"
-        [isSubscribed]="(isSubscribed(topic.id))">
+        [isSubscribed]="(isSubscribed(topic.id))"
+        (topicId)="handleSubscription($event)" >
       </app-topic-details>
     } @empty {
       <p>La liste des thèmes est vide.</p>

@@ -42,4 +42,10 @@ export class TopicListComponent implements OnInit{
       this.subscribedTopicIds = topicIds;
     });
   };
+
+  handleSubscription(topicId: number): void {
+    this.topicService.saveTopicSubscription(this.userId, topicId).subscribe(() => {
+      this.loadSubscribedTopicIds();
+    });
+  }
 }

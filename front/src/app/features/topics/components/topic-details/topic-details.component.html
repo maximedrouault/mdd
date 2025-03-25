@@ -6,7 +6,8 @@
     <p-button
       label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"
       [disabled]="isSubscribed"
-      [severity]="isSubscribed ? 'secondary' : 'primary'">
+      [severity]="isSubscribed ? 'secondary' : 'primary'"
+      (onClick)="onSubscribe()" >
     </p-button>
   </ng-template>
 </p-card>
