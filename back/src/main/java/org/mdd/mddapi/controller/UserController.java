@@ -3,11 +3,9 @@ package org.mdd.mddapi.controller;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.response.TopicDto;
 import org.mdd.mddapi.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -22,5 +20,12 @@ public class UserController {
     @GetMapping("/user/{id}/subscribed-topics")
     public ResponseEntity<Set<TopicDto>> getSubscribedTopics(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getSubscribedTopics(id));
+    }
+
+    @PostMapping("/user/{userId}/subscribed-topics/{topicId}")
+    public ResponseEntity<Void> saveTopicSubscription(@PathVariable Long userId, @PathVariable Long topicId) {
+        userService.saveTopicSubscription(userId, topicId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
