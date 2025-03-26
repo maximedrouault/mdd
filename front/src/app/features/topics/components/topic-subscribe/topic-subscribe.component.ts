@@ -11,16 +11,16 @@ import {PrimeTemplate} from 'primeng/api';
     Button,
     PrimeTemplate
   ],
-  templateUrl: './topic-details.component.html',
-  styleUrl: './topic-details.component.scss'
+  templateUrl: './topic-subscribe.component.html',
+  styleUrl: './topic-subscribe.component.scss'
 })
-export class TopicDetailsComponent {
+export class TopicSubscribeComponent {
 
   @Input() topic!: Topic;
   @Input() isSubscribed!: boolean;
   @Output() topicId: EventEmitter<number> = new EventEmitter<number>();
 
-  onSubscribe() {
+  onSubscribe(): void {
     this.topicId.emit(this.topic.id);
   }
 }

@@ -3,13 +3,13 @@ import {map, Observable, of} from 'rxjs';
 import {Topic} from '../../interfaces/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
-import {TopicDetailsComponent} from '../topic-details/topic-details.component';
+import {TopicSubscribeComponent} from '../topic-subscribe/topic-subscribe.component';
 
 @Component({
   selector: 'app-topic-list',
   imports: [
     AsyncPipe,
-    TopicDetailsComponent
+    TopicSubscribeComponent
   ],
   templateUrl: './topic-list.component.html',
   styleUrl: './topic-list.component.scss'
