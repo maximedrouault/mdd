@@ -3,11 +3,18 @@
     <p class="card-content">{{ topic.description }}</p>
   </ng-template>
   <ng-template pTemplate="footer">
-    <p-button
-      label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"
-      [disabled]="isSubscribed"
-      [severity]="isSubscribed ? 'secondary' : 'primary'"
-      (onClick)="onSubscribe()" >
-    </p-button>
+    @if (isSubscriptionPage) {
+      <p-button
+        label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"
+        [disabled]="isSubscribed"
+        [severity]="isSubscribed ? 'secondary' : 'primary'"
+        (onClick)="emitTopicId()" >
+      </p-button>
+    } @else {
+      <p-button
+        label="Se désabonner"
+        (onClick)="emitTopicId()" >
+      </p-button>
+    }
   </ng-template>
 </p-card>

@@ -20,6 +20,7 @@ export class TopicListComponent implements OnInit{
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
   subscribedTopics$: Observable<Topic[]> = of();
   subscribedTopicIds: Set<number> = new Set<number>();
+  isSubscriptionPage: boolean = true;
 
 
   constructor(private readonly topicService: TopicsService) {}
