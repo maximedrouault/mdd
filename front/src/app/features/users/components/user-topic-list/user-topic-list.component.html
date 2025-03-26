@@ -1,0 +1,12 @@
+@if (subscribedTopics$ | async; as subscribedTopics) {
+  <div class="cards-container">
+    @for (subscribedTopic of subscribedTopics; track subscribedTopic.id) {
+      <app-topic-details
+        [topic]="subscribedTopic"
+        [isSubscriptionPage]="isSubscriptionPage">
+      </app-topic-details>
+    } @empty {
+      <p>La liste des abonnements de thème est vide.</p>
+    }
+  </div>
+}
