@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable, of} from 'rxjs';
+import {map, Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../interfaces/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
 import {TopicDetailsComponent} from '../topic-details/topic-details.component';
+import {UsersService} from '../../../users/service/users.service';
 
 @Component({
   selector: 'app-topic-list',
@@ -18,35 +19,36 @@ export class TopicListComponent implements OnInit{
 
   allTopics$: Observable<Topic[]> = of();
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
-  subscribedTopics$: Observable<Topic[]> = of();
   subscribedTopicIds: Set<number> = new Set<number>();
   isSubscriptionPage: boolean = true;
 
+  constructor(private readonly topicService: TopicsService,
+              private readonly userService: UsersService) {}
 
-  constructor(private readonly topicService: TopicsService) {}
 
   ngOnInit(): void {
     this.allTopics$ = this.topicService.getAllTopics();
-    this.subscribedTopics$ = this.topicService.getSubscribedTopics(this.userId);
-
-    this.loadSubscribedTopicIds();
+    this.loadSubscribedTopicIds().subscribe(
+      topicIds => this.subscribedTopicIds = topicIds
+    );
   };
+
 
   isSubscribed(topicId: number): boolean {
     return this.subscribedTopicIds.has(topicId);
   };
 
-  private loadSubscribedTopicIds(): void {
-    this.subscribedTopics$.pipe(
-      map(topics => new Set(topics.map(topic => topic.id)))
+  handleSubscription(topicId: number): void {
+    this.userService.saveTopicSubscription(this.userId, topicId).pipe(
+      switchMap(() => this.loadSubscribedTopicIds())
     ).subscribe(topicIds => {
       this.subscribedTopicIds = topicIds;
     });
-  };
+  }
 
-  handleSubscription(topicId: number): void {
-    this.topicService.saveTopicSubscription(this.userId, topicId).subscribe(() => {
-      this.loadSubscribedTopicIds();
-    });
+  private loadSubscribedTopicIds(): Observable<Set<number>> {
+    return this.userService.getSubscribedTopics(this.userId).pipe(
+      map(topics => new Set(topics.map(topic => topic.id)))
+    );
   }
 }

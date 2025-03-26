@@ -38,4 +38,13 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    public void deleteTopicSubscription(Long userId, Long topicId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Topic topic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
+
+        user.getSubscribedTopics().remove(topic);
+
+        userRepository.save(user);
+    }
 }
