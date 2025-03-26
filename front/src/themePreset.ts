@@ -308,7 +308,7 @@ export const MyPreset = definePreset(Lara, {
             offset: "0"
         },
         disabledOpacity: "1",
-        iconSize: "1rem",
+        iconSize: "3rem",
         anchorGutter: "2px",
         primary: {
             50: "#f8f7fc",
@@ -3211,7 +3211,7 @@ export const MyPreset = definePreset(Lara, {
                 borderRadius: "{content.border.radius}",
                 color: "{content.color}",
                 gap: "0.5rem",
-                padding: "0.75rem 1rem",
+                padding: "0",
                 transitionDuration: "{transition.duration}"
             },
             baseItem: {
