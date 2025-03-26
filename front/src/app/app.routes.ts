@@ -5,4 +5,5 @@ import {TopicDetailsComponent} from './features/topics/components/topic-details/
 export const routes: Routes = [
   { path: 'topic-list', component: TopicListComponent },
   { path: 'topic-details', component: TopicDetailsComponent },
+  { path: '**', redirectTo: '' }
 ];
