@@ -3,7 +3,7 @@
     <p class="card-content">{{ topic.description }}</p>
   </ng-template>
   <ng-template pTemplate="footer">
-    @if (isSubscription) {
+    @if (isSubscriptionPage) {
       <p-button
         label="{{ isSubscribed ? 'Déjà abonné' : 'S\'abonner' }}"
         [disabled]="isSubscribed"

@@ -17,7 +17,7 @@ import {PrimeTemplate} from 'primeng/api';
 export class TopicDetailsComponent {
 
   @Input() topic!: Topic;
-  @Input() isSubscription!: boolean;
+  @Input() isSubscriptionPage!: boolean;
   @Input() isSubscribed!: boolean;
   @Output() topicId: EventEmitter<number> = new EventEmitter<number>();
 
