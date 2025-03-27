@@ -9,15 +9,21 @@ body {
   padding: 10px;
 }
 
-.p-card-footer {
-  display: flex;
-  justify-content: center;
-}
-
 .p-card {
   height: 100%;
+
+  &-footer {
+    display: flex;
+    justify-content: center;
+  }
 }
 
-.p-menubar-item-label {
-  font-size: 1.25rem;
+.p-menubar-item {
+  &-label {
+    font-size: 1.25rem;
+  }
+
+  &-icon:before {
+    font-size: 3rem;
+  }
 }
