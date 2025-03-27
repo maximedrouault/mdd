@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Menubar} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {Image} from 'primeng/image';
 import {RouterLink} from '@angular/router';
 
@@ -9,7 +9,8 @@ import {RouterLink} from '@angular/router';
   imports: [
     Menubar,
     Image,
-    RouterLink
+    RouterLink,
+    PrimeTemplate
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
