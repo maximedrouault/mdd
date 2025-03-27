@@ -3,6 +3,7 @@ import {Observable} from 'rxjs';
 import {Topic} from '../../topics/interfaces/topic.interface';
 import {environment} from '../../../../environments/environment.development';
 import {HttpClient} from '@angular/common/http';
+import {Post} from '../../posts/interfaces/post.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class UsersService {
   public deleteTopicSubscription(userId: number, topicId: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/user/${userId}/subscribed-topics/${topicId}`);
   };
+
+  public getSubscribedPosts(userId: number): Observable<Post[]> {
+    return this.http.get<Post[]>(`${environment.apiUrl}/user/${userId}/subscribed-posts`);
+  }
 }
 
