@@ -2,6 +2,7 @@ package org.mdd.mddapi.controller;
 
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.mdd.mddapi.dto.response.PostDto;
 import org.mdd.mddapi.dto.response.TopicDto;
 import org.mdd.mddapi.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -35,5 +36,10 @@ public class UserController {
         userService.deleteTopicSubscription(userId, topicId);
 
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/user/{id}/subscribed-posts")
+    public ResponseEntity<Set<PostDto>> getSubscribedPosts(@PathVariable @Positive Long id) {
+        return ResponseEntity.ok(userService.getSubscribedPosts(id));
     }
 }

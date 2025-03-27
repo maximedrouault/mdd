@@ -1,0 +1,9 @@
+@if (subscribedPosts$ | async; as subscribedPosts) {
+  <div class="cards-container">
+    @for (subscribedPost of subscribedPosts; track subscribedPost.id) {
+      <app-post-details [subscribedPost]="subscribedPost" />
+    } @empty {
+      <p>La liste des articles est vide.</p>
+    }
+  </div>
+}

@@ -1,0 +1,9 @@
+<div class="subheader-container">
+  <p-button>Créer un article</p-button> <!-- to be implemented -->
+  <p-toggle-button [(ngModel)]="sortOrderDesc"
+                   onLabel="Trier par" onIcon="pi pi-arrow-down"
+                   offLabel="Trier par" offIcon="pi pi-arrow-up"
+                   iconPos="right" >
+  </p-toggle-button>
+</div>
+<app-user-post-list [sortOrderDesc]="sortOrderDesc" />
