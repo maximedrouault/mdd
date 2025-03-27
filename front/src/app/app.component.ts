@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {HeaderComponent} from './shared/header/header.component';
+import {registerLocaleData} from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +12,8 @@ import {HeaderComponent} from './shared/header/header.component';
 })
 export class AppComponent {
   title = 'mdd-front';
+
+  constructor() {
+    registerLocaleData(localeFr)
+  }
 }
