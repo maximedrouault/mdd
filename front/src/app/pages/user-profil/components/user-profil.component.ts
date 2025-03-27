@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {UserTopicListComponent} from '../../user-topic-list/user-topic-list.component';
+import {UserTopicListComponent} from '../../../features/users/components/user-topic-list/user-topic-list.component';
 
 @Component({
   selector: 'app-user-profil',

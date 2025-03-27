@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {Post} from '../../../../posts/interfaces/post.interface';
-import {UsersService} from '../../../service/users.service';
-import {PostDetailsComponent} from '../../../../posts/components/post-details/post-details/post-details.component';
+import {Post} from '../../../posts/interfaces/post.interface';
+import {UsersService} from '../../service/users.service';
+import {PostDetailsComponent} from '../../../posts/components/post-details/post-details.component';
 import {AsyncPipe} from '@angular/common';
 
 @Component({
