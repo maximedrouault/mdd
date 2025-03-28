@@ -4,11 +4,9 @@ import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.response.TopicDto;
 import org.mdd.mddapi.service.TopicService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -29,5 +27,12 @@ public class TopicController {
     @GetMapping("/topics/subscribed/{userId}")
     public ResponseEntity<Set<TopicDto>> getSubscribedTopics(@PathVariable @Positive Long userId) {
         return ResponseEntity.ok(topicService.getSubscribedTopics(userId));
+    }
+
+    @PostMapping("/topics/{topicId}/subscribed/{userId}")
+    public ResponseEntity<Void> saveTopicSubscription(@PathVariable @Positive Long topicId, @PathVariable @Positive Long userId) {
+        topicService.saveTopicSubscription(topicId, userId);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

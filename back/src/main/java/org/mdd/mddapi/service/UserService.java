@@ -24,15 +24,7 @@ public class UserService {
     private final PostMapper postMapper;
 
 
-    public void saveTopicSubscription(Long userId, Long topicId) {
-        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
-        Topic topic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
-
-        user.getSubscribedTopics().add(topic);
-
-        userRepository.save(user);
-    }
-
+    // TODO : Move this method to TopicService
     public void deleteTopicSubscription(Long userId, Long topicId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
         Topic topic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
@@ -42,6 +34,7 @@ public class UserService {
         userRepository.save(user);
     }
 
+    // TODO : Move this method to PostService
     public Set<PostDto> getSubscribedPosts(Long userId) {
         User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
 

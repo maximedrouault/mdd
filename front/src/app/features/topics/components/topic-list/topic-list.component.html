@@ -4,8 +4,8 @@
       <app-topic-details
         [topic]="topic"
         [isSubscriptionPage]="isSubscriptionPage"
-        [isSubscribed]="(isSubscribed(topic.id))">
-<!--        (topicId)="handleSubscription($event)" >-->
+        [isSubscribed]="(isSubscribed(topic.id))"
+        (topicId)="handleSubscription($event)" >
       </app-topic-details>
     } @empty {
       <p>La liste des thèmes est vide.</p>

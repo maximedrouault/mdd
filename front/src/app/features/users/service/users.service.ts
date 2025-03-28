@@ -12,10 +12,6 @@ export class UsersService {
   constructor(private readonly http: HttpClient) {}
 
 
-  public saveTopicSubscription(userId: number, topicId: number): Observable<void> {
-    return this.http.post<void>(`${environment.apiUrl}/user/${userId}/subscribed-topics/${topicId}`, null);
-  };
-
   public deleteTopicSubscription(userId: number, topicId: number): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/user/${userId}/subscribed-topics/${topicId}`);
   };
