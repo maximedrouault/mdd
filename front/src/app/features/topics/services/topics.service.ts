@@ -15,4 +15,9 @@ export class TopicsService {
   public getAllTopics(): Observable<Topic[]> {
     return this.http.get<Topic[]>(`${environment.apiUrl}/topics`);
   };
+
+  public getSubscribedTopics(userId: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`${environment.apiUrl}/topics/subscribed/${userId}`);
+  };
+
 }

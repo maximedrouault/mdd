@@ -3,8 +3,8 @@
     @for (subscribedTopic of subscribedTopics; track subscribedTopic.id) {
       <app-topic-details
         [topic]="subscribedTopic"
-        [isSubscriptionPage]="isSubscriptionPage"
-        (topicId)="handleSubscription($event)" >
+        [isSubscriptionPage]="isSubscriptionPage">
+<!--        (topicId)="handleSubscription($event)" >-->
       </app-topic-details>
     } @empty {
       <p>La liste des abonnements est vide.</p>

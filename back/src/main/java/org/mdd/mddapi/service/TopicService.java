@@ -8,6 +8,7 @@ import org.mdd.mddapi.repository.TopicRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -21,5 +22,11 @@ public class TopicService {
         List<Topic> topics = topicRepository.findAll();
 
         return topicMapper.toDtoList(topics);
+    }
+
+    public Set<TopicDto> getSubscribedTopics(Long userId) {
+        Set<Topic> subscribedTopics = topicRepository.findByUsers_Id(userId);
+
+        return topicMapper.toDtoSet(subscribedTopics);
     }
 }

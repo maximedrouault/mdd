@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {map, Observable, of, switchMap} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import {Topic} from '../../interfaces/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
 import {TopicDetailsComponent} from '../topic-details/topic-details.component';
-import {UsersService} from '../../../users/service/users.service';
 
 @Component({
   selector: 'app-topic-list',
@@ -22,8 +21,7 @@ export class TopicListComponent implements OnInit{
   subscribedTopicIds: Set<number> = new Set<number>();
   isSubscriptionPage: boolean = true;
 
-  constructor(private readonly topicService: TopicsService,
-              private readonly userService: UsersService) {}
+  constructor(private readonly topicService: TopicsService) {}
 
 
   ngOnInit(): void {
@@ -38,16 +36,16 @@ export class TopicListComponent implements OnInit{
     return this.subscribedTopicIds.has(topicId);
   };
 
-  handleSubscription(topicId: number): void {
-    this.userService.saveTopicSubscription(this.userId, topicId).pipe(
-      switchMap(() => this.loadSubscribedTopicIds())
-    ).subscribe(topicIds => {
-      this.subscribedTopicIds = topicIds;
-    });
-  }
+  // handleSubscription(topicId: number): void {
+  //   this.userService.saveTopicSubscription(this.userId, topicId).pipe(
+  //     switchMap(() => this.loadSubscribedTopicIds())
+  //   ).subscribe(topicIds => {
+  //     this.subscribedTopicIds = topicIds;
+  //   });
+  // }
 
   private loadSubscribedTopicIds(): Observable<Set<number>> {
-    return this.userService.getSubscribedTopics(this.userId).pipe(
+    return this.topicService.getSubscribedTopics(this.userId).pipe(
       map(topics => new Set(topics.map(topic => topic.id)))
     );
   }
