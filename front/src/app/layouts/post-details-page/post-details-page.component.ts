@@ -4,15 +4,15 @@ import {Button} from 'primeng/button';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-post-page',
+  selector: 'app-post-details-page',
   imports: [
     PostDetailsComponent,
     Button
   ],
-  templateUrl: './post-page.component.html',
-  styleUrl: './post-page.component.scss'
+  templateUrl: './post-details-page.component.html',
+  styleUrl: './post-details-page.component.scss'
 })
-export class PostPageComponent {
+export class PostDetailsPageComponent {
 
   constructor(private readonly router: Router) {}
 
