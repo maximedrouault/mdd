@@ -1,6 +1,7 @@
-package org.mdd.mddapi.dto.response;
+package org.mdd.mddapi.mapper;
 
 import org.mapstruct.*;
+import org.mdd.mddapi.dto.response.PostDetailsDto;
 import org.mdd.mddapi.entity.Post;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
