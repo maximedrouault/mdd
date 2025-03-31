@@ -7,8 +7,8 @@ import org.mdd.mddapi.entity.Post;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface PostDetailsMapper {
 
-    @Mapping(source = "topicTopicName", target = "topic.name")
-    @Mapping(source = "authorAuthorName", target = "author.username")
+    @Mapping(source = "topicName", target = "topic.name")
+    @Mapping(source = "authorName", target = "author.username")
     Post toEntity(PostDetailsDto postDetailsDto);
 
     @InheritInverseConfiguration(name = "toEntity")

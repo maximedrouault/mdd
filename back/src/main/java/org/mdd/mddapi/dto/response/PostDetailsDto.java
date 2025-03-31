@@ -11,8 +11,8 @@ public record PostDetailsDto(
         Long id,
         String title,
         LocalDateTime creationDate,
-        String authorAuthorName,
-        String topicTopicName,
+        String authorName,
+        String topicName,
         String content
 
 ) implements Serializable {}
