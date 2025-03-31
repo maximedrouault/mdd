@@ -16,5 +16,5 @@ import {DatePipe} from '@angular/common';
 })
 export class PostDetailsComponent {
 
-  @Input() subscribedPost!: Post;
+  @Input() post!: Post;
 }
