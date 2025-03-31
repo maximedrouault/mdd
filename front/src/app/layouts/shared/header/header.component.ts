@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
     this.items = [
       {
         label: 'Articles',
-        routerLink: ['/user-post-feed']
+        routerLink: ['/user-posts-feed']
       },
       {
         label: 'Thèmes',

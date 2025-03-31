@@ -14,4 +14,5 @@ export class PostsService {
 
   public getSubscribedPosts(userId: number): Observable<Post[]> {
     return this.http.get<Post[]>(`${environment.apiUrl}/posts/subscribed/${userId}`);
-  }}
+  }
+}
