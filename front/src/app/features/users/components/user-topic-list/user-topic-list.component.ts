@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../../topics/interfaces/topic.interface';
-import {TopicDetailsComponent} from '../../../topics/components/topic-details/topic-details.component';
+import {TopicCardComponent} from '../../../topics/components/topic-card/topic-card.component';
 import {AsyncPipe} from '@angular/common';
 import {TopicsService} from '../../../topics/services/topics.service';
 
 @Component({
   selector: 'app-user-topic-list',
   imports: [
-    TopicDetailsComponent,
+    TopicCardComponent,
     AsyncPipe
   ],
   templateUrl: './user-topic-list.component.html',

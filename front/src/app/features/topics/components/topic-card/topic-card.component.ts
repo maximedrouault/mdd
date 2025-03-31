@@ -6,17 +6,17 @@ import {PrimeTemplate} from 'primeng/api';
 import {TitleCasePipe} from '@angular/common';
 
 @Component({
-  selector: 'app-topic-details',
+  selector: 'app-topic-card',
   imports: [
     Card,
     Button,
     PrimeTemplate,
     TitleCasePipe
   ],
-  templateUrl: './topic-details.component.html',
-  styleUrl: './topic-details.component.scss'
+  templateUrl: './topic-card.component.html',
+  styleUrl: './topic-card.component.scss'
 })
-export class TopicDetailsComponent {
+export class TopicCardComponent {
 
   @Input() topic!: Topic;
   @Input() isSubscriptionPage!: boolean;

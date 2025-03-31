@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {map, Observable, of} from 'rxjs';
 import {Post} from '../../../posts/interfaces/post.interface';
-import {PostDetailsComponent} from '../../../posts/components/post-details/post-details.component';
+import {PostCardComponent} from '../../../posts/components/post-card/post-card.component';
 import {AsyncPipe} from '@angular/common';
 import {Router} from '@angular/router';
 import {PostsService} from '../../../posts/services/posts.service';
@@ -9,7 +9,7 @@ import {PostsService} from '../../../posts/services/posts.service';
 @Component({
   selector: 'app-user-post-list',
   imports: [
-    PostDetailsComponent,
+    PostCardComponent,
     AsyncPipe
   ],
   templateUrl: './user-post-list.component.html',
