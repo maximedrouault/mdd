@@ -17,11 +17,12 @@ import {AsyncPipe, DatePipe, TitleCasePipe} from '@angular/common';
 })
 export class PostDetailsComponent implements OnInit {
 
+  postId!: number;
+  postDetails$: Observable<PostDetails> = of();
+
   constructor(private readonly postService: PostsService,
               private activatedRoute: ActivatedRoute) {}
 
-  postId!: number;
-  postDetails$: Observable<PostDetails> = of();
 
   ngOnInit(): void {
     this.postId = this.activatedRoute.snapshot.params['id'];

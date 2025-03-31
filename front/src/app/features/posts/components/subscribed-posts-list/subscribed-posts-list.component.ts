@@ -41,6 +41,7 @@ export class SubscribedPostsListComponent implements OnInit, OnChanges {
       .catch(console.error);
   }
 
+  // TODO: See for a better way to sort the posts
   private sortSubscribedPosts(): void {
     this.subscribedPosts$ = this.subscribedPosts$.pipe(
       map(posts => posts.sort((a, b) => this.sortOrderDesc
