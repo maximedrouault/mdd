@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, of, switchMap} from 'rxjs';
-import {Topic} from '../../../topics/interfaces/topic.interface';
-import {TopicCardComponent} from '../../../topics/components/topic-card/topic-card.component';
+import {Topic} from '../../interfaces/topic.interface';
+import {TopicCardComponent} from '../topic-card/topic-card.component';
 import {AsyncPipe} from '@angular/common';
-import {TopicsService} from '../../../topics/services/topics.service';
+import {TopicsService} from '../../services/topics.service';
 
 @Component({
-  selector: 'app-user-topic-list',
+  selector: 'app-subscribed-topics-list',
   imports: [
     TopicCardComponent,
     AsyncPipe
   ],
-  templateUrl: './user-topic-list.component.html',
-  styleUrl: './user-topic-list.component.scss'
+  templateUrl: './subscribed-topics-list.component.html',
+  styleUrl: './subscribed-topics-list.component.scss'
 })
-export class UserTopicListComponent implements OnInit {
+export class SubscribedTopicsListComponent implements OnInit {
 
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
   subscribedTopics$: Observable<Topic[]> = of();

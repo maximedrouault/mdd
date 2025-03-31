@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {UserTopicListComponent} from '../../../features/users/components/user-topic-list/user-topic-list.component';
+import {SubscribedTopicsListComponent} from '../../../features/topics/components/subscribed-topics-list/subscribed-topics-list.component';
 
 @Component({
   selector: 'app-user-profil',
   imports: [
-    UserTopicListComponent
+    SubscribedTopicsListComponent
   ],
   templateUrl: './user-profil.component.html',
   styleUrl: './user-profil.component.scss'

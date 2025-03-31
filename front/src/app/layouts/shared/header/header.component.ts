@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
       },
       {
         label: 'Thèmes',
-        routerLink: ['/topic-list']
+        routerLink: ['/all-topics-list']
       },
       {
         icon: 'pi pi-user',
