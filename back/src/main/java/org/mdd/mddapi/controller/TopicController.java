@@ -35,4 +35,11 @@ public class TopicController {
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    @DeleteMapping("/topics/{topicId}/subscribed/{userId}")
+    public ResponseEntity<Void> deleteTopicSubscription(@PathVariable @Positive Long topicId, @PathVariable @Positive Long userId) {
+        topicService.deleteTopicSubscription(topicId, userId);
+
+        return ResponseEntity.noContent().build();
+    }
 }

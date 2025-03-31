@@ -43,4 +43,13 @@ public class TopicService {
 
         topicRepository.save(topic);
     }
+
+    public void deleteTopicSubscription(Long topicId, Long userId) {
+        Topic topic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+
+        topic.getUsers().remove(user);
+
+        topicRepository.save(topic);
+    }
 }
