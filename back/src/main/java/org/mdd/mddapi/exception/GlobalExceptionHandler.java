@@ -45,4 +45,11 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().build();
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception exception) {
+        log.error("An unexpected error occurred: {}", exception.getMessage());
+
+        return ResponseEntity.internalServerError().build();
+    }
 }
