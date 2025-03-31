@@ -2,7 +2,7 @@ package org.mdd.mddapi.controller;
 
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.response.TopicDto;
+import org.mdd.mddapi.dto.response.topic.TopicDto;
 import org.mdd.mddapi.service.TopicService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

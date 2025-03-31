@@ -1,7 +1,7 @@
 package org.mdd.mddapi.mapper;
 
 import org.mapstruct.*;
-import org.mdd.mddapi.dto.response.PostDto;
+import org.mdd.mddapi.dto.response.post.PostDto;
 import org.mdd.mddapi.entity.Post;
 
 import java.util.Set;

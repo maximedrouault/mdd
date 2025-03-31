@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.response;
+package org.mdd.mddapi.dto.response.topic;
 
 import java.io.Serializable;
 

@@ -1,9 +1,9 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.response.PostDetailsDto;
+import org.mdd.mddapi.dto.response.post.PostDetailsDto;
 import org.mdd.mddapi.mapper.PostDetailsMapper;
-import org.mdd.mddapi.dto.response.PostDto;
+import org.mdd.mddapi.dto.response.post.PostDto;
 import org.mdd.mddapi.entity.Post;
 import org.mdd.mddapi.exception.PostNotFoundException;
 import org.mdd.mddapi.mapper.PostMapper;

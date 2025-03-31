@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.response;
+package org.mdd.mddapi.dto.response.post;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
