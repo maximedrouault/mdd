@@ -29,7 +29,11 @@ public class Topic {
     @Column(nullable = false)
     private String description;
 
-    @ManyToMany(mappedBy = "subscribedTopics", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(name = "users_topics",
+            joinColumns = @JoinColumn(name = "topic_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     @JsonIgnore
     private Set<User> users = new LinkedHashSet<>();
 

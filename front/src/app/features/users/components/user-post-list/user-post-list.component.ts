@@ -1,9 +1,10 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {map, Observable, of} from 'rxjs';
 import {Post} from '../../../posts/interfaces/post.interface';
-import {UsersService} from '../../service/users.service';
 import {PostDetailsComponent} from '../../../posts/components/post-details/post-details.component';
 import {AsyncPipe} from '@angular/common';
+import {Router} from '@angular/router';
+import {PostsService} from '../../../posts/services/posts.service';
 
 @Component({
   selector: 'app-user-post-list',
@@ -20,11 +21,12 @@ export class UserPostListComponent implements OnInit, OnChanges {
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
   @Input() sortOrderDesc!: boolean;
 
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly postsService: PostsService,
+              private readonly router: Router) {}
 
 
   ngOnInit(): void {
-    this.subscribedPosts$ = this.usersService.getSubscribedPosts(this.userId);
+    this.subscribedPosts$ = this.postsService.getSubscribedPosts(this.userId);
     this.sortSubscribedPosts();
   };
 
@@ -32,6 +34,11 @@ export class UserPostListComponent implements OnInit, OnChanges {
     if (changes['sortOrderDesc']) {
       this.sortSubscribedPosts();
     }
+  }
+
+  navigateToPostDetails(postId: number): void {
+    this.router.navigate(['/post-details', postId])
+      .catch(console.error);
   }
 
   private sortSubscribedPosts(): void {

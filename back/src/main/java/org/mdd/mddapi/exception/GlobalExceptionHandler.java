@@ -25,6 +25,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.notFound().build();
     }
 
+    @ExceptionHandler(PostNotFoundException.class)
+    public ResponseEntity<String> handlePostNotFoundException(PostNotFoundException exception) {
+        log.warn(exception.getMessage());
+
+        return ResponseEntity.notFound().build();
+    }
+
     @ExceptionHandler(HandlerMethodValidationException.class)
     public ResponseEntity<String> handleConstraintViolationException(HandlerMethodValidationException exception) {
         log.warn(exception.getMessage());
@@ -37,5 +44,12 @@ public class GlobalExceptionHandler {
         log.warn(exception.getMessage());
 
         return ResponseEntity.badRequest().build();
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> handleException(Exception exception) {
+        log.error("An unexpected error occurred: {}", exception.getMessage());
+
+        return ResponseEntity.internalServerError().build();
     }
 }

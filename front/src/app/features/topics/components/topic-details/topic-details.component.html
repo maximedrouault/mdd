@@ -1,4 +1,4 @@
-<p-card [header]="topic.name">
+<p-card [header]="(topic.name | titlecase)">
   <ng-template pTemplate="content">
     <p class="card-content">{{ topic.description }}</p>
   </ng-template>

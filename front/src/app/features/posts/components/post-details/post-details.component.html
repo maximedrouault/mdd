@@ -1,11 +1,11 @@
-<p-card [header]="subscribedPost.title">
+<p-card [header]="post.title">
   <ng-template pTemplate="subtitle">
     <div class="card-subtitle">
-      <p>Crée le: {{ subscribedPost.creationDate | date }}</p>
-      <p>Auteur: {{ subscribedPost.authorName }}</p>
+      <p>Crée le: {{ post.creationDate | date }}</p>
+      <p>Auteur: {{ post.authorName | titlecase }}</p>
     </div>
   </ng-template>
   <ng-template pTemplate="content">
-    <p class="card-content">{{ subscribedPost.content }}</p>
+    <p class="card-content">{{ post.content }}</p>
   </ng-template>
 </p-card>

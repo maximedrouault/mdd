@@ -15,4 +15,16 @@ export class TopicsService {
   public getAllTopics(): Observable<Topic[]> {
     return this.http.get<Topic[]>(`${environment.apiUrl}/topics`);
   };
+
+  public getSubscribedTopics(userId: number): Observable<Topic[]> {
+    return this.http.get<Topic[]>(`${environment.apiUrl}/topics/subscribed/${userId}`);
+  };
+
+  public saveTopicSubscription(topicId: number, userId: number): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/topics/${topicId}/subscribed/${userId}`, null);
+  };
+
+  public deleteTopicSubscription(topicId: number, userId: number): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/topics/${topicId}/subscribed/${userId}`);
+  };
 }
