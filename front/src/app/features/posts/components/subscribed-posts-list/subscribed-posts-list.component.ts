@@ -1,21 +1,21 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {map, Observable, of} from 'rxjs';
-import {Post} from '../../../posts/interfaces/post.interface';
-import {PostDetailsComponent} from '../../../posts/components/post-details/post-details.component';
+import {Post} from '../../interfaces/post.interface';
+import {PostCardComponent} from '../post-card/post-card.component';
 import {AsyncPipe} from '@angular/common';
 import {Router} from '@angular/router';
-import {PostsService} from '../../../posts/services/posts.service';
+import {PostsService} from '../../services/posts.service';
 
 @Component({
-  selector: 'app-user-post-list',
+  selector: 'app-subscribed-posts-list',
   imports: [
-    PostDetailsComponent,
+    PostCardComponent,
     AsyncPipe
   ],
-  templateUrl: './user-post-list.component.html',
-  styleUrl: './user-post-list.component.scss'
+  templateUrl: './subscribed-posts-list.component.html',
+  styleUrl: './subscribed-posts-list.component.scss'
 })
-export class UserPostListComponent implements OnInit, OnChanges {
+export class SubscribedPostsListComponent implements OnInit, OnChanges {
 
   subscribedPosts$: Observable<Post[]> = of();
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented

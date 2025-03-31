@@ -3,18 +3,18 @@ import {map, Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../interfaces/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
-import {TopicDetailsComponent} from '../topic-details/topic-details.component';
+import {TopicCardComponent} from '../topic-card/topic-card.component';
 
 @Component({
-  selector: 'app-topic-list',
+  selector: 'app-all-topics-list',
   imports: [
     AsyncPipe,
-    TopicDetailsComponent
+    TopicCardComponent
   ],
-  templateUrl: './topic-list.component.html',
-  styleUrl: './topic-list.component.scss'
+  templateUrl: './all-topics-list.component.html',
+  styleUrl: './all-topics-list.component.scss'
 })
-export class TopicListComponent implements OnInit{
+export class AllTopicsListComponent implements OnInit{
 
   allTopics$: Observable<Topic[]> = of();
   userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented

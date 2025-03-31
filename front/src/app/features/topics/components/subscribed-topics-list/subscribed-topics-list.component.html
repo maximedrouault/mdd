@@ -1,11 +1,11 @@
 @if (subscribedTopics$ | async; as subscribedTopics) {
   <div class="cards-container">
     @for (subscribedTopic of subscribedTopics; track subscribedTopic.id) {
-      <app-topic-details
+      <app-topic-card
         [topic]="subscribedTopic"
         [isSubscriptionPage]="isSubscriptionPage"
         (topicId)="handleSubscription($event)" >
-      </app-topic-details>
+      </app-topic-card>
     } @empty {
       <p>La liste des abonnements est vide.</p>
     }
