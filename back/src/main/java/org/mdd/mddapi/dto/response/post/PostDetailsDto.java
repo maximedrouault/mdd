@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.response;
+package org.mdd.mddapi.dto.response.post;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -6,12 +6,13 @@ import java.time.LocalDateTime;
 /**
  * DTO for {@link org.mdd.mddapi.entity.Post}
  */
-public record PostDto(
+public record PostDetailsDto(
 
         Long id,
-        LocalDateTime creationDate,
         String title,
-        String content,
-        String authorName
+        LocalDateTime creationDate,
+        String authorName,
+        String topicName,
+        String content
 
 ) implements Serializable {}

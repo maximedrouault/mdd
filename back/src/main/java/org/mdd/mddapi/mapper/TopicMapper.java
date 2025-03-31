@@ -1,7 +1,7 @@
 package org.mdd.mddapi.mapper;
 
 import org.mapstruct.*;
-import org.mdd.mddapi.dto.response.TopicDto;
+import org.mdd.mddapi.dto.response.topic.TopicDto;
 import org.mdd.mddapi.entity.Topic;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.response.TopicDto;
+import org.mdd.mddapi.dto.response.topic.TopicDto;
 import org.mdd.mddapi.entity.Topic;
 import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.exception.TopicNotFoundException;
