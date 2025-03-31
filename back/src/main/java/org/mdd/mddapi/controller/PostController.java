@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Set;
+
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -21,5 +23,10 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public ResponseEntity<PostDto> getPostById(@PathVariable @Positive Long postId) {
         return ResponseEntity.ok(postService.getPostById(postId));
+    }
+
+    @GetMapping("/posts/subscribed/{userId}")
+    public ResponseEntity<Set<PostDto>> getSubscribedPosts(@PathVariable @Positive Long userId) {
+        return ResponseEntity.ok(postService.getSubscribedPosts(userId));
     }
 }
