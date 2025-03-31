@@ -12,6 +12,6 @@ public interface PostMapper {
     @Mapping(source = "author.username", target = "authorName")
     PostDto toDto(Post post);
 
-    Set<PostDto> toDtoSet(Set<Post> subscribedPosts);
+    Set<PostDto> toDtos(Set<Post> posts);
 
 }
