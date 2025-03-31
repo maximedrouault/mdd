@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../../topics/interfaces/topic.interface';
 import {TopicDetailsComponent} from '../../../topics/components/topic-details/topic-details.component';
 import {AsyncPipe} from '@angular/common';
@@ -27,11 +27,11 @@ export class UserTopicListComponent implements OnInit {
     this.subscribedTopics$ = this.loadSubscribedTopics();
   };
 
-  // handleSubscription(topicId: number): void {
-  //   this.subscribedTopics$ = this.topicService.deleteTopicSubscription(this.userId, topicId).pipe(
-  //     switchMap(() => this.loadSubscribedTopics())
-  //   );
-  // };
+  handleSubscription(topicId: number): void {
+    this.subscribedTopics$ = this.topicService.deleteTopicSubscription(topicId, this.userId).pipe(
+      switchMap(() => this.loadSubscribedTopics())
+    );
+  };
 
   private loadSubscribedTopics(): Observable<Topic[]> {
     return this.topicService.getSubscribedTopics(this.userId);
