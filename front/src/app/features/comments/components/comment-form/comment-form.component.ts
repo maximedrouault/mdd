@@ -4,6 +4,7 @@ import {TextareaModule} from 'primeng/textarea';
 import {Button} from 'primeng/button';
 import {ActivatedRoute} from '@angular/router';
 import {CommentPayload} from '../../interfaces/comment-payload.interface';
+import {CommentsService} from '../../services/comments.service';
 
 @Component({
   selector: 'app-comment-form',
@@ -21,10 +22,10 @@ export class CommentFormComponent implements OnInit {
   authorId: number = 3; // TODO: get the author id from the logged in user when the authentication is implemented
   postId!: number;
   commentForm!: FormGroup;
-  commentPayload!: CommentPayload;
 
   constructor(private readonly activatedRoute: ActivatedRoute,
-              private readonly formBuilder: FormBuilder) {}
+              private readonly formBuilder: FormBuilder,
+              private readonly commentsService: CommentsService) {}
 
 
   ngOnInit(): void {
@@ -43,7 +44,8 @@ export class CommentFormComponent implements OnInit {
         content: this.commentForm.value.comment
       }
 
-      console.log('Form value: ', commentPayload);
+      this.commentsService.saveComment(commentPayload).subscribe();
+      this.commentForm.reset();
     }
   }
 }
