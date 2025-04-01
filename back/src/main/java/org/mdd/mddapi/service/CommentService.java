@@ -27,7 +27,7 @@ public class CommentService {
 
 
     public Set<CommentDto> getCommentsByPostId(Long postId) {
-        Set<Comment> comments = commentRepository.findCommentsByPost_Id(postId);
+        Set<Comment> comments = commentRepository.findByPost_Id(postId);
 
         return commentMapper.toDto(comments);
     }
@@ -38,11 +38,9 @@ public class CommentService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
         User author = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
 
-        Comment comment = Comment.builder()
-                .content(commentPayloadDto.content())
-                .author(author)
-                .post(post)
-                .build();
+        Comment comment = commentMapper.toEntity(commentPayloadDto);
+        comment.setPost(post);
+        comment.setAuthor(author);
 
         commentRepository.save(comment);
     }

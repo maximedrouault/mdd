@@ -22,6 +22,7 @@ export class CommentFormComponent implements OnInit {
   authorId: number = 3; // TODO: get the author id from the logged in user when the authentication is implemented
   postId!: number;
   commentForm!: FormGroup;
+  hasAlreadyCommented: boolean = false; // TODO: implement this logic to check if the user has already commented on the post
 
   constructor(private readonly activatedRoute: ActivatedRoute,
               private readonly formBuilder: FormBuilder,

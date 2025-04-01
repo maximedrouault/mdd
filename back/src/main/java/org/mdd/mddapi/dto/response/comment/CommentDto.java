@@ -7,6 +7,7 @@ import java.io.Serializable;
  */
 public record CommentDto(
 
+        Long id,
         String authorName,
         String content
 
