@@ -29,7 +29,7 @@ public class CommentService {
     public Set<CommentDto> getCommentsByPostId(Long postId) {
         Set<Comment> comments = commentRepository.findCommentsByPost_Id(postId);
 
-        return commentMapper.toDtos(comments);
+        return commentMapper.toDto(comments);
     }
 
     public void saveComment(CommentPayloadDto commentPayloadDto) {
