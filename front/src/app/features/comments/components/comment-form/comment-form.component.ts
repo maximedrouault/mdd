@@ -32,7 +32,7 @@ export class CommentFormComponent implements OnInit {
     this.postId = this.activatedRoute.snapshot.params['id'];
 
     this.commentForm = this.formBuilder.group({
-      comment: ['', [Validators.required]]
+      comment: ['', [Validators.required, Validators.maxLength(255)]]
     });
   }
 
