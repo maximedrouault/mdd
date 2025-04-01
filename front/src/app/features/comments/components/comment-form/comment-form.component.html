@@ -1,0 +1,9 @@
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="comment-form-container">
+  <textarea rows="4"
+            pTextarea
+            formControlName="comment"
+            class="comment-form-textarea"
+            placeholder="Écrivez votre commentaire ici" >
+  </textarea>
+  <p-button icon="pi pi-send" ariaLabel="Send comment" text type="submit" />
+</form>

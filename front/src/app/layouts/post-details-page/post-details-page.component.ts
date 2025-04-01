@@ -3,13 +3,15 @@ import {PostDetailsComponent} from '../../features/posts/components/post-details
 import {Button} from 'primeng/button';
 import {Router} from '@angular/router';
 import {CommentsListComponent} from '../../features/comments/components/comments-list/comments-list.component';
+import {CommentFormComponent} from '../../features/comments/components/comment-form/comment-form.component';
 
 @Component({
   selector: 'app-post-details-page',
   imports: [
     PostDetailsComponent,
     Button,
-    CommentsListComponent
+    CommentsListComponent,
+    CommentFormComponent
   ],
   templateUrl: './post-details-page.component.html',
   styleUrl: './post-details-page.component.scss'

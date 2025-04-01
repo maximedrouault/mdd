@@ -1,0 +1,14 @@
+.comment-form {
+  &-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 1.5rem auto;
+  }
+
+  &-textarea {
+    width: 80%;
+    margin: 0 2% 0 7%;
+  }
+}

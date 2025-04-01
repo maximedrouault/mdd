@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../interfaces/post.interface';
-import {PostDetails} from '../interfaces/postDetails.interface';
+import {PostDetails} from '../interfaces/post-details.interface';
 import {environment} from '../../../../environments/environment';
 
 @Injectable({
