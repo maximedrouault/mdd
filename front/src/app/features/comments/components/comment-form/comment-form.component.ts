@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {TextareaModule} from 'primeng/textarea';
 import {Button} from 'primeng/button';
-import {ActivatedRoute} from '@angular/router';
 import {CommentPayload} from '../../interfaces/comment-payload.interface';
 import {CommentsService} from '../../services/comments.service';
+import {Message} from 'primeng/message';
 
 @Component({
   selector: 'app-comment-form',
@@ -12,25 +12,23 @@ import {CommentsService} from '../../services/comments.service';
     TextareaModule,
     FormsModule,
     Button,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Message
   ],
   templateUrl: './comment-form.component.html',
   styleUrl: './comment-form.component.scss'
 })
 export class CommentFormComponent implements OnInit {
 
-  authorId: number = 3; // TODO: get the author id from the logged in user when the authentication is implemented
-  postId!: number;
+  @Input() postId!: number;
+  @Input() authorId!: number;
   commentForm!: FormGroup;
 
-  constructor(private readonly activatedRoute: ActivatedRoute,
-              private readonly formBuilder: FormBuilder,
+  constructor(private readonly formBuilder: FormBuilder,
               private readonly commentsService: CommentsService) {}
 
 
   ngOnInit(): void {
-    this.postId = this.activatedRoute.snapshot.params['id'];
-
     this.commentForm = this.formBuilder.group({
       comment: ['', [Validators.required, Validators.maxLength(255)]]
     });
