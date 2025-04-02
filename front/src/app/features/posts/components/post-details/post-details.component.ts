@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {PostDetails} from '../../interfaces/post-details.interface';
 import {PostsService} from '../../services/posts.service';
-import {ActivatedRoute} from '@angular/router';
 import {AsyncPipe, DatePipe, TitleCasePipe} from '@angular/common';
 
 @Component({
@@ -17,16 +16,13 @@ import {AsyncPipe, DatePipe, TitleCasePipe} from '@angular/common';
 })
 export class PostDetailsComponent implements OnInit {
 
-  postId!: number;
+  @Input() postId!: number;
   postDetails$: Observable<PostDetails> = of();
 
-  constructor(private readonly postService: PostsService,
-              private activatedRoute: ActivatedRoute) {}
+  constructor(private readonly postService: PostsService) {}
 
 
   ngOnInit(): void {
-    this.postId = this.activatedRoute.snapshot.params['id'];
-
     this.postDetails$ = this.postService.getPostDetails(this.postId);
   }
 }

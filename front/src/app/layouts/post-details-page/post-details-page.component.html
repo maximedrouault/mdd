@@ -1,9 +1,9 @@
 <main class="post-details-container">
   <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" (onClick)="goBack()" />
   <section>
-    <app-post-details />
+    <app-post-details [postId]="postId" />
     <hr>
-    <app-comments-list />
-    <app-comment-form />
+    <app-comments-list [postId]="postId" />
+    <app-comment-form [postId]="postId" />
   </section>
 </main>
