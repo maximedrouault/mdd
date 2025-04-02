@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link org.mdd.mddapi.entity.Topic}
  */
-public record TopicDto(
+public record SubscribedTopicDto(
 
         Long id,
         String name,

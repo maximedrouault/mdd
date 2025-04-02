@@ -1,0 +1,19 @@
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="comment-form-container">
+  <div class="comment-input-container">
+    <textarea rows="4"
+              pTextarea
+              formControlName="comment"
+              class="comment-input"
+              placeholder="Écrivez votre commentaire ici">
+    </textarea>
+    @if (commentForm.invalid && (commentForm.touched || commentForm.dirty)) {
+      @if (commentForm.hasError('required', 'comment')) {
+        <p-message severity="error" variant="simple" text="Le commentaire est requis" />
+      }
+      @if (commentForm.hasError('maxlength', 'comment')) {
+        <p-message severity="error" variant="simple" text="Le commentaire ne doit pas être supérieur à 255 caractères" />
+      }
+    }
+  </div>
+  <p-button icon="pi pi-send" ariaLabel="Send comment" text type="submit" [disabled]="commentForm.invalid"/>
+</form>

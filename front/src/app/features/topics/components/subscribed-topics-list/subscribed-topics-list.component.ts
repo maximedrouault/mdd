@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../interfaces/topic.interface';
 import {TopicCardComponent} from '../topic-card/topic-card.component';
@@ -16,7 +16,7 @@ import {TopicsService} from '../../services/topics.service';
 })
 export class SubscribedTopicsListComponent implements OnInit {
 
-  userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
+  @Input() userId!: number;
   subscribedTopics$: Observable<Topic[]> = of();
   isSubscriptionPage: boolean = false;
 

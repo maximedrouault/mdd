@@ -2,7 +2,7 @@ package org.mdd.mddapi.controller;
 
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.response.topic.TopicDto;
+import org.mdd.mddapi.dto.response.topic.SubscribedTopicDto;
 import org.mdd.mddapi.service.TopicService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +20,12 @@ public class TopicController {
 
 
     @GetMapping("/topics")
-    public ResponseEntity<List<TopicDto>> getAllTopics() {
+    public ResponseEntity<List<SubscribedTopicDto>> getAllTopics() {
         return ResponseEntity.ok(topicService.getAllTopics());
     }
 
     @GetMapping("/topics/subscribed/{userId}")
-    public ResponseEntity<Set<TopicDto>> getSubscribedTopics(@PathVariable @Positive Long userId) {
+    public ResponseEntity<Set<SubscribedTopicDto>> getSubscribedTopics(@PathVariable @Positive Long userId) {
         return ResponseEntity.ok(topicService.getSubscribedTopics(userId));
     }
 

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 /**
  * DTO for {@link org.mdd.mddapi.entity.Post}
  */
-public record PostDto(
+public record SubscribedPostDto(
 
         Long id,
         LocalDateTime creationDate,

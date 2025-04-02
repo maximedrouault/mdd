@@ -1,22 +1,33 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PostDetailsComponent} from '../../features/posts/components/post-details/post-details.component';
 import {Button} from 'primeng/button';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CommentsListComponent} from '../../features/comments/components/comments-list/comments-list.component';
+import {CommentFormComponent} from '../../features/comments/components/comment-form/comment-form.component';
 
 @Component({
   selector: 'app-post-details-page',
   imports: [
     PostDetailsComponent,
     Button,
-    CommentsListComponent
+    CommentsListComponent,
+    CommentFormComponent
   ],
   templateUrl: './post-details-page.component.html',
   styleUrl: './post-details-page.component.scss'
 })
-export class PostDetailsPageComponent {
+export class PostDetailsPageComponent implements OnInit {
 
-  constructor(private readonly router: Router) {}
+  postId!: number;
+  authorId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
+
+  constructor(private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute) {}
+
+
+  ngOnInit(): void {
+    this.postId = this.activatedRoute.snapshot.params['id'];
+  }
 
   goBack(): void {
     this.router.navigate(['/user-posts-feed'])

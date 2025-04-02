@@ -18,7 +18,7 @@ import {PostsService} from '../../services/posts.service';
 export class SubscribedPostsListComponent implements OnInit, OnChanges {
 
   subscribedPosts$: Observable<Post[]> = of();
-  userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
+  @Input() userId!: number;
   @Input() sortOrderDesc!: boolean;
 
   constructor(private readonly postsService: PostsService,
@@ -44,10 +44,14 @@ export class SubscribedPostsListComponent implements OnInit, OnChanges {
   // TODO: See for a better way to sort the posts
   private sortSubscribedPosts(): void {
     this.subscribedPosts$ = this.subscribedPosts$.pipe(
-      map(posts => posts.sort((a, b) => this.sortOrderDesc
-        ? new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
-        : new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime()
-      ))
+      map(posts => this.sortByDate(posts))
+    );
+  }
+
+  private sortByDate(posts: Post[]): Post[] {
+    return posts.sort((a, b) => this.sortOrderDesc
+      ? new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime()
+      : new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime()
     );
   }
 }

@@ -1,6 +1,10 @@
 package org.mdd.mddapi.mapper;
 
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingConstants;
+import org.mapstruct.ReportingPolicy;
+import org.mdd.mddapi.dto.request.comment.CommentPayloadDto;
 import org.mdd.mddapi.dto.response.comment.CommentDto;
 import org.mdd.mddapi.entity.Comment;
 
@@ -8,15 +12,16 @@ import java.util.Set;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface CommentMapper {
-    @Mapping(source = "authorName", target = "author.username")
-    Comment toEntity(CommentDto commentDto);
 
+    // Handle the mapping between CommentDto and Comment entity
     @Mapping(source = "author.username", target = "authorName")
     CommentDto toDto(Comment comment);
 
-    Set<CommentDto> toDtos(Set<Comment> comments);
+    Set<CommentDto> toDto(Set<Comment> comments);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(source = "authorName", target = "author.username")
-    Comment partialUpdate(CommentDto commentDto, @MappingTarget Comment comment);
+
+    // Handle the mapping between CommentPayloadDto and Comment entity
+    @Mapping(source = "postId", target = "post.id")
+    @Mapping(source = "authorId", target = "author.id")
+    Comment toEntity(CommentPayloadDto commentPayloadDto);
 }

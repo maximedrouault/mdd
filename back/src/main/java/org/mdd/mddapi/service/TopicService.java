@@ -1,7 +1,7 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.response.topic.TopicDto;
+import org.mdd.mddapi.dto.response.topic.SubscribedTopicDto;
 import org.mdd.mddapi.entity.Topic;
 import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.exception.TopicNotFoundException;
@@ -23,16 +23,16 @@ public class TopicService {
     private final TopicMapper topicMapper;
 
 
-    public List<TopicDto> getAllTopics() {
+    public List<SubscribedTopicDto> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
 
-        return topicMapper.toDtoList(topics);
+        return topicMapper.toSubscribedTopicDto(topics);
     }
 
-    public Set<TopicDto> getSubscribedTopics(Long userId) {
+    public Set<SubscribedTopicDto> getSubscribedTopics(Long userId) {
         Set<Topic> subscribedTopics = topicRepository.findByUsers_Id(userId);
 
-        return topicMapper.toDtoSet(subscribedTopics);
+        return topicMapper.toSubscribedTopicDto(subscribedTopics);
     }
 
     public void saveTopicSubscription(Long topicId, Long userId) {

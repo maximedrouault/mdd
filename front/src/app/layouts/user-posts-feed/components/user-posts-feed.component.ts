@@ -17,5 +17,6 @@ import {FormsModule} from '@angular/forms';
 })
 export class UserPostsFeedComponent {
 
+  userId: number = 3; //
   sortOrderDesc: boolean = true;
 }

@@ -1,8 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
 import {Comment} from '../../interfaces/comment.interface';
 import {CommentsService} from '../../services/comments.service';
-import {ActivatedRoute} from '@angular/router';
 import {AsyncPipe} from '@angular/common';
 import {CommentCardComponent} from '../comment-card/comment-card.component';
 
@@ -17,16 +16,14 @@ import {CommentCardComponent} from '../comment-card/comment-card.component';
 })
 export class CommentsListComponent implements OnInit {
 
+  @Input() postId!: number;
   comments$: Observable<Comment[]> = of();
-  postId!: number;
 
-  constructor(private readonly commentsService: CommentsService,
-              private readonly activatedRoute: ActivatedRoute  ) {}
+  constructor(private readonly commentsService: CommentsService) {}
 
 
   ngOnInit(): void {
-    this.postId = this.activatedRoute.snapshot.params['id'];
-
-    this.comments$ = this.commentsService.getCommentsByPostId(this.postId);
+    this.commentsService.getCommentsByPostId(this.postId);
+    this.comments$ = this.commentsService.comments$;
   }
 }

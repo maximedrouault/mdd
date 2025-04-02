@@ -3,7 +3,7 @@ package org.mdd.mddapi.controller;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.response.post.PostDetailsDto;
-import org.mdd.mddapi.dto.response.post.PostDto;
+import org.mdd.mddapi.dto.response.post.SubscribedPostDto;
 import org.mdd.mddapi.service.PostService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +22,7 @@ public class PostController {
 
 
     @GetMapping("/posts/subscribed/{userId}")
-    public ResponseEntity<Set<PostDto>> getSubscribedPosts(@PathVariable @Positive Long userId) {
+    public ResponseEntity<Set<SubscribedPostDto>> getSubscribedPosts(@PathVariable @Positive Long userId) {
         return ResponseEntity.ok(postService.getSubscribedPosts(userId));
     }
 
