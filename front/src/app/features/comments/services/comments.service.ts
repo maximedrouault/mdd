@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, tap} from 'rxjs';
 import {Comment} from '../interfaces/comment.interface';
@@ -16,17 +16,14 @@ export class CommentsService {
   constructor(private readonly http: HttpClient) {}
 
 
-  public getCommentsByPostId(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(`${environment.apiUrl}/comments/post/${postId}`).pipe(
-      tap(comments => this.commentsSubject.next(comments))
-    );
+  public getCommentsByPostId(postId: number): void {
+    this.http.get<Comment[]>(`${environment.apiUrl}/comments/post/${postId}`)
+      .subscribe(comments => this.commentsSubject.next(comments));
   }
 
   public saveComment(commentPayload: CommentPayload): Observable<void> {
     return this.http.post<void>(`${environment.apiUrl}/comments/post`, commentPayload).pipe(
-      tap(() => {
-        this.getCommentsByPostId(commentPayload.postId).subscribe();
-      })
+      tap(() => this.getCommentsByPostId(commentPayload.postId))
     );
   }
 }

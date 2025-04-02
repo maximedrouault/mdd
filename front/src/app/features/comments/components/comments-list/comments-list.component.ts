@@ -27,7 +27,7 @@ export class CommentsListComponent implements OnInit {
   ngOnInit(): void {
     this.postId = this.activatedRoute.snapshot.params['id'];
 
+    this.commentsService.getCommentsByPostId(this.postId);
     this.comments$ = this.commentsService.comments$;
-    this.commentsService.getCommentsByPostId(this.postId).subscribe();
   }
 }
