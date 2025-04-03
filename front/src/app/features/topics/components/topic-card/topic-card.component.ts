@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Topic} from '../../interfaces/topic.interface';
+import {Topic} from '../../interfaces/responses/topic.interface';
 import {Card} from 'primeng/card';
 import {Button} from 'primeng/button';
 import {PrimeTemplate} from 'primeng/api';

@@ -1,12 +1,19 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
+import org.mdd.mddapi.dto.request.post.PostPayloadDto;
 import org.mdd.mddapi.dto.response.post.PostDetailsDto;
 import org.mdd.mddapi.dto.response.post.SubscribedPostDto;
 import org.mdd.mddapi.entity.Post;
+import org.mdd.mddapi.entity.Topic;
+import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.exception.PostNotFoundException;
+import org.mdd.mddapi.exception.TopicNotFoundException;
+import org.mdd.mddapi.exception.UserNotFoundException;
 import org.mdd.mddapi.mapper.PostMapper;
 import org.mdd.mddapi.repository.PostRepository;
+import org.mdd.mddapi.repository.TopicRepository;
+import org.mdd.mddapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -16,6 +23,8 @@ import java.util.Set;
 public class PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
+    private final TopicRepository topicRepository;
     private final PostMapper postMapper;
 
 
@@ -29,5 +38,18 @@ public class PostService {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
 
         return postMapper.toPostDetailsDto(post);
+    }
+
+    public void savePost(PostPayloadDto postPayloadDto) {
+        Long userId = postPayloadDto.authorId();
+        Long topicId = postPayloadDto.topicId();
+        User foundUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        Topic foundTopic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
+
+        Post postToAdd = postMapper.toEntity(postPayloadDto);
+        postToAdd.setAuthor(foundUser);
+        postToAdd.setTopic(foundTopic);
+
+        postRepository.save(postToAdd);
     }
 }

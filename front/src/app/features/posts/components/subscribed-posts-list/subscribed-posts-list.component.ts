@@ -1,6 +1,6 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {map, Observable, of} from 'rxjs';
-import {Post} from '../../interfaces/post.interface';
+import {Post} from '../../interfaces/responses/post.interface';
 import {PostCardComponent} from '../post-card/post-card.component';
 import {AsyncPipe} from '@angular/common';
 import {Router} from '@angular/router';

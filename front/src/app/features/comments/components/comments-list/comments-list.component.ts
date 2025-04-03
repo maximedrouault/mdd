@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {Comment} from '../../interfaces/comment.interface';
+import {Comment} from '../../interfaces/responses/comment.interface';
 import {CommentsService} from '../../services/comments.service';
 import {AsyncPipe} from '@angular/common';
 import {CommentCardComponent} from '../comment-card/comment-card.component';

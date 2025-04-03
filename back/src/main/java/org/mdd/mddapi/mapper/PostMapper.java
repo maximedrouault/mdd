@@ -1,6 +1,7 @@
 package org.mdd.mddapi.mapper;
 
 import org.mapstruct.*;
+import org.mdd.mddapi.dto.request.post.PostPayloadDto;
 import org.mdd.mddapi.dto.response.post.PostDetailsDto;
 import org.mdd.mddapi.dto.response.post.SubscribedPostDto;
 import org.mdd.mddapi.entity.Post;
@@ -21,4 +22,10 @@ public interface PostMapper {
     @Mapping(source = "topic.name", target = "topicName")
     @Mapping(source = "author.username", target = "authorName")
     PostDetailsDto toPostDetailsDto(Post post);
+
+
+    // Handle the conversion between PostPayloadDto and Post entity
+    @Mapping(source = "topicId", target = "topic.id")
+    @Mapping(source = "authorId", target = "author.id")
+    Post toEntity(PostPayloadDto postPayloadDto);
 }

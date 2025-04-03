@@ -1,0 +1,33 @@
+<main>
+  <section>
+    <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
+    <div class="post-form-container">
+      <form [formGroup]="postForm" class="post-form">
+        <h1 class="page-title">Créer un nouvel article</h1>
+        <div>
+          <p-select formControlName="selectedTopic" [options]="topics" optionLabel="name" optionValue="id" placeholder="Sélectionner un thème" class="topic-select" />
+          @if (isFieldInvalid('selectedTopic', 'required')) {
+            <p-message severity="error" variant="simple" text="Le thème est requis" />
+          }
+        </div>
+        <div>
+          <input type="text" pInputText formControlName="title" placeholder="Titre de l'article" class="post-title" />
+          @if (isFieldInvalid('title', 'required')) {
+            <p-message severity="error" variant="simple" text="Le titre est requis" />
+          } @else if (isFieldInvalid('title', 'maxlength')) {
+            <p-message severity="error" variant="simple" text="Le titre doit faire moins de 100 caractères" />
+          }
+        </div>
+        <div>
+          <textarea rows="10" pTextarea formControlName="content" placeholder="Contenu de l'article" class="post-content"></textarea>
+          @if (isFieldInvalid('content', 'required')) {
+            <p-message severity="error" variant="simple" text="Le contenu de l'article est requis" />
+          } @else if (isFieldInvalid('content', 'maxlength')) {
+            <p-message severity="error" variant="simple" text="Le contenu doit faire moins de 65535 caractères" />
+          }
+        </div>
+        <p-button [disabled]="postForm.invalid" class="create-post-button" (onClick)="onAddPost()">Créer</p-button>
+      </form>
+    </div>
+  </section>
+</main>

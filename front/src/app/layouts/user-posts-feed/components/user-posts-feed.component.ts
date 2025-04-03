@@ -3,6 +3,7 @@ import {SubscribedPostsListComponent} from '../../../features/posts/components/s
 import {Button} from 'primeng/button';
 import {ToggleButton} from 'primeng/togglebutton';
 import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-user-posts-feed',
@@ -19,4 +20,11 @@ export class UserPostsFeedComponent {
 
   userId: number = 3; //
   sortOrderDesc: boolean = true;
+
+  constructor(private readonly router: Router) {}
+
+  onAddPost(): void {
+    this.router.navigate(['post-form'])
+      .catch(console.error);
+  }
 }

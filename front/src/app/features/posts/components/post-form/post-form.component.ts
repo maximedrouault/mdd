@@ -1,0 +1,73 @@
+import {Component, OnInit} from '@angular/core';
+import {Button} from "primeng/button";
+import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Select} from 'primeng/select';
+import {Topic} from '../../../topics/interfaces/responses/topic.interface';
+import {TopicsService} from '../../../topics/services/topics.service';
+import {Message} from 'primeng/message';
+import {InputText} from 'primeng/inputtext';
+import {Textarea} from 'primeng/textarea';
+import {PostPayload} from '../../interfaces/requests/post-payload-interface';
+import {PostsService} from '../../services/posts.service';
+
+@Component({
+  selector: 'app-post-form',
+  imports: [
+    Button,
+    ReactiveFormsModule,
+    Select,
+    Message,
+    InputText,
+    Textarea
+  ],
+  templateUrl: './post-form.component.html',
+  styleUrl: './post-form.component.scss'
+})
+export class PostFormComponent implements OnInit {
+
+  postForm!: FormGroup;
+  topics!: Topic[];
+  userId: number = 3; // TODO: get from auth service when security is implemented
+
+  constructor(private readonly router: Router,
+              private readonly formBuilder: FormBuilder,
+              private readonly topicsService: TopicsService,
+              private readonly postService: PostsService) {}
+
+  ngOnInit(): void {
+    this.topicsService.getAllTopics().subscribe(
+      (topics => this.topics = topics)
+    );
+
+    this.postForm = this.formBuilder.group({
+      selectedTopic: ['', [Validators.required]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
+      content: ['', [Validators.required, Validators.maxLength(65535)]]
+    });
+  }
+
+  goBack(): void {
+    this.router.navigate(['user-posts-feed'])
+      .catch(console.error);
+  }
+
+  isFieldInvalid(fieldName: string, errorType: string) : boolean | undefined {
+    const field = this.postForm.get(fieldName);
+    return field?.invalid && (field.touched || field.dirty) && field.hasError(errorType);
+  }
+
+  onAddPost(): void {
+    if (this.postForm.valid) {
+      const postToAdd: PostPayload = {
+        authorId: this.userId,
+        topicId: this.postForm.value.selectedTopic,
+        title: this.postForm.value.title,
+        content: this.postForm.value.content
+      }
+
+      this.postService.savePost(postToAdd).subscribe(
+        () => this.postForm.reset());
+    }
+  }
+}
