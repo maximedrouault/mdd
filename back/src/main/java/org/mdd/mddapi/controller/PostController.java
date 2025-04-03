@@ -1,15 +1,14 @@
 package org.mdd.mddapi.controller;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
+import org.mdd.mddapi.dto.request.post.PostPayloadDto;
 import org.mdd.mddapi.dto.response.post.PostDetailsDto;
 import org.mdd.mddapi.dto.response.post.SubscribedPostDto;
 import org.mdd.mddapi.service.PostService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -29,5 +28,12 @@ public class PostController {
     @GetMapping("/posts/{postId}")
     public ResponseEntity<PostDetailsDto> getPostDetails(@PathVariable @Positive Long postId) {
         return ResponseEntity.ok(postService.getPostDetails(postId));
+    }
+
+    @PostMapping("/posts")
+    public ResponseEntity<Void> savePost(@RequestBody @Valid PostPayloadDto postPayloadDto) {
+        postService.savePost(postPayloadDto);
+
+        return ResponseEntity.noContent().build();
     }
 }
