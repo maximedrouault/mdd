@@ -28,7 +28,7 @@ export class PostFormComponent implements OnInit {
 
   postForm!: FormGroup;
   topics!: Topic[];
-  isTitleInvalid: any;
+  userId: number = 3; // TODO: get from auth service when security is implemented
 
   constructor(private readonly router: Router,
               private readonly formBuilder: FormBuilder,
@@ -60,6 +60,7 @@ export class PostFormComponent implements OnInit {
   onAddPost(): void {
     if (this.postForm.valid) {
       const postToAdd: PostPayload = {
+        authorId: this.userId,
         topicId: this.postForm.value.selectedTopic,
         title: this.postForm.value.title,
         content: this.postForm.value.content
