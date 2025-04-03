@@ -35,13 +35,13 @@ public class CommentService {
     public void saveComment(CommentPayloadDto commentPayloadDto) {
         Long postId = commentPayloadDto.postId();
         Long authorId = commentPayloadDto.authorId();
-        Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
-        User author = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
+        Post foundPost = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
+        User foundUser = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
 
-        Comment comment = commentMapper.toEntity(commentPayloadDto);
-        comment.setPost(post);
-        comment.setAuthor(author);
+        Comment commentToAdd = commentMapper.toEntity(commentPayloadDto);
+        commentToAdd.setPost(foundPost);
+        commentToAdd.setAuthor(foundUser);
 
-        commentRepository.save(comment);
+        commentRepository.save(commentToAdd);
     }
 }
