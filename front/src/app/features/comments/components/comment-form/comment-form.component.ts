@@ -42,8 +42,8 @@ export class CommentFormComponent implements OnInit {
         content: this.commentForm.value.comment
       }
 
-      this.commentsService.saveComment(commentToAdd).subscribe();
-      this.commentForm.reset();
+      this.commentsService.saveComment(commentToAdd).subscribe(
+        () => this.commentForm.reset());
     }
   }
 }
