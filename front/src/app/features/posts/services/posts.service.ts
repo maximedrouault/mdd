@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Post} from '../interfaces/post.interface';
-import {PostDetails} from '../interfaces/post-details.interface';
+import {Post} from '../interfaces/responses/post.interface';
+import {PostDetails} from '../interfaces/responses/post-details.interface';
 import {environment} from '../../../../environments/environment';
 
 @Injectable({

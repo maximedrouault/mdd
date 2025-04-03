@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable, of} from 'rxjs';
-import {PostDetails} from '../../interfaces/post-details.interface';
+import {PostDetails} from '../../interfaces/responses/post-details.interface';
 import {PostsService} from '../../services/posts.service';
 import {AsyncPipe, DatePipe, TitleCasePipe} from '@angular/common';
 

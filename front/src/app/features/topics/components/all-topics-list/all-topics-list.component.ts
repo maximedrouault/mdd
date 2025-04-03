@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {map, Observable, of, switchMap} from 'rxjs';
-import {Topic} from '../../interfaces/topic.interface';
+import {Topic} from '../../interfaces/responses/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
 import {TopicCardComponent} from '../topic-card/topic-card.component';

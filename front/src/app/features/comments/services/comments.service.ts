@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, tap} from 'rxjs';
-import {Comment} from '../interfaces/comment.interface';
+import {Comment} from '../interfaces/responses/comment.interface';
 import {environment} from '../../../../environments/environment';
-import {CommentPayload} from '../interfaces/comment-payload.interface';
+import {CommentPayload} from '../interfaces/requests/comment-payload.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +21,9 @@ export class CommentsService {
       .subscribe(comments => this.commentsSubject.next(comments));
   }
 
-  public saveComment(commentPayload: CommentPayload): Observable<void> {
-    return this.http.post<void>(`${environment.apiUrl}/comments/post`, commentPayload).pipe(
-      tap(() => this.getCommentsByPostId(commentPayload.postId))
+  public saveComment(commentToAdd: CommentPayload): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/comments/post`, commentToAdd).pipe(
+      tap(() => this.getCommentsByPostId(commentToAdd.postId))
     );
   }
 }
