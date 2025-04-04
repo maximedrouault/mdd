@@ -6,10 +6,24 @@
       <div>
         <label for="username">E-mail ou nom d'utilisateur</label>
         <input type="text" pInputText id="username" formControlName="username" class="user-infos" />
+        @if (isFieldInvalid('username', 'required')) {
+          <p-message severity="error" variant="simple" text="Le nom d'utilisateur est requis" />
+        } @else if (isFieldInvalid('username', 'maxlength')) {
+          <p-message severity="error" variant="simple" text="Le nom d'utilisateur doit faire moins de 100 caractères" />
+        }
       </div>
       <div>
         <label for="password">Mot de passe</label>
-        <input type="password" pInputText id="password" formControlName="password" class="user-infos" />
+        <input type="text" pInputText id="password" formControlName="password" class="user-infos" />
+        @if (isFieldInvalid('password', 'required')) {
+          <p-message severity="error" variant="simple" text="Le mot de passe est requis" />
+        } @else if (isFieldInvalid('password', 'minlength')) {
+          <p-message severity="error" variant="simple" text="Le mot de passe doit faire au moins 8 caractères" />
+        } @else if (isFieldInvalid('password', 'maxlength')) {
+          <p-message severity="error" variant="simple" text="Le mot de passe doit faire moins de 100 caractères" />
+        } @else if (isFieldInvalid('password', 'passwordComplexity')) {
+          <p-message severity="error" variant="simple" text="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial" />
+        }
       </div>
       <div class="login-button">
         <p-button [disabled]="loginForm.invalid" (onClick)="onLogin()">Se connecter</p-button>
