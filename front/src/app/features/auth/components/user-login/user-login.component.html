@@ -1,0 +1,19 @@
+<main>
+  <section class="login-form-container">
+    <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
+    <form [formGroup]="loginForm" class="login-form">
+      <h1 class="title">Se connecter</h1>
+      <div>
+        <label for="username">E-mail ou nom d'utilisateur</label>
+        <input type="text" pInputText id="username" formControlName="username" class="user-infos" />
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" pInputText id="password" formControlName="password" class="user-infos" />
+      </div>
+      <div class="login-button">
+        <p-button [disabled]="loginForm.invalid" (onClick)="onLogin()">Se connecter</p-button>
+      </div>
+    </form>
+  </section>
+</main>

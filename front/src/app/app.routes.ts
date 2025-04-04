@@ -4,6 +4,7 @@ import {UserProfilComponent} from './layouts/user-profil/components/user-profil.
 import {UserPostsFeedComponent} from './layouts/user-posts-feed/components/user-posts-feed.component';
 import {PostDetailsPageComponent} from './layouts/post-details-page/post-details-page.component';
 import {PostFormComponent} from './features/posts/components/post-form/post-form.component';
+import {UserLoginComponent} from './features/auth/components/user-login/user-login.component';
 
 export const routes: Routes = [
   { path: 'user-profile', component: UserProfilComponent },
@@ -11,5 +12,6 @@ export const routes: Routes = [
   { path: 'user-posts-feed', component: UserPostsFeedComponent },
   { path: 'post-details/:id' , component: PostDetailsPageComponent },
   { path: 'post-form', component: PostFormComponent },
+  { path: 'user-login', component: UserLoginComponent },
   { path: '**', redirectTo: '' }
 ];
