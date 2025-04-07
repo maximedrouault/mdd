@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.request.comment;
+package org.mdd.mddapi.dto.comment.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
