@@ -43,7 +43,7 @@ export class UserLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const loginRequest: LoginPayload = this.loginForm.value;
 
-      this.authService.getAuthToken(loginRequest).subscribe(console.log);
+      this.authService.getAuthToken(loginRequest).subscribe();
     }
   }
 }

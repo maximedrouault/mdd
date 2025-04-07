@@ -15,7 +15,7 @@ export class AuthService {
 
   public getAuthToken(loginPayload: LoginPayload): Observable<AuthToken> {
     return this.http.post<AuthToken>(`${environment.apiUrl}/auth/login`, loginPayload).pipe(
-      tap(response => localStorage.setItem('authToken', response.token))
+      tap(response => localStorage.setItem('token', response.token))
     );
   }
 }
