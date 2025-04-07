@@ -9,8 +9,8 @@ import {RouterLink} from '@angular/router';
   imports: [
     Menubar,
     Image,
-    RouterLink,
-    PrimeTemplate
+    PrimeTemplate,
+    RouterLink
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
