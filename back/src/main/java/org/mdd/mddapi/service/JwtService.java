@@ -1,6 +1,7 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
@@ -16,12 +17,15 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class JwtService {
 
+    @Value("${jwt.expiration}")
+    private long expirationTime;
+
     private final JwtEncoder jwtEncoder;
 
 
     public String generateToken(Authentication authentication) {
         Instant now = Instant.now();
-        Instant expiration = now.plus(24, ChronoUnit.HOURS);
+        Instant expiration = now.plus(expirationTime, ChronoUnit.SECONDS);
 
         JwtClaimsSet claimsSet = JwtClaimsSet.builder()
                 .issuer("mdd-api")
