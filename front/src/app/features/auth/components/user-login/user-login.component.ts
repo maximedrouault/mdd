@@ -5,6 +5,7 @@ import {InputText} from 'primeng/inputtext';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Message} from 'primeng/message';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
+import {LoginPayload} from '../../interfaces/requests/login-payload.interface';
 
 @Component({
   selector: 'app-user-login',
@@ -36,12 +37,11 @@ export class UserLoginComponent implements OnInit {
       .catch(console.error);
   }
 
-  isFieldInvalid(fieldName: string, errorType: string) : boolean | undefined {
-    const field = this.loginForm.get(fieldName);
-    return field?.invalid && (field.touched || field.dirty) && field.hasError(errorType);
-  }
-
   onLogin(): void {
+    if (this.loginForm.valid) {
+      const loginRequest: LoginPayload = this.loginForm.value;
 
+      console.log(loginRequest);
+    }
   }
 }
