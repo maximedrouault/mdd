@@ -52,11 +52,6 @@ export class PostFormComponent implements OnInit {
       .catch(console.error);
   }
 
-  isFieldInvalid(fieldName: string, errorType: string) : boolean | undefined {
-    const field = this.postForm.get(fieldName);
-    return field?.invalid && (field.touched || field.dirty) && field.hasError(errorType);
-  }
-
   onAddPost(): void {
     if (this.postForm.valid) {
       const postToAdd: PostPayload = {
