@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {Message} from 'primeng/message';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {LoginPayload} from '../../interfaces/requests/login-payload.interface';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -23,7 +24,8 @@ export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
 
   constructor(private readonly router: Router,
-              private readonly formBuilder: FormBuilder) {}
+              private readonly formBuilder: FormBuilder,
+              private readonly authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -41,7 +43,7 @@ export class UserLoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const loginRequest: LoginPayload = this.loginForm.value;
 
-      console.log(loginRequest);
+      this.authService.getAuthToken(loginRequest).subscribe(console.log);
     }
   }
 }
