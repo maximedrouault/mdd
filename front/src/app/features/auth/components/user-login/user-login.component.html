@@ -34,6 +34,9 @@
       <div class="login-button">
         <p-button [disabled]="loginForm.invalid" (onClick)="onLogin()">Se connecter</p-button>
       </div>
+      @if (loginForm.hasError('loginFailed')) {
+        <p-message severity="error" variant="simple" text="Nom d'utilisateur ou mot de passe incorrect"/>
+      }
     </form>
   </section>
 </main>

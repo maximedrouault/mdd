@@ -31,19 +31,28 @@ export class UserLoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.maxLength(100)]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100), passwordComplexityValidator()]]
-    })
-  }
+    });
+  };
 
   goBack(): void {
     this.router.navigate(['auth-choice'])
       .catch(console.error);
-  }
+  };
 
   onLogin(): void {
     if (this.loginForm.valid) {
       const loginRequest: LoginPayload = this.loginForm.value;
 
-      this.authService.getAuthToken(loginRequest).subscribe();
+      this.authService.getAuthToken(loginRequest).subscribe({
+        next: () => {
+            this.router.navigate(['/user-posts-feed'])
+              .catch(console.error)
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+          this.loginForm.setErrors({ loginFailed: true });
+        }
+      });
     }
-  }
+  };
 }
