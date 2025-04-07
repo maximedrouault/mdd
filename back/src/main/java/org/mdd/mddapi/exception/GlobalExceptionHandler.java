@@ -2,6 +2,7 @@ package org.mdd.mddapi.exception;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
@@ -41,6 +42,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<String> handleIllegalArgumentException(MethodArgumentTypeMismatchException exception) {
+        log.warn(exception.getMessage());
+
+        return ResponseEntity.badRequest().build();
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException exception) {
         log.warn(exception.getMessage());
 
         return ResponseEntity.badRequest().build();
