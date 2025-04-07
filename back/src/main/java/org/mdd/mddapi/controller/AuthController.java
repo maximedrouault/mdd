@@ -2,7 +2,7 @@ package org.mdd.mddapi.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.auth.request.LoginDto;
+import org.mdd.mddapi.dto.auth.request.LoginRequestDto;
 import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.service.AuthService;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class AuthController {
 
 
     @PostMapping("/auth/login")
-    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody LoginDto loginDto) {
+    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody LoginRequestDto loginDto) {
         return ResponseEntity.ok(authService.getAuthToken(loginDto));
     }
 }
