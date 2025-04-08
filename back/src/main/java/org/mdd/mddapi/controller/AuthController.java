@@ -26,9 +26,7 @@ public class AuthController {
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
-        authService.registerUser(registerPayloadDto);
-
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<AuthTokenDto> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
+        return ResponseEntity.ok(authService.registerUser(registerPayloadDto));
     }
 }
