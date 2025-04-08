@@ -307,7 +307,7 @@ export const MyPreset = definePreset(Lara, {
             color: "transparent",
             offset: "0"
         },
-        disabledOpacity: "1",
+        disabledOpacity: "0.7",
         iconSize: "1rem",
         anchorGutter: "2px",
         primary: {

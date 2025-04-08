@@ -1,7 +1,7 @@
 <main>
   <section class="register-form-container">
     <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
-    <form [formGroup]="registerForm" class="register-form">
+    <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onRegister()">
       <h1 class="title">Inscription</h1>
       <div>
         <label for="username">Nom d'utilisateur</label>
@@ -45,7 +45,7 @@
         }
       </div>
       <div class="register-button">
-        <p-button [disabled]="registerForm.invalid">S'inscrire</p-button>
+        <p-button type="submit" [disabled]="registerForm.invalid">S'inscrire</p-button>
       </div>
     </form>
   </section>

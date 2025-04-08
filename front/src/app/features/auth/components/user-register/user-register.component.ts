@@ -36,4 +36,8 @@ export class UserRegisterComponent implements OnInit {
     this.router.navigate(['auth-choice'])
       .catch(console.error);
   }
+
+  onRegister(): void {
+    console.log(this.registerForm.value);
+  }
 }
