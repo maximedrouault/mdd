@@ -47,6 +47,9 @@
       <div class="register-button">
         <p-button type="submit" [disabled]="registerForm.invalid">S'inscrire</p-button>
       </div>
+      @if (registerForm.hasError('registrationFailed')) {
+        <p-message severity="error" variant="simple" text="Utilisateur déjà existant." class="text-center" />
+      }
     </form>
   </section>
 </main>
