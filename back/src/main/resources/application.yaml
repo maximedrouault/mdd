@@ -30,4 +30,4 @@ logging:
 
 # Jwt token configuration
 jwt:
-  expiration: 86400 # Jwt expiration time in seconds (24 hours)
+  expiration: 86400 # Jwt token expiration time in seconds (24 hours)

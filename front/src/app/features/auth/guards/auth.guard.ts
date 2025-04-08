@@ -16,7 +16,7 @@ export const authGuard: CanActivateFn = (): boolean => {
   const tokenExpirationTime: number | undefined = jwtDecode(token).exp;
   const currentTime: number = Math.floor(Date.now() / 1000); // current time from milliseconds to seconds
 
-  if (tokenExpirationTime && tokenExpirationTime > currentTime) {
+  if (tokenExpirationTime && (tokenExpirationTime > currentTime)) {
     return true;
   } else {
     localStorage.removeItem('token');
