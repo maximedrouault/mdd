@@ -4,12 +4,16 @@ import {UserProfilComponent} from './layouts/user-profil/components/user-profil.
 import {UserPostsFeedComponent} from './layouts/user-posts-feed/components/user-posts-feed.component';
 import {PostDetailsPageComponent} from './layouts/post-details-page/post-details-page.component';
 import {PostFormComponent} from './features/posts/components/post-form/post-form.component';
+import {UserLoginComponent} from './features/auth/components/user-login/user-login.component';
+import {authGuard} from './features/auth/guards/auth.guard';
 
 export const routes: Routes = [
-  { path: 'user-profile', component: UserProfilComponent },
-  { path: 'all-topics-list', component: AllTopicsListComponent },
-  { path: 'user-posts-feed', component: UserPostsFeedComponent },
-  { path: 'post-details/:id' , component: PostDetailsPageComponent },
-  { path: 'post-form', component: PostFormComponent },
-  { path: '**', redirectTo: '' }
+  { path: '', redirectTo: 'user-posts-feed', pathMatch: 'full' },
+  { path: 'user-profile', component: UserProfilComponent, canActivate: [authGuard] },
+  { path: 'all-topics-list', component: AllTopicsListComponent, canActivate: [authGuard] },
+  { path: 'user-posts-feed', component: UserPostsFeedComponent, canActivate: [authGuard] },
+  { path: 'post-details/:id' , component: PostDetailsPageComponent, canActivate: [authGuard] },
+  { path: 'post-form', component: PostFormComponent, canActivate: [authGuard] },
+  { path: 'user-login', component: UserLoginComponent },
+  { path: '**', redirectTo: 'user-posts-feed' }
 ];

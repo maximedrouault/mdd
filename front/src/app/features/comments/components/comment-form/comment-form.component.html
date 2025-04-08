@@ -6,11 +6,10 @@
               class="comment-input"
               placeholder="Écrivez votre commentaire ici">
     </textarea>
-    @if (commentForm.invalid && (commentForm.touched || commentForm.dirty)) {
+    @if (commentForm.invalid && (commentForm.get('comment')?.touched || commentForm.get('comment')?.dirty)) {
       @if (commentForm.hasError('required', 'comment')) {
         <p-message severity="error" variant="simple" text="Le commentaire est requis" />
-      }
-      @if (commentForm.hasError('maxlength', 'comment')) {
+      } @else if (commentForm.hasError('maxlength', 'comment')) {
         <p-message severity="error" variant="simple" text="Le commentaire ne doit pas être supérieur à 255 caractères" />
       }
     }

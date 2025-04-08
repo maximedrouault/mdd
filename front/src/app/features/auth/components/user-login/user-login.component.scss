@@ -1,0 +1,27 @@
+.login-form-container {
+  display: flex;
+
+  .back-button {
+    margin-top: 20px;
+  }
+
+  .login-form {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .title {
+      text-align: center;
+    }
+
+    .user-infos {
+      width: 100%;
+    }
+
+    .login-button {
+      margin: auto;
+    }
+  }
+}

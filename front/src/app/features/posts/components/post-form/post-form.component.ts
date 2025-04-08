@@ -10,6 +10,7 @@ import {InputText} from 'primeng/inputtext';
 import {Textarea} from 'primeng/textarea';
 import {PostPayload} from '../../interfaces/requests/post-payload-interface';
 import {PostsService} from '../../services/posts.service';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-post-form',
@@ -28,12 +29,15 @@ export class PostFormComponent implements OnInit {
 
   postForm!: FormGroup;
   topics!: Topic[];
-  userId: number = 3; // TODO: get from auth service when security is implemented
+  loggedUserId: number;
 
   constructor(private readonly router: Router,
               private readonly formBuilder: FormBuilder,
               private readonly topicsService: TopicsService,
-              private readonly postService: PostsService) {}
+              private readonly postService: PostsService,
+              private readonly authService: AuthService) {
+    this.loggedUserId = this.authService.getLoggedUserId();
+  }
 
   ngOnInit(): void {
     this.topicsService.getAllTopics().subscribe(
@@ -52,22 +56,21 @@ export class PostFormComponent implements OnInit {
       .catch(console.error);
   }
 
-  isFieldInvalid(fieldName: string, errorType: string) : boolean | undefined {
-    const field = this.postForm.get(fieldName);
-    return field?.invalid && (field.touched || field.dirty) && field.hasError(errorType);
-  }
-
   onAddPost(): void {
     if (this.postForm.valid) {
       const postToAdd: PostPayload = {
-        authorId: this.userId,
+        authorId: this.loggedUserId,
         topicId: this.postForm.value.selectedTopic,
         title: this.postForm.value.title,
         content: this.postForm.value.content
       }
 
       this.postService.savePost(postToAdd).subscribe(
-        () => this.postForm.reset());
+        () => {
+          this.router.navigate(['user-posts-feed'])
+            .catch(console.error);
+        }
+      );
     }
   }
 }

@@ -1,8 +1,8 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.request.comment.CommentPayloadDto;
-import org.mdd.mddapi.dto.response.comment.CommentDto;
+import org.mdd.mddapi.dto.comment.request.CommentPayloadDto;
+import org.mdd.mddapi.dto.comment.response.CommentDto;
 import org.mdd.mddapi.entity.Comment;
 import org.mdd.mddapi.entity.Post;
 import org.mdd.mddapi.entity.User;

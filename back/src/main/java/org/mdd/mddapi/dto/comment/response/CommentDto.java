@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.response.comment;
+package org.mdd.mddapi.dto.comment.response;
 
 import java.io.Serializable;
 

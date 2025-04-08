@@ -4,6 +4,7 @@ import {Topic} from '../../interfaces/responses/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
 import {TopicCardComponent} from '../topic-card/topic-card.component';
+import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-all-topics-list',
@@ -17,11 +18,14 @@ import {TopicCardComponent} from '../topic-card/topic-card.component';
 export class AllTopicsListComponent implements OnInit{
 
   allTopics$: Observable<Topic[]> = of();
-  userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
+  loggedUserId: number;
   subscribedTopicIds: Set<number> = new Set<number>();
   isSubscriptionPage: boolean = true;
 
-  constructor(private readonly topicService: TopicsService) {}
+  constructor(private readonly topicService: TopicsService,
+              private readonly authService: AuthService) {
+    this.loggedUserId = this.authService.getLoggedUserId();
+  }
 
 
   ngOnInit(): void {
@@ -37,7 +41,7 @@ export class AllTopicsListComponent implements OnInit{
   };
 
   handleSubscription(topicId: number): void {
-    this.topicService.saveTopicSubscription(topicId, this.userId).pipe(
+    this.topicService.saveTopicSubscription(topicId, this.loggedUserId).pipe(
       switchMap(() => this.loadSubscribedTopicIds())
     ).subscribe(topicIds => {
       this.subscribedTopicIds = topicIds;
@@ -45,7 +49,7 @@ export class AllTopicsListComponent implements OnInit{
   }
 
   private loadSubscribedTopicIds(): Observable<Set<number>> {
-    return this.topicService.getSubscribedTopics(this.userId).pipe(
+    return this.topicService.getSubscribedTopics(this.loggedUserId).pipe(
       map(topics => new Set(topics.map(topic => topic.id)))
     );
   }

@@ -1,4 +1,4 @@
-package org.mdd.mddapi.dto.request.post;
+package org.mdd.mddapi.dto.post.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

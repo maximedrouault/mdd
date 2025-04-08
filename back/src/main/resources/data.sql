@@ -1,10 +1,11 @@
 -- TABLE: users (User accounts)
+-- Passwords are hashed using bcrypt and correspond to 'Password123!' for testing purposes.
 INSERT INTO users (id, username, email, password) VALUES
-    (1, 'John Doe', 'john.doe@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
-    (2, 'Jane Smith', 'jane.smith@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
-    (3, 'Alice Johnson', 'alice.johnson@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
-    (4, 'Bob Brown', 'bob.brown@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K'),
-    (5, 'Charlie Green', 'charlie.green@example.com', '$2a$10$7EqJtq98hPqEX7fNZaFWoO/7R.4WTeX6ZyAZT3gF8akaj4nFQx1/K');
+    (1, 'John Doe', 'john.doe@example.com', '$2y$10$GTmh6lBgGrGXlKplxTcMRO86Xm62cYYOkggg4j/wWHO8iG7.J4vgO'),
+    (2, 'Jane Smith', 'jane.smith@example.com', '$2y$10$GTmh6lBgGrGXlKplxTcMRO86Xm62cYYOkggg4j/wWHO8iG7.J4vgO'),
+    (3, 'Alice Johnson', 'alice.johnson@example.com', '$2y$10$GTmh6lBgGrGXlKplxTcMRO86Xm62cYYOkggg4j/wWHO8iG7.J4vgO'),
+    (4, 'Bob Brown', 'bob.brown@example.com', '$2y$10$GTmh6lBgGrGXlKplxTcMRO86Xm62cYYOkggg4j/wWHO8iG7.J4vgO'),
+    (5, 'Charlie Green', 'charlie.green@example.com', '$2y$10$GTmh6lBgGrGXlKplxTcMRO86Xm62cYYOkggg4j/wWHO8iG7.J4vgO');
 
 -- TABLE: topics (Topics of posts)
 INSERT INTO topics (id, name, description) VALUES

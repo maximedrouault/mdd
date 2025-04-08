@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
-import org.mdd.mddapi.dto.request.comment.CommentPayloadDto;
-import org.mdd.mddapi.dto.response.comment.CommentDto;
+import org.mdd.mddapi.dto.comment.request.CommentPayloadDto;
+import org.mdd.mddapi.dto.comment.response.CommentDto;
 import org.mdd.mddapi.entity.Comment;
 
 import java.util.Set;
