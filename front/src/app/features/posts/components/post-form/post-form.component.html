@@ -2,7 +2,7 @@
   <section>
     <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
     <div class="post-form-container">
-      <form [formGroup]="postForm" class="post-form">
+      <form [formGroup]="postForm" class="post-form" (ngSubmit)="onAddPost()">
         <h1 class="page-title">Créer un nouvel article</h1>
         <div>
           <p-select formControlName="selectedTopic" [options]="topics" optionLabel="name" optionValue="id" placeholder="Sélectionner un thème" class="topic-select" />
@@ -32,7 +32,7 @@
             }
           }
         </div>
-        <p-button [disabled]="postForm.invalid" class="create-post-button" (onClick)="onAddPost()">Créer</p-button>
+        <p-button type="submit" [disabled]="postForm.invalid" class="create-post-button">Créer</p-button>
       </form>
     </div>
   </section>
