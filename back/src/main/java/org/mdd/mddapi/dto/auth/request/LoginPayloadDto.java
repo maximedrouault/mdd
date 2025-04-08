@@ -10,7 +10,7 @@ public record LoginPayloadDto(
 
         @NotBlank
         @Size(max = 100)
-        String username,
+        String usernameOrEmail,
 
         @NotBlank
         @Size(min = 8, max = 100)
