@@ -4,13 +4,15 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {InputText} from 'primeng/inputtext';
+import {Message} from 'primeng/message';
 
 @Component({
   selector: 'app-user-register',
   imports: [
     Button,
     ReactiveFormsModule,
-    InputText
+    InputText,
+    Message
   ],
   templateUrl: './user-register.component.html',
   styleUrl: './user-register.component.scss'
