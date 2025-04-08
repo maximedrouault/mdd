@@ -4,6 +4,7 @@ import {Button} from 'primeng/button';
 import {ToggleButton} from 'primeng/togglebutton';
 import {FormsModule} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-user-posts-feed',
@@ -18,10 +19,13 @@ import {Router} from '@angular/router';
 })
 export class UserPostsFeedComponent {
 
-  userId: number = 3; //
+  loggedUserId: number;
   sortOrderDesc: boolean = true;
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router,
+              private readonly authService: AuthService) {
+    this.loggedUserId = this.authService.getLoggedUserId();
+  }
 
   onAddPost(): void {
     this.router.navigate(['post-form'])

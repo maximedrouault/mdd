@@ -6,17 +6,17 @@ import {Observable, tap} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {jwtDecode} from 'jwt-decode';
 import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedUserId: number | undefined;
+  private loggedUserId!: number;
 
-  constructor(private readonly http: HttpClient) {
-    if (!this.loggedUserId) {
-      this.loggedUserId = this.getUserIdFromToken();
-    }
+  constructor(private readonly http: HttpClient,
+              private readonly router: Router) {
+      this.getUserIdFromToken();
   }
 
 
@@ -24,24 +24,30 @@ export class AuthService {
     return this.http.post<AuthToken>(`${environment.apiUrl}/auth/login`, loginPayload).pipe(
       tap(response => {
         localStorage.setItem('token', response.token);
-        this.loggedUserId = this.getUserIdFromToken()
+        this.getUserIdFromToken();
       })
     );
   }
 
-  public getLoggedUserId(): number | undefined {
+  public getLoggedUserId(): number {
     return this.loggedUserId;
   }
 
-  private getUserIdFromToken(): number | undefined {
+  private getUserIdFromToken(): void {
     const token: string | null = localStorage.getItem('token');
 
-    try {
-      return token ? jwtDecode<CustomJwtPayload>(token).userId : undefined;
-    } catch (error) {
-      console.error('Error decoding token:', error);
-
-      return undefined;
+    if (!token) {
+      console.error('Token is null');
+      this.router.navigate(['user-login'])
+        .catch(console.error);
+    } else {
+      try {
+        this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        this.router.navigate(['user-login'])
+          .catch(console.error);
+      }
     }
   }
 }

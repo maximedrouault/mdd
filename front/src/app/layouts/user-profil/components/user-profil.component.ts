@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {
   SubscribedTopicsListComponent
 } from '../../../features/topics/components/subscribed-topics-list/subscribed-topics-list.component';
+import {AuthService} from '../../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-user-profil',
@@ -13,6 +14,10 @@ import {
 })
 export class UserProfilComponent {
 
-  userId: number = 3; // TODO: get the user id from the logged in user when the authentication is implemented
+  loggedUserId: number;
+
+  constructor(private readonly authService: AuthService) {
+    this.loggedUserId = this.authService.getLoggedUserId();
+  }
 
 }
