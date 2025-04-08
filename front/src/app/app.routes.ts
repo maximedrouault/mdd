@@ -6,6 +6,7 @@ import {PostDetailsPageComponent} from './layouts/post-details-page/post-details
 import {PostFormComponent} from './features/posts/components/post-form/post-form.component';
 import {UserLoginComponent} from './features/auth/components/user-login/user-login.component';
 import {authGuard} from './features/auth/guards/auth.guard';
+import {UserRegisterComponent} from './features/auth/components/user-register/user-register.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'user-posts-feed', pathMatch: 'full' },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'post-details/:id' , component: PostDetailsPageComponent, canActivate: [authGuard] },
   { path: 'post-form', component: PostFormComponent, canActivate: [authGuard] },
   { path: 'user-login', component: UserLoginComponent },
+  { path: 'user-register', component: UserRegisterComponent },
   { path: '**', redirectTo: 'user-posts-feed' }
 ];

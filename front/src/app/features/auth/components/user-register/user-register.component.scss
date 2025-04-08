@@ -1,0 +1,27 @@
+.register-form-container {
+  display: flex;
+
+  .back-button {
+    margin-top: 10px;
+  }
+
+  .register-form {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .title {
+      text-align: center;
+    }
+
+    .user-infos {
+      width: 100%;
+    }
+
+    .register-button {
+      margin: auto;
+    }
+  }
+}
