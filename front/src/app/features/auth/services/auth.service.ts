@@ -37,7 +37,6 @@ export class AuthService {
     const token: string | null = localStorage.getItem('token');
 
     if (!token) {
-      console.error('Token is null');
       this.router.navigate(['user-login'])
         .catch(console.error);
     } else {
