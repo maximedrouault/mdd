@@ -63,6 +63,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<String> handleUserAlreadyExistsException(UserAlreadyExistsException exception) {
+        log.warn(exception.getMessage());
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).build();
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception exception) {
         log.error("An unexpected error occurred: {}", exception.getMessage());

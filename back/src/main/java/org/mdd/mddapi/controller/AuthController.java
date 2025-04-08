@@ -2,7 +2,8 @@ package org.mdd.mddapi.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.dto.auth.request.LoginRequestDto;
+import org.mdd.mddapi.dto.auth.request.LoginPayloadDto;
+import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
 import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.service.AuthService;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,14 @@ public class AuthController {
 
 
     @PostMapping("/auth/login")
-    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody LoginRequestDto loginDto) {
-        return ResponseEntity.ok(authService.getAuthToken(loginDto));
+    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody LoginPayloadDto loginPayloadDto) {
+        return ResponseEntity.ok(authService.getAuthToken(loginPayloadDto));
+    }
+
+    @PostMapping("/auth/register")
+    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
+        authService.registerUser(registerPayloadDto);
+
+        return ResponseEntity.noContent().build();
     }
 }

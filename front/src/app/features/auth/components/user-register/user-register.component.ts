@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {InputText} from 'primeng/inputtext';
 import {Message} from 'primeng/message';
+import {RegisterPayload} from '../../interfaces/requests/register-payload.interface';
 
 @Component({
   selector: 'app-user-register',
@@ -38,6 +39,10 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onRegister(): void {
-    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+      const registerRequest: RegisterPayload = this.registerForm.value;
+
+      console.log(registerRequest);
+    }
   }
 }

@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
-public record LoginRequestDto(
+public record LoginPayloadDto(
 
         @NotBlank
         @Size(max = 100)
