@@ -66,7 +66,11 @@ export class PostFormComponent implements OnInit {
       }
 
       this.postService.savePost(postToAdd).subscribe(
-        () => this.postForm.reset());
+        () => {
+          this.router.navigate(['user-posts-feed'])
+            .catch(console.error);
+        }
+      );
     }
   }
 }
