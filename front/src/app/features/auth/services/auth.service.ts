@@ -7,6 +7,7 @@ import {environment} from '../../../../environments/environment';
 import {jwtDecode} from 'jwt-decode';
 import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
 import {Router} from '@angular/router';
+import {RegisterPayload} from '../interfaces/requests/register-payload.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -33,18 +34,27 @@ export class AuthService {
     return this.loggedUserId;
   }
 
+  public registerUser(registerPayload: RegisterPayload): Observable<AuthToken> {
+    return this.http.post<AuthToken>(`${environment.apiUrl}/auth/register`, registerPayload).pipe(
+      tap(response => {
+        localStorage.setItem('token', response.token);
+        this.getUserIdFromToken();
+      })
+    )
+  }
+
   private getUserIdFromToken(): void {
     const token: string | null = localStorage.getItem('token');
 
     if (!token) {
-      this.router.navigate(['user-login'])
+      this.router.navigate(['user-register'])
         .catch(console.error);
     } else {
       try {
         this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
       } catch (error) {
         console.error('Error decoding token:', error);
-        this.router.navigate(['user-login'])
+        this.router.navigate(['user-register'])
           .catch(console.error);
       }
     }

@@ -6,6 +6,7 @@ import {passwordComplexityValidator} from '../../validators/password-complexity.
 import {InputText} from 'primeng/inputtext';
 import {Message} from 'primeng/message';
 import {RegisterPayload} from '../../interfaces/requests/register-payload.interface';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-user-register',
@@ -22,7 +23,8 @@ export class UserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   constructor(private readonly router: Router,
-              private readonly  formBuilder: FormBuilder) {}
+              private readonly  formBuilder: FormBuilder,
+              private readonly authService: AuthService) {}
 
 
   ngOnInit(): void {
@@ -42,7 +44,16 @@ export class UserRegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const registerRequest: RegisterPayload = this.registerForm.value;
 
-      console.log(registerRequest);
+      this.authService.registerUser(registerRequest).subscribe({
+        next: () => {
+          this.router.navigate(['/user-posts-feed'])
+            .catch(console.error)
+        },
+        error: (error) => {
+          console.error('Registration failed', error);
+          this.registerForm.setErrors({ registrationFailed: true });
+        }
+      })
     }
   }
 }
