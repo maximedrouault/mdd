@@ -27,7 +27,7 @@ export class UserRegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
   constructor(private readonly router: Router,
-              private readonly  formBuilder: FormBuilder,
+              private readonly formBuilder: FormBuilder,
               private readonly authService: AuthService) {}
 
 
@@ -45,7 +45,9 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onRegister(): void {
-    if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) {
+      return;
+    }
 
     const registerRequest: RegisterPayload = this.registerForm.value;
 
