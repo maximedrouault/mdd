@@ -1,7 +1,7 @@
 .comment-card {
   &-container {
     display: flex;
-    column-gap: 2rem;
+    column-gap: 1rem;
     margin: auto;
     flex-wrap: wrap-reverse;
     width: 80%;
@@ -10,7 +10,6 @@
   &-title {
     flex: 1;
     text-align: right;
-    white-space: nowrap;
     min-width: 15%;
   }
 

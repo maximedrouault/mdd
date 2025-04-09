@@ -1,7 +1,6 @@
 .comment-form-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   width: 100%;
   margin: 1.5rem auto;
 
@@ -12,5 +11,9 @@
     .comment-input {
       width: 100%;
     }
+  }
+
+  .send-button {
+    margin-top: 20px;
   }
 }

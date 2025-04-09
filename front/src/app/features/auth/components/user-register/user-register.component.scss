@@ -1,11 +1,11 @@
-.login-form-container {
+.register-form-container {
   display: flex;
 
   .back-button {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
-  .login-form {
+  .register-form {
     width: 35%;
     margin: auto;
     display: flex;
@@ -20,8 +20,8 @@
       width: 100%;
     }
 
-    .login-button,
-    .text-center{
+    .register-button,
+    .text-center {
       margin: auto;
     }
   }
