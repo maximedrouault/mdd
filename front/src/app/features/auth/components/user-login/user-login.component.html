@@ -1,7 +1,7 @@
 <main>
   <section class="login-form-container">
     <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
-    <form [formGroup]="loginForm" class="login-form">
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
       <h1 class="title">Se connecter</h1>
       <div>
         <label for="usernameOrEmail">E-mail ou nom d'utilisateur</label>
@@ -32,7 +32,7 @@
         }
       </div>
       <div class="login-button">
-        <p-button [disabled]="loginForm.invalid" (onClick)="onLogin()">Se connecter</p-button>
+        <p-button type="submit" [disabled]="loginForm.invalid">Se connecter</p-button>
       </div>
       @if (loginForm.hasError('loginFailed')) {
         <p-message severity="error" variant="simple" text="Nom d'utilisateur ou mot de passe incorrect" class="text-center" />
