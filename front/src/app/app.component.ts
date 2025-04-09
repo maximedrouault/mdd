@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {Router, RouterOutlet} from '@angular/router';
+import {Component} from '@angular/core';
+import {RouterOutlet} from '@angular/router';
 import {HeaderComponent} from './layouts/shared/header/header.component';
 import {registerLocaleData} from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
@@ -13,14 +13,7 @@ import localeFr from '@angular/common/locales/fr';
 export class AppComponent {
   title = 'mdd-front';
 
-  constructor(private readonly router: Router) {
+  constructor() {
     registerLocaleData(localeFr)
-  }
-
-
-  shouldShowHeader(): boolean {
-    const excludedRoutes: string[] = ['/login-choice', '/user-login', '/user-register'];
-
-    return !excludedRoutes.includes(this.router.url);
   }
 }
