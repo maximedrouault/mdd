@@ -1,2 +1,4 @@
-<app-header />
+@if (shouldShowHeader()) {
+  <app-header />
+}
 <router-outlet />
