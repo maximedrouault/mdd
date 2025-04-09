@@ -41,18 +41,19 @@ export class HeaderComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.router.events
-      .pipe(
-        filter(event => event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationSkipped)
-      )
+    this.router.events.pipe(
+      filter(event =>
+        event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationSkipped
+      ))
       .subscribe(event => {
         let finalUrl: string = '';
+
         if (event instanceof NavigationEnd) {
           finalUrl = event.urlAfterRedirects;
         } else if (event instanceof NavigationCancel || event instanceof NavigationSkipped) {
           finalUrl = event.url;
         }
-        console.log('URL finale :', finalUrl);
+
         this.showHeader = !this.headerExcludedRoutes.includes(finalUrl);
         this.showMenu = !this.menuExcludedRoutes.includes(finalUrl);
       });
