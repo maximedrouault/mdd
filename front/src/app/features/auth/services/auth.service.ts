@@ -42,14 +42,14 @@ export class AuthService {
     const token: string | null = localStorage.getItem('token');
 
     if (!token) {
-      this.router.navigate(['user-register'])
+      this.router.navigate(['user-login'])
         .catch(console.error);
     } else {
       try {
         this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
       } catch (error) {
         console.error('Error decoding token:', error);
-        this.router.navigate(['user-register'])
+        this.router.navigate(['user-login'])
           .catch(console.error);
       }
     }
