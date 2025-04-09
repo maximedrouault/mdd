@@ -19,7 +19,7 @@ export class AppComponent {
 
 
   shouldShowHeader(): boolean {
-    const excludedRoutes: string[] = ['/login-choice', '/user-login', 'user-register'];
+    const excludedRoutes: string[] = ['/login-choice', '/user-login', '/user-register'];
 
     return !excludedRoutes.includes(this.router.url);
   }

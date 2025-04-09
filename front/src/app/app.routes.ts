@@ -7,15 +7,17 @@ import {PostFormComponent} from './features/posts/components/post-form/post-form
 import {UserLoginComponent} from './features/auth/components/user-login/user-login.component';
 import {authGuard} from './features/auth/guards/auth.guard';
 import {UserRegisterComponent} from './features/auth/components/user-register/user-register.component';
+import {LoginChoiceComponent} from './features/auth/components/login-choice/login-choice.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'user-posts-feed', pathMatch: 'full' },
+  { path: 'login-choice', component: LoginChoiceComponent },
+  { path: 'user-login', component: UserLoginComponent },
+  { path: 'user-register', component: UserRegisterComponent },
   { path: 'user-profile', component: UserProfilComponent, canActivate: [authGuard] },
   { path: 'all-topics-list', component: AllTopicsListComponent, canActivate: [authGuard] },
   { path: 'user-posts-feed', component: UserPostsFeedComponent, canActivate: [authGuard] },
   { path: 'post-details/:id' , component: PostDetailsPageComponent, canActivate: [authGuard] },
   { path: 'post-form', component: PostFormComponent, canActivate: [authGuard] },
-  { path: 'user-login', component: UserLoginComponent },
-  { path: 'user-register', component: UserRegisterComponent },
   { path: '**', redirectTo: 'user-posts-feed' }
 ];
