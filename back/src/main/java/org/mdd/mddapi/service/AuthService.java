@@ -38,7 +38,7 @@ public class AuthService {
         return new AuthTokenDto(token);
     }
 
-    public AuthTokenDto registerUser(RegisterPayloadDto registerPayloadDto) {
+    public void registerUser(RegisterPayloadDto registerPayloadDto) {
         String username = registerPayloadDto.username();
         String userEmail = registerPayloadDto.email();
 
@@ -50,9 +50,5 @@ public class AuthService {
 
         User userToAdd = userMapper.toEntity(registerPayloadDto, passwordEncoder);
         userRepository.save(userToAdd);
-
-        LoginPayloadDto loginPayloadDto = new LoginPayloadDto(userEmail, registerPayloadDto.password());
-
-        return getAuthToken(loginPayloadDto);
     }
 }

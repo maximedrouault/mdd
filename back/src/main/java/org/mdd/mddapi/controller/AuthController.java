@@ -6,6 +6,7 @@ import org.mdd.mddapi.dto.auth.request.LoginPayloadDto;
 import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
 import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.service.AuthService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,7 +27,9 @@ public class AuthController {
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<AuthTokenDto> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
-        return ResponseEntity.ok(authService.registerUser(registerPayloadDto));
+    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
+        authService.registerUser(registerPayloadDto);
+
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
