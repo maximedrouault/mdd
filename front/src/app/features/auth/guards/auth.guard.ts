@@ -6,9 +6,13 @@ export const authGuard: CanActivateFn = (): boolean => {
   const token: string | null = localStorage.getItem('token');
   const router: Router = inject(Router);
 
-  if (!token) {
-    router.navigate(['user-login'])
+  const redirectToLoginChoice: () => void = () => {
+    router.navigate(['login-choice'])
       .catch(console.error);
+  }
+
+  if (!token) {
+    redirectToLoginChoice();
 
     return false;
   }
@@ -20,8 +24,7 @@ export const authGuard: CanActivateFn = (): boolean => {
     return true;
   } else {
     localStorage.removeItem('token');
-    router.navigate(['user-login'])
-      .catch(console.error);
+    redirectToLoginChoice();
 
     return false;
   }

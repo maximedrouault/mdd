@@ -11,7 +11,7 @@ import localeFr from '@angular/common/locales/fr';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'mdd-front';
+  title: string = 'mdd-front';
 
   constructor() {
     registerLocaleData(localeFr)

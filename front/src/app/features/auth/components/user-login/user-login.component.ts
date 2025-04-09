@@ -35,8 +35,7 @@ export class UserLoginComponent implements OnInit {
   };
 
   goBack(): void {
-    this.router.navigate(['/login-choice'])
-      .catch(console.error);
+    this.navigateTo('/login-choice');
   };
 
   onLogin(): void {
@@ -45,8 +44,7 @@ export class UserLoginComponent implements OnInit {
 
       this.authService.getAuthToken(loginRequest).subscribe({
         next: () => {
-            this.router.navigate(['/user-posts-feed'])
-              .catch(console.error)
+            this.navigateTo('/user-posts-feed');
         },
         error: (error) => {
           console.error('Login failed', error);
@@ -55,4 +53,10 @@ export class UserLoginComponent implements OnInit {
       });
     }
   };
+
+
+  private navigateTo(route: string): void {
+    this.router.navigate([route])
+      .catch(console.error);
+  }
 }

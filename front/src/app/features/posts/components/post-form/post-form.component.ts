@@ -52,8 +52,7 @@ export class PostFormComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['user-posts-feed'])
-      .catch(console.error);
+    this.navigateToUserPostsFeed()
   }
 
   onAddPost(): void {
@@ -66,11 +65,14 @@ export class PostFormComponent implements OnInit {
       }
 
       this.postService.savePost(postToAdd).subscribe(
-        () => {
-          this.router.navigate(['user-posts-feed'])
-            .catch(console.error);
-        }
+        () => this.navigateToUserPostsFeed()
       );
     }
   }
+
+
+  private navigateToUserPostsFeed(): void {
+    this.router.navigate(['/user-posts-feed'])
+      .catch(console.error);
+  };
 }

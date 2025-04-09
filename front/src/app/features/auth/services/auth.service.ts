@@ -38,20 +38,24 @@ export class AuthService {
     return this.http.post<AuthToken>(`${environment.apiUrl}/auth/register`, registerPayload);
   }
 
+
   private getUserIdFromToken(): void {
     const token: string | null = localStorage.getItem('token');
 
     if (!token) {
-      this.router.navigate(['user-login'])
-        .catch(console.error);
+      this.navigateToUserLogin();
     } else {
       try {
         this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
       } catch (error) {
         console.error('Error decoding token:', error);
-        this.router.navigate(['user-login'])
-          .catch(console.error);
+        this.navigateToUserLogin();
       }
     }
+  }
+
+  private navigateToUserLogin(): void {
+    this.router.navigate(['user-login'])
+      .catch(console.error);
   }
 }
