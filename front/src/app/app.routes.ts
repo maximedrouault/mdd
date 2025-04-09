@@ -12,8 +12,8 @@ import {LoginChoiceComponent} from './features/auth/components/login-choice/logi
 export const routes: Routes = [
   { path: '', redirectTo: 'user-posts-feed', pathMatch: 'full' },
   { path: 'login-choice', component: LoginChoiceComponent },
-  { path: 'user-login', component: UserLoginComponent },
   { path: 'user-register', component: UserRegisterComponent },
+  { path: 'user-login', component: UserLoginComponent },
   { path: 'user-profile', component: UserProfilComponent, canActivate: [authGuard] },
   { path: 'all-topics-list', component: AllTopicsListComponent, canActivate: [authGuard] },
   { path: 'user-posts-feed', component: UserPostsFeedComponent, canActivate: [authGuard] },

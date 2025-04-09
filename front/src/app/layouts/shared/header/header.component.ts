@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Menubar} from 'primeng/menubar';
 import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {Image} from 'primeng/image';
-import {NavigationEnd, Router, RouterLink} from '@angular/router';
+import {NavigationCancel, NavigationEnd, NavigationSkipped, Router, RouterLink} from '@angular/router';
 import {filter} from 'rxjs';
 
 @Component({
@@ -42,10 +42,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe(() => {
-        this.showHeader = !this.headerExcludedRoutes.includes(this.router.url);
-        this.showMenu = !this.menuExcludedRoutes.includes(this.router.url);
+      .pipe(
+        filter(event => event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationSkipped)
+      )
+      .subscribe(event => {
+        let finalUrl: string = '';
+        if (event instanceof NavigationEnd) {
+          finalUrl = event.urlAfterRedirects;
+        } else if (event instanceof NavigationCancel || event instanceof NavigationSkipped) {
+          finalUrl = event.url;
+        }
+        console.log('URL finale :', finalUrl);
+        this.showHeader = !this.headerExcludedRoutes.includes(finalUrl);
+        this.showMenu = !this.menuExcludedRoutes.includes(finalUrl);
       });
   }
 }
