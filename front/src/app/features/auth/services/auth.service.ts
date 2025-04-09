@@ -35,12 +35,7 @@ export class AuthService {
   }
 
   public registerUser(registerPayload: RegisterPayload): Observable<AuthToken> {
-    return this.http.post<AuthToken>(`${environment.apiUrl}/auth/register`, registerPayload).pipe(
-      tap(response => {
-        localStorage.setItem('token', response.token);
-        this.getUserIdFromToken();
-      })
-    )
+    return this.http.post<AuthToken>(`${environment.apiUrl}/auth/register`, registerPayload);
   }
 
   private getUserIdFromToken(): void {
