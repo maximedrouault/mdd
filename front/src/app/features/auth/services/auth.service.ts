@@ -6,7 +6,6 @@ import {Observable, tap} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {jwtDecode} from 'jwt-decode';
 import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
-import {Router} from '@angular/router';
 import {RegisterPayload} from '../interfaces/requests/register-payload.interface';
 
 @Injectable({
@@ -15,8 +14,7 @@ import {RegisterPayload} from '../interfaces/requests/register-payload.interface
 export class AuthService {
   private loggedUserId!: number;
 
-  constructor(private readonly http: HttpClient,
-              private readonly router: Router) {
+  constructor(private readonly http: HttpClient) {
       this.getUserIdFromToken();
   }
 
@@ -42,20 +40,12 @@ export class AuthService {
   private getUserIdFromToken(): void {
     const token: string | null = localStorage.getItem('token');
 
-    if (!token) {
-      this.navigateToUserLogin();
-    } else {
+    if (token) {
       try {
         this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
       } catch (error) {
         console.error('Error decoding token:', error);
-        this.navigateToUserLogin();
       }
     }
-  }
-
-  private navigateToUserLogin(): void {
-    this.router.navigate(['user-login'])
-      .catch(console.error);
   }
 }
