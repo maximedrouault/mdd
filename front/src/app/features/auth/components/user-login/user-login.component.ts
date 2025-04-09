@@ -35,7 +35,7 @@ export class UserLoginComponent implements OnInit {
   };
 
   goBack(): void {
-    this.router.navigate(['auth-choice'])
+    this.router.navigate(['/login-choice'])
       .catch(console.error);
   };
 
