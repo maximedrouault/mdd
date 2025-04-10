@@ -1,0 +1,14 @@
+<form [formGroup]="userEditForm" class="user-edit-form-container" (ngSubmit)="onUpdate()">
+  <div>
+    <input type="text" pInputText id="username" formControlName="username" placeholder="Username" />
+  </div>
+  <div>
+    <input type="text" pInputText id="email" formControlName="email" placeholder="email@email.com" />
+  </div>
+  <div>
+    <input type="text" pInputText id="password" formControlName="password" placeholder="Mot de passe" />
+  </div>
+  <div class="save-button">
+    <p-button type="submit" [disabled]="userEditForm.invalid">Sauvegarder</p-button>
+  </div>
+</form>

@@ -1,0 +1,10 @@
+.user-edit-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  .save-button {
+    margin: auto;
+  }
+}
