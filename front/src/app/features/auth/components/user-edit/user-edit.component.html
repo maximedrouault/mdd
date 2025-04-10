@@ -1,6 +1,6 @@
-<form [formGroup]="userEditForm" class="user-edit-form-container" (ngSubmit)="onUpdate()">
+<form [formGroup]="userEditForm" (ngSubmit)="onUpdate()" class="user-edit-form-container">
   <div>
-    <input type="text" pInputText id="username" formControlName="username" placeholder="Username" fluid />
+    <input type="text" pInputText id="username" formControlName="username" placeholder="Nom d'utilisateur" fluid />
     @if (userEditForm.invalid && (userEditForm.get('username')?.touched || userEditForm.get('username')?.dirty)) {
       @if (userEditForm.hasError('required', 'username')) {
         <p-message severity="error" variant="simple" text="Le nom d'utilisateur est requis" />
