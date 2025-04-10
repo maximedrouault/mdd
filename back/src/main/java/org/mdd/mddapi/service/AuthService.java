@@ -3,9 +3,11 @@ package org.mdd.mddapi.service;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.auth.request.LoginPayloadDto;
 import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
+import org.mdd.mddapi.dto.auth.request.UpdatePayloadDto;
 import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.exception.UserAlreadyExistsException;
+import org.mdd.mddapi.exception.UserNotFoundException;
 import org.mdd.mddapi.mapper.UserMapper;
 import org.mdd.mddapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -50,5 +52,16 @@ public class AuthService {
 
         User userToAdd = userMapper.toEntity(registerPayloadDto, passwordEncoder);
         userRepository.save(userToAdd);
+    }
+
+    public void updateUser(UpdatePayloadDto updatePayloadDto) {
+        Long userId = updatePayloadDto.userId();
+
+        User foundUser = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException(userId));
+
+        User updatedUser = userMapper.partialUpdate(updatePayloadDto, foundUser, passwordEncoder);
+
+        userRepository.save(updatedUser);
     }
 }

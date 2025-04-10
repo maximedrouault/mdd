@@ -4,14 +4,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.auth.request.LoginPayloadDto;
 import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
+import org.mdd.mddapi.dto.auth.request.UpdatePayloadDto;
 import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -31,5 +29,12 @@ public class AuthController {
         authService.registerUser(registerPayloadDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @PutMapping("/auth/update")
+    public ResponseEntity<Void> updateUser(@Valid @RequestBody UpdatePayloadDto updatePayloadDto) {
+        authService.updateUser(updatePayloadDto);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

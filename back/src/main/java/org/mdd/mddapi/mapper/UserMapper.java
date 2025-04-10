@@ -2,6 +2,7 @@ package org.mdd.mddapi.mapper;
 
 import org.mapstruct.*;
 import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
+import org.mdd.mddapi.dto.auth.request.UpdatePayloadDto;
 import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.dto.user.response.UserDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,5 +20,6 @@ public interface UserMapper {
     User toEntity(UserDto userDto);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    User partialUpdate(UserDto userDto, @MappingTarget User user);
+    @Mapping(target = "password", expression = "java(passwordEncoder.encode(updatePayloadDto.password()))")
+    User partialUpdate(UpdatePayloadDto updatePayloadDto, @MappingTarget User user, @Context PasswordEncoder passwordEncoder);
 }
