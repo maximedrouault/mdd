@@ -7,6 +7,7 @@ import {Message} from 'primeng/message';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {LoginPayload} from '../../interfaces/requests/login-payload.interface';
 import {AuthService} from '../../services/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-user-login',
@@ -43,13 +44,8 @@ export class UserLoginComponent implements OnInit {
       const loginRequest: LoginPayload = this.loginForm.value;
 
       this.authService.getAuthToken(loginRequest).subscribe({
-        next: () => {
-            this.navigateTo('/user-posts-feed');
-        },
-        error: (error) => {
-          console.error('Login failed', error);
-          this.loginForm.setErrors({ loginFailed: true });
-        }
+        next: () => this.navigateTo('/user-posts-feed'),
+        error: (error) => this.handleLoginError(error)
       });
     }
   };
@@ -58,5 +54,12 @@ export class UserLoginComponent implements OnInit {
   private navigateTo(route: string): void {
     this.router.navigate([route])
       .catch(console.error);
+  }
+
+  private handleLoginError(error: HttpErrorResponse): void {
+    if (error.status === 403) {
+      console.error('Login failed', error);
+      this.loginForm.setErrors({ loginFailed: true });
+    }
   }
 }
