@@ -7,6 +7,7 @@ import {environment} from '../../../../environments/environment';
 import {jwtDecode} from 'jwt-decode';
 import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
 import {RegisterPayload} from '../interfaces/requests/register-payload.interface';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ import {RegisterPayload} from '../interfaces/requests/register-payload.interface
 export class AuthService {
   private loggedUserId!: number;
 
-  constructor(private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient,
+              private readonly router: Router) {
       this.getUserIdFromToken();
   }
 
@@ -34,6 +36,13 @@ export class AuthService {
 
   public registerUser(registerPayload: RegisterPayload): Observable<AuthToken> {
     return this.http.post<AuthToken>(`${environment.apiUrl}/auth/register`, registerPayload);
+  }
+
+  public logout(): void {
+    localStorage.removeItem('token');
+    this.loggedUserId = 0;
+    this.router.navigate(['/login-choice'])
+      .catch(console.error);
   }
 
 

@@ -4,6 +4,7 @@ import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {Image} from 'primeng/image';
 import {NavigationCancel, NavigationEnd, NavigationSkipped, Router, RouterLink} from '@angular/router';
 import {filter} from 'rxjs';
+import {AuthService} from '../../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +25,11 @@ export class HeaderComponent implements OnInit {
 
   items: MenuItem[] = [
     {
+      label: 'Se déconnecter',
+      styleClass: 'logout-item',
+      command: (): void => this.authService.logout()
+    },
+    {
       label: 'Articles',
       routerLink: ['/user-posts-feed']
     },
@@ -37,7 +43,8 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router,
+              private readonly authService: AuthService) {}
 
 
   ngOnInit(): void {
