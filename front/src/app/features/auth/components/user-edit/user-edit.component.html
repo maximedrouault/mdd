@@ -1,12 +1,12 @@
 <form [formGroup]="userEditForm" class="user-edit-form-container" (ngSubmit)="onUpdate()">
   <div>
-    <input type="text" pInputText id="username" formControlName="username" placeholder="Username" />
+    <input type="text" pInputText id="username" formControlName="username" placeholder="Username" fluid />
   </div>
   <div>
-    <input type="text" pInputText id="email" formControlName="email" placeholder="email@email.com" />
+    <input type="text" pInputText id="email" formControlName="email" placeholder="email@email.com" fluid />
   </div>
   <div>
-    <input type="text" pInputText id="password" formControlName="password" placeholder="Mot de passe" />
+    <input type="text" pInputText id="password" formControlName="password" placeholder="Mot de passe" fluid />
   </div>
   <div class="save-button">
     <p-button type="submit" [disabled]="userEditForm.invalid">Sauvegarder</p-button>

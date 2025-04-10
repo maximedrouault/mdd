@@ -2,6 +2,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 1.5rem;
+
+  .user-edit-container {
+    width: 35%;
+  }
 }
 
 .user-topics-container {
