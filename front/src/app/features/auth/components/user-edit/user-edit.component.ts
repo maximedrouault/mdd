@@ -55,9 +55,7 @@ export class UserEditComponent implements OnInit {
       };
 
       this.authService.updateUserInfo(updatedUserInfos).subscribe({
-        next: () => {
-          this.userEditForm.setErrors({ updateSuccess: true });
-        },
+        next: () => this.userEditForm.setErrors({ updateSuccess: true }),
         error: (error) => this.handleUpdateError(error)
       });
     }
