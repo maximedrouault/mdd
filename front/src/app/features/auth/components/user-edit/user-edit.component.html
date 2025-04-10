@@ -22,7 +22,7 @@
     }
   </div>
   <div>
-    <input type="text" pInputText id="password" formControlName="password" placeholder="Mot de passe" fluid />
+    <input type="password" pInputText id="password" formControlName="password" placeholder="Mot de passe" fluid />
     @if (userEditForm.invalid && (userEditForm.get('password'))?.touched || userEditForm.get('password')?.dirty) {
       @if (userEditForm.hasError('required', 'password')) {
         <p-message severity="error" variant="simple" text="Le mot de passe est requis" />
@@ -40,4 +40,11 @@
   <div class="save-button">
     <p-button type="submit" [disabled]="userEditForm.invalid">Sauvegarder</p-button>
   </div>
+  @if (userEditForm.hasError('updateSuccess')) {
+    <p-message severity="success" variant="simple" text="Utilisateur mis à jour avec succès." class="text-center" />
+  } @else if (userEditForm.hasError("updateFailed")) {
+    <p-message severity="error" variant="simple" text="Erreur lors de la mise à jour." class="text-center" />
+  } @else if (userEditForm.hasError('userNotFound')) {
+    <p-message severity="error" variant="simple" text="Utilisateur non trouvé." class="text-center" />
+  }
 </form>

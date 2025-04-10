@@ -7,6 +7,8 @@ import {Message} from 'primeng/message';
 import {Observable, of} from 'rxjs';
 import {UserInfos} from '../../interfaces/responses/user-infos.interface';
 import {AuthService} from '../../services/auth.service';
+import {UserEditPayload} from '../../interfaces/requests/user-edit-payload.interface';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-user-edit',
@@ -46,6 +48,30 @@ export class UserEditComponent implements OnInit {
   }
 
   onUpdate(): void {
-    console.log(this.userEditForm.value);
+    if (this.userEditForm.valid) {
+      const updatedUserInfos: UserEditPayload = {
+        userId: this.userId,
+        ...this.userEditForm.value
+      };
+
+      this.authService.updateUserInfo(updatedUserInfos).subscribe({
+        next: () => {
+          this.userEditForm.setErrors({ updateSuccess: true });
+        },
+        error: (error) => this.handleUpdateError(error)
+      });
+    }
+  }
+
+  private handleUpdateError(error: HttpErrorResponse): Observable<null> {
+   if (error.status === 404) {
+     console.error('User not found', error);
+     this.userEditForm.setErrors({ userNotFound: true });
+   } else {
+     console.error('Update user failed', error);
+      this.userEditForm.setErrors({ updateFailed: true });
+   }
+   // Return an observable with null to continue the stream
+   return of(null);
   }
 }

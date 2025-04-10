@@ -9,6 +9,7 @@ import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
 import {RegisterPayload} from '../interfaces/requests/register-payload.interface';
 import {Router} from '@angular/router';
 import {UserInfos} from '../interfaces/responses/user-infos.interface';
+import {UserEditPayload} from '../interfaces/requests/user-edit-payload.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,10 @@ export class AuthService {
 
   public getUserInfo(userId: number): Observable<UserInfos> {
     return this.http.get<UserInfos>(`${environment.apiUrl}/users/${userId}`);
+  }
+
+  public updateUserInfo(userInfos: UserEditPayload): Observable<UserEditPayload> {
+    return this.http.put<UserEditPayload>(`${environment.apiUrl}/auth/update`, userInfos);
   }
 
 
