@@ -1,12 +1,41 @@
 <form [formGroup]="userEditForm" class="user-edit-form-container" (ngSubmit)="onUpdate()">
   <div>
     <input type="text" pInputText id="username" formControlName="username" placeholder="Username" fluid />
+    @if (userEditForm.invalid && (userEditForm.get('username')?.touched || userEditForm.get('username')?.dirty)) {
+      @if (userEditForm.hasError('required', 'username')) {
+        <p-message severity="error" variant="simple" text="Le nom d'utilisateur est requis" />
+      } @else if (userEditForm.hasError('maxlength', 'username')) {
+        <p-message severity="error" variant="simple" text="Le nom d'utilisateur doit faire moins de 100 caractères" />
+      }
+    }
   </div>
   <div>
     <input type="text" pInputText id="email" formControlName="email" placeholder="email@email.com" fluid />
+    @if (userEditForm.invalid && (userEditForm.get('email')?.touched || userEditForm.get('email')?.dirty)) {
+      @if (userEditForm.hasError('required', 'email')) {
+        <p-message severity="error" variant="simple" text="L'adresse e-mail est requise" />
+      } @else if (userEditForm.hasError('email', 'email')) {
+        <p-message severity="error" variant="simple" text="L'adresse e-mail n'est pas valide" />
+      } @else if (userEditForm.hasError('maxlength', 'email')) {
+        <p-message severity="error" variant="simple" text="L'adresse e-mail doit faire moins de 100 caractères" />
+      }
+    }
   </div>
   <div>
     <input type="text" pInputText id="password" formControlName="password" placeholder="Mot de passe" fluid />
+    @if (userEditForm.invalid && (userEditForm.get('password'))?.touched || userEditForm.get('password')?.dirty) {
+      @if (userEditForm.hasError('required', 'password')) {
+        <p-message severity="error" variant="simple" text="Le mot de passe est requis" />
+      } @else if (userEditForm.hasError('minlength', 'password')) {
+        <p-message severity="error" variant="simple" text="Le mot de passe doit faire au moins 8 caractères" />
+      } @else if (userEditForm.hasError('maxlength', 'password')) {
+        <p-message severity="error" variant="simple" text="Le mot de passe doit faire moins de 100 caractères" />
+      } @else if (userEditForm.hasError('passwordComplexity', 'password')) {
+        <p-message severity="error" variant="simple"
+                   text="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+        />
+      }
+    }
   </div>
   <div class="save-button">
     <p-button type="submit" [disabled]="userEditForm.invalid">Sauvegarder</p-button>

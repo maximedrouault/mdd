@@ -3,13 +3,15 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {InputText} from 'primeng/inputtext';
 import {Button} from 'primeng/button';
+import {Message} from 'primeng/message';
 
 @Component({
   selector: 'app-user-edit',
   imports: [
     InputText,
     ReactiveFormsModule,
-    Button
+    Button,
+    Message
   ],
   templateUrl: './user-edit.component.html',
   styleUrl: './user-edit.component.scss'
