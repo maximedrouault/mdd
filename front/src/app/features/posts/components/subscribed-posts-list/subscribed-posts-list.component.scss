@@ -11,7 +11,7 @@ app-post-card {
 
 
 // Rules for responsive design
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
   .cards-container {
     flex-direction: column;

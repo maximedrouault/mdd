@@ -33,7 +33,7 @@
 
 
 // Rules for responsive design
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
 
   .login-form-container {
     flex-wrap: wrap;

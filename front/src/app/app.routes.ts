@@ -8,8 +8,8 @@ import {UserLoginComponent} from './features/auth/components/user-login/user-log
 import {authGuard} from './features/auth/guards/auth.guard';
 import {LoginChoiceComponent} from './features/auth/components/login-choice/login-choice.component';
 import {UserRegisterComponent} from './features/auth/components/user-register/user-register.component';
-import {HeaderWithoutMenuComponent} from './layouts/headers/header-without-menu/header-without-menu.component';
 import {HeaderWithMenuComponent} from './layouts/headers/header-with-menu/header-with-menu.component';
+import {HeaderWithoutMenuComponent} from './layouts/headers/header-without-menu/header-without-menu.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'user-posts-feed', pathMatch: 'full' },

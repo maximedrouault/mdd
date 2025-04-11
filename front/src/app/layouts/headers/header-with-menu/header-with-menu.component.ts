@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Menubar} from 'primeng/menubar';
-import {MenuItem, PrimeTemplate} from 'primeng/api';
+import {MenuItem} from 'primeng/api';
 import {Image} from 'primeng/image';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {AuthService} from '../../../features/auth/services/auth.service';
@@ -10,7 +10,6 @@ import {AuthService} from '../../../features/auth/services/auth.service';
   imports: [
     Menubar,
     Image,
-    PrimeTemplate,
     RouterLink,
     RouterOutlet
   ],
