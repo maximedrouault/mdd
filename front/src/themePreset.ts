@@ -1658,7 +1658,7 @@ export const MyPreset = definePreset(Lara, {
                 gap: "0.5rem"
             },
             title: {
-                fontSize: "1.25rem",
+                fontSize: "1rem",
                 fontWeight: "700"
             },
             subtitle: {
