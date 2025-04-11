@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Menubar} from 'primeng/menubar';
-import {MenuItem} from 'primeng/api';
+import {MenuItem, PrimeTemplate} from 'primeng/api';
 import {Image} from 'primeng/image';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {AuthService} from '../../../features/auth/services/auth.service';
@@ -11,7 +11,8 @@ import {AuthService} from '../../../features/auth/services/auth.service';
     Menubar,
     Image,
     RouterLink,
-    RouterOutlet
+    RouterOutlet,
+    PrimeTemplate
   ],
   templateUrl: './header-with-menu.component.html',
   styleUrl: './header-with-menu.component.scss'
