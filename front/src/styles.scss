@@ -2,13 +2,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "primeicons/primeicons.css";
 
+// Style for the entire application
 body {
   font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   max-width: 1000px;
   margin: auto;
   padding: 10px;
 }
 
+// Style for cards
 .p-card {
   height: 100%;
 
@@ -18,13 +21,20 @@ body {
   }
 }
 
+// Style for desktop menu
 .p-menubar-item {
   &-label {
     font-size: 1.25rem;
+    margin: auto;
   }
 
   &-icon:before {
-    font-size: 3rem;
+    font-size: 1.5rem;
+    color: #000000;
+    opacity: 50%;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+    padding: 0.7rem;
   }
 }
 
@@ -34,6 +44,36 @@ body {
 
 .logout-item * {
   color: #A40F0F;
-  font-size: 0.9rem;
+  font-size: 0.9rem !important;
   font-weight: bold;
+}
+
+
+// Style for mobile menu
+.p-drawer-right {
+  text-align: right;
+  width: auto !important;
+
+  .p-drawer-header, .p-drawer-content, .p-drawer-footer {
+    padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+  }
+
+  .p-button {
+    padding: 0.3rem;
+    font-size: 1.25rem;
+  }
+
+  .p-button-icon-only {
+    width: auto;
+  }
+
+  .p-button-icon {
+    width: auto;
+    font-size: 2rem;
+    color: #000000;
+    opacity: 0.5;
+    background-color: #D9D9D9;
+    border-radius: 100%;
+    padding: 0.5rem;
+  }
 }

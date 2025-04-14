@@ -1,6 +1,10 @@
 .register-form-container {
   display: flex;
 
+  .logo {
+    display: none;
+  }
+
   .back-button {
     margin-top: 10px;
   }
@@ -23,6 +27,25 @@
     .register-button,
     .text-center {
       margin: auto;
+    }
+  }
+}
+
+
+// Rules for responsive design
+@media screen and (max-width: 768px) {
+
+  .register-form-container {
+    flex-wrap: wrap;
+
+    .logo {
+      display: block;
+      text-align: center;
+    }
+
+    .register-form {
+      width: 90%;
+      gap: 1.3rem;
     }
   }
 }

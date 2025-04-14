@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Button} from "primeng/button";
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {InputText} from 'primeng/inputtext';
@@ -11,15 +11,18 @@ import {LoginPayload} from '../../interfaces/requests/login-payload.interface';
 import {catchError, Observable, of, switchMap} from 'rxjs';
 import {AuthToken} from '../../interfaces/responses/auth-token';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Image} from "primeng/image";
 
 @Component({
   selector: 'app-user-register',
-  imports: [
-    Button,
-    ReactiveFormsModule,
-    InputText,
-    Message
-  ],
+    imports: [
+        Button,
+        ReactiveFormsModule,
+        InputText,
+        Message,
+        Image,
+        RouterLink
+    ],
   templateUrl: './user-register.component.html',
   styleUrl: './user-register.component.scss'
 })

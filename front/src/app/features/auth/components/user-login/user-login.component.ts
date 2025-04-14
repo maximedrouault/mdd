@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Button} from "primeng/button";
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import {InputText} from 'primeng/inputtext';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Message} from 'primeng/message';
@@ -8,15 +8,18 @@ import {passwordComplexityValidator} from '../../validators/password-complexity.
 import {LoginPayload} from '../../interfaces/requests/login-payload.interface';
 import {AuthService} from '../../services/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {Image} from "primeng/image";
 
 @Component({
   selector: 'app-user-login',
-  imports: [
-    InputText,
-    ReactiveFormsModule,
-    Button,
-    Message
-  ],
+    imports: [
+        InputText,
+        ReactiveFormsModule,
+        Button,
+        Message,
+        Image,
+        RouterLink
+    ],
   templateUrl: './user-login.component.html',
   styleUrl: './user-login.component.scss'
 })
