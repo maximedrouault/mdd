@@ -1652,7 +1652,7 @@ export const MyPreset = definePreset(Lara, {
             },
             body: {
                 padding: "1.5rem",
-                gap: "0.75rem"
+                gap: "0rem"
             },
             caption: {
                 gap: "0.5rem"

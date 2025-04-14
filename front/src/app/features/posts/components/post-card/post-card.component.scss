@@ -14,3 +14,11 @@
     width: 49%;
   }
 }
+
+
+// Rules for responsive design
+@media screen and (max-width: 960px) {
+  .card-content {
+    -webkit-line-clamp: 4;
+  }
+}
