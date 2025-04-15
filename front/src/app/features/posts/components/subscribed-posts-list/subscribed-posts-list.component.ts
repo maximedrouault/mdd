@@ -18,7 +18,6 @@ import {PostsService} from '../../services/posts.service';
 export class SubscribedPostsListComponent implements OnInit, OnChanges {
 
   subscribedPosts$: Observable<Post[]> = of();
-  @Input() userId!: number;
   @Input() sortOrderDesc!: boolean;
 
   constructor(private readonly postsService: PostsService,
@@ -26,7 +25,7 @@ export class SubscribedPostsListComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-    this.subscribedPosts$ = this.postsService.getSubscribedPosts(this.userId);
+    this.subscribedPosts$ = this.postsService.getSubscribedPosts();
     this.sortSubscribedPosts();
   };
 
