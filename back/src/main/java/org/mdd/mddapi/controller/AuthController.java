@@ -1,6 +1,7 @@
 package org.mdd.mddapi.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.auth.request.LoginPayloadDto;
 import org.mdd.mddapi.dto.auth.request.RegisterPayloadDto;
@@ -22,20 +23,20 @@ public class AuthController {
 
 
     @PostMapping("/auth/login")
-    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody LoginPayloadDto loginPayloadDto) {
+    public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody @NotNull LoginPayloadDto loginPayloadDto) {
         return ResponseEntity.ok(authService.getAuthToken(loginPayloadDto));
     }
 
     @PostMapping("/auth/register")
-    public ResponseEntity<Void> registerUser(@Valid @RequestBody RegisterPayloadDto registerPayloadDto) {
+    public ResponseEntity<Void> registerUser(@Valid @RequestBody @NotNull RegisterPayloadDto registerPayloadDto) {
         authService.registerUser(registerPayloadDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/auth/update")
-    public ResponseEntity<Void> updateUser(@AuthenticationPrincipal Jwt authToken,
-                                           @Valid @RequestBody UpdatePayloadDto updatePayloadDto) {
+    public ResponseEntity<Void> updateUser(@AuthenticationPrincipal @NotNull Jwt authToken,
+                                           @Valid @RequestBody @NotNull UpdatePayloadDto updatePayloadDto) {
         Long userId = authService.getUserIdFromToken(authToken);
 
         authService.updateUser(updatePayloadDto, userId);
