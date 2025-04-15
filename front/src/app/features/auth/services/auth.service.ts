@@ -47,8 +47,8 @@ export class AuthService {
       .catch(console.error);
   }
 
-  public getUserInfo(userId: number): Observable<UserInfos> {
-    return this.http.get<UserInfos>(`${environment.apiUrl}/users/${userId}`);
+  public getUserInfo(): Observable<UserInfos> {
+    return this.http.get<UserInfos>(`${environment.apiUrl}/users`);
   }
 
   public updateUserInfo(userInfos: UserEditPayload): Observable<UserEditPayload> {

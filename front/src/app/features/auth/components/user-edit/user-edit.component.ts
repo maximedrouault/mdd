@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {passwordComplexityValidator} from '../../validators/password-complexity.validator';
 import {InputText} from 'primeng/inputtext';
@@ -23,7 +23,6 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class UserEditComponent implements OnInit {
 
-  @Input() userId!: number;
   userEditForm!: FormGroup;
   userInfos$: Observable<UserInfos> = of();
 
@@ -38,7 +37,7 @@ export class UserEditComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100), passwordComplexityValidator()]],
     });
 
-    this.userInfos$ = this.authService.getUserInfo(this.userId);
+    this.userInfos$ = this.authService.getUserInfo();
     this.userInfos$.subscribe((userInfos: UserInfos) => {
       this.userEditForm.patchValue({
         username: userInfos.username,
@@ -49,10 +48,7 @@ export class UserEditComponent implements OnInit {
 
   onUpdate(): void {
     if (this.userEditForm.valid) {
-      const updatedUserInfos: UserEditPayload = {
-        userId: this.userId,
-        ...this.userEditForm.value
-      };
+      const updatedUserInfos: UserEditPayload = this.userEditForm.value;
 
       this.authService.updateUserInfo(updatedUserInfos).subscribe({
         next: () => this.userEditForm.setErrors({ updateSuccess: true }),

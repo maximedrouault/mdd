@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../interfaces/responses/topic.interface';
 import {TopicCardComponent} from '../topic-card/topic-card.component';
@@ -16,7 +16,7 @@ import {TopicsService} from '../../services/topics.service';
 })
 export class SubscribedTopicsListComponent implements OnInit {
 
-  @Input() userId!: number;
+  userId: number = 1; // TODO: Replace with actual user ID from authentication service
   subscribedTopics$: Observable<Topic[]> = of();
   isSubscriptionPage: boolean = false;
 

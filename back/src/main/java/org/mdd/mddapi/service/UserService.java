@@ -7,10 +7,8 @@ import org.mdd.mddapi.exception.UserNotFoundException;
 import org.mdd.mddapi.mapper.UserMapper;
 import org.mdd.mddapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Service
-@RequestMapping("/api")
 @RequiredArgsConstructor
 public class UserService {
 
