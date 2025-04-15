@@ -16,7 +16,6 @@ import {TopicsService} from '../../services/topics.service';
 })
 export class SubscribedTopicsListComponent implements OnInit {
 
-  userId: number = 1; // TODO: Replace with actual user ID from authentication service
   subscribedTopics$: Observable<Topic[]> = of();
   isSubscriptionPage: boolean = false;
 
@@ -28,12 +27,12 @@ export class SubscribedTopicsListComponent implements OnInit {
   };
 
   handleSubscription(topicId: number): void {
-    this.subscribedTopics$ = this.topicService.deleteTopicSubscription(topicId, this.userId).pipe(
+    this.subscribedTopics$ = this.topicService.deleteTopicSubscription(topicId).pipe(
       switchMap(() => this.loadSubscribedTopics())
     );
   };
 
   private loadSubscribedTopics(): Observable<Topic[]> {
-    return this.topicService.getSubscribedTopics(this.userId);
+    return this.topicService.getSubscribedTopics();
   }
 }

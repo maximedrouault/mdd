@@ -49,7 +49,7 @@ export class AllTopicsListComponent implements OnInit{
   }
 
   private loadSubscribedTopicIds(): Observable<Set<number>> {
-    return this.topicService.getSubscribedTopics(this.loggedUserId).pipe(
+    return this.topicService.getSubscribedTopics().pipe(
       map(topics => new Set(topics.map(topic => topic.id)))
     );
   }
