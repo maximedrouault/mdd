@@ -55,11 +55,9 @@ public class AuthService {
         userRepository.save(userToAdd);
     }
 
-    public void updateUser(UpdatePayloadDto updatePayloadDto) {
-        Long userId = updatePayloadDto.userId();
-
+    public void updateUser(UpdatePayloadDto updatePayloadDto, Long userId) {
         User foundUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+            .orElseThrow(() -> new UserNotFoundException(userId));
 
         User updatedUser = userMapper.partialUpdate(updatePayloadDto, foundUser, passwordEncoder);
 

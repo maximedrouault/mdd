@@ -9,6 +9,8 @@ import org.mdd.mddapi.dto.auth.response.AuthTokenDto;
 import org.mdd.mddapi.service.AuthService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -32,8 +34,11 @@ public class AuthController {
     }
 
     @PutMapping("/auth/update")
-    public ResponseEntity<Void> updateUser(@Valid @RequestBody UpdatePayloadDto updatePayloadDto) {
-        authService.updateUser(updatePayloadDto);
+    public ResponseEntity<Void> updateUser(@AuthenticationPrincipal Jwt authToken,
+                                           @Valid @RequestBody UpdatePayloadDto updatePayloadDto) {
+        Long userId = authService.getUserIdFromToken(authToken);
+
+        authService.updateUser(updatePayloadDto, userId);
 
         return ResponseEntity.status(HttpStatus.OK).build();
     }
