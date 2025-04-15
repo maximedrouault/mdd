@@ -20,8 +20,8 @@ export class TopicsService {
     return this.http.get<Topic[]>(`${environment.apiUrl}/topics/subscribed`);
   };
 
-  public saveTopicSubscription(topicId: number, userId: number): Observable<void> {
-    return this.http.post<void>(`${environment.apiUrl}/topics/${topicId}/subscribed/${userId}`, null);
+  public saveTopicSubscription(topicId: number): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/topics/${topicId}/subscribed`, null);
   };
 
   public deleteTopicSubscription(topicId: number): Observable<void> {

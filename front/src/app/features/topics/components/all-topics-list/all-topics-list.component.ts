@@ -4,7 +4,6 @@ import {Topic} from '../../interfaces/responses/topic.interface';
 import {TopicsService} from '../../services/topics.service';
 import {AsyncPipe} from '@angular/common';
 import {TopicCardComponent} from '../topic-card/topic-card.component';
-import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-all-topics-list',
@@ -18,14 +17,10 @@ import {AuthService} from '../../../auth/services/auth.service';
 export class AllTopicsListComponent implements OnInit{
 
   allTopics$: Observable<Topic[]> = of();
-  loggedUserId: number;
   subscribedTopicIds: Set<number> = new Set<number>();
   isSubscriptionPage: boolean = true;
 
-  constructor(private readonly topicService: TopicsService,
-              private readonly authService: AuthService) {
-    this.loggedUserId = this.authService.getLoggedUserId();
-  }
+  constructor(private readonly topicService: TopicsService) {};
 
 
   ngOnInit(): void {
@@ -41,7 +36,7 @@ export class AllTopicsListComponent implements OnInit{
   };
 
   handleSubscription(topicId: number): void {
-    this.topicService.saveTopicSubscription(topicId, this.loggedUserId).pipe(
+    this.topicService.saveTopicSubscription(topicId).pipe(
       switchMap(() => this.loadSubscribedTopicIds())
     ).subscribe(topicIds => {
       this.subscribedTopicIds = topicIds;
