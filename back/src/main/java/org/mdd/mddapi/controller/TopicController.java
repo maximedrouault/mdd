@@ -46,8 +46,11 @@ public class TopicController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @DeleteMapping("/topics/{topicId}/subscribed/{userId}")
-    public ResponseEntity<Void> deleteTopicSubscription(@PathVariable @Positive Long topicId, @PathVariable @Positive Long userId) {
+    @DeleteMapping("/topics/{topicId}/subscribed")
+    public ResponseEntity<Void> deleteTopicSubscription(@AuthenticationPrincipal @NotNull Jwt authToken,
+                                                        @PathVariable @Positive Long topicId) {
+        Long userId = authService.getUserIdFromToken(authToken);
+
         topicService.deleteTopicSubscription(topicId, userId);
 
         return ResponseEntity.noContent().build();
