@@ -27,22 +27,22 @@ public class AuthController {
 
 
     /**
-    * Endpoint for user login.
-    *
-    * @param loginPayloadDto the login payload containing user credentials.
-    * @return an {@link AuthTokenDto} containing the authentication token.
-    */
+     * Endpoint for user login.
+     *
+     * @param loginPayloadDto the login payload containing user credentials.
+     * @return an {@link AuthTokenDto} containing the authentication token.
+     */
     @PostMapping("/auth/login")
     public ResponseEntity<AuthTokenDto> getAuthToken(@Valid @RequestBody @NotNull LoginPayloadDto loginPayloadDto) {
         return ResponseEntity.ok(authService.getAuthToken(loginPayloadDto));
     }
 
     /**
-    * Endpoint for user registration.
-    *
-    * @param registerPayloadDto the registration payload containing user details.
-    * @return void. The HTTP status 201 (Created) is returned if the registration is successful.
-    */
+     * Endpoint for user registration.
+     *
+     * @param registerPayloadDto the registration payload containing user details.
+     * @return void. The HTTP status 201 (Created) is returned if the registration is successful.
+     */
     @PostMapping("/auth/register")
     public ResponseEntity<Void> registerUser(@Valid @RequestBody @NotNull RegisterPayloadDto registerPayloadDto) {
         authService.registerUser(registerPayloadDto);
@@ -51,12 +51,12 @@ public class AuthController {
     }
 
     /**
-    * Endpoint for updating user information.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @param updatePayloadDto the update payload containing new user details.
-    * @return void. The HTTP status 200 (OK) is returned if the update is successful.
-    */
+     * Endpoint for updating user information.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @param updatePayloadDto the update payload containing new user details.
+     * @return void. The HTTP status 200 (OK) is returned if the update is successful.
+     */
     @PutMapping("/auth/update")
     public ResponseEntity<Void> updateUser(@AuthenticationPrincipal @NotNull Jwt authToken,
                                            @Valid @RequestBody @NotNull UpdatePayloadDto updatePayloadDto) {

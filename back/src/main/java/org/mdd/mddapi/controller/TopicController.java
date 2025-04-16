@@ -29,21 +29,21 @@ public class TopicController {
 
 
     /**
-    * Retrieves all topics.
-    *
-    * @return a list of {@link SubscribedTopicDto} objects representing all topics.
-    */
+     * Retrieves all topics.
+     *
+     * @return a list of {@link SubscribedTopicDto} objects representing all topics.
+     */
     @GetMapping("/topics")
     public ResponseEntity<List<SubscribedTopicDto>> getAllTopics() {
         return ResponseEntity.ok(topicService.getAllTopics());
     }
 
     /**
-    * Retrieves all topics the authenticated user is subscribed to.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @return a set of {@link SubscribedTopicDto} objects representing the subscribed topics.
-    */
+     * Retrieves all topics the authenticated user is subscribed to.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @return a set of {@link SubscribedTopicDto} objects representing the subscribed topics.
+     */
     @GetMapping("/topics/subscribed")
     public ResponseEntity<Set<SubscribedTopicDto>> getSubscribedTopics(@AuthenticationPrincipal @NotNull Jwt authToken) {
         Long userId = authService.getUserIdFromToken(authToken);
@@ -52,12 +52,12 @@ public class TopicController {
     }
 
     /**
-    * Subscribes the authenticated user to a specific topic.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @param topicId the ID of the topic to subscribe to. Must be positive.
-    * @return void.
-    */
+     * Subscribes the authenticated user to a specific topic.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @param topicId the ID of the topic to subscribe to. Must be positive.
+     * @return void.
+     */
     @PostMapping("/topics/{topicId}/subscribed")
     public ResponseEntity<Void> saveTopicSubscription(@AuthenticationPrincipal @NotNull Jwt authToken,
                                                       @PathVariable @Positive Long topicId) {
@@ -69,12 +69,12 @@ public class TopicController {
     }
 
     /**
-    * Unsubscribes the authenticated user from a specific topic.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @param topicId the ID of the topic to unsubscribe from. Must be positive.
-    * @return void.
-    */
+     * Unsubscribes the authenticated user from a specific topic.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @param topicId the ID of the topic to unsubscribe from. Must be positive.
+     * @return void.
+     */
     @DeleteMapping("/topics/{topicId}/subscribed")
     public ResponseEntity<Void> deleteTopicSubscription(@AuthenticationPrincipal @NotNull Jwt authToken,
                                                         @PathVariable @Positive Long topicId) {

@@ -26,11 +26,11 @@ public class UserController {
 
 
     /**
-    * Retrieves the authenticated user's information.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @return a {@link UserDto} object containing the user's information.
-    */
+     * Retrieves the authenticated user's information.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @return a {@link UserDto} object containing the user's information.
+     */
     @GetMapping("/users")
     public ResponseEntity<UserDto> getUserInfos(@AuthenticationPrincipal @NotNull Jwt authToken) {
         Long userId = authService.getUserIdFromToken(authToken);

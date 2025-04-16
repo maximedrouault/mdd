@@ -29,23 +29,23 @@ public class CommentController {
 
 
     /**
-    * Retrieves all comments associated with a specific post.
-    *
-    * @param postId the ID of the post for which comments are to be retrieved. Must be positive.
-    * @return a set of {@link CommentDto} objects representing the comments.
-    */
+     * Retrieves all comments associated with a specific post.
+     *
+     * @param postId the ID of the post for which comments are to be retrieved. Must be positive.
+     * @return a set of {@link CommentDto} objects representing the comments.
+     */
     @GetMapping("/comments/post/{postId}")
     public ResponseEntity<Set<CommentDto>> getCommentsByPostId(@PathVariable @Positive Long postId) {
         return ResponseEntity.ok(commentService.getCommentsByPostId(postId));
     }
 
     /**
-    * Saves a new comment for a post.
-    *
-    * @param authToken the JWT token of the authenticated user.
-    * @param commentPayloadDto the payload containing the details of the comment to be saved.
-    * @return void. The HTTP status 204 (No Content) is returned if the comment is successfully saved.
-    */
+     * Saves a new comment for a post.
+     *
+     * @param authToken the JWT token of the authenticated user.
+     * @param commentPayloadDto the payload containing the details of the comment to be saved.
+     * @return void. The HTTP status 204 (No Content) is returned if the comment is successfully saved.
+     */
     @PostMapping("/comments/post")
     public ResponseEntity<Void> saveComment(@AuthenticationPrincipal @NotNull Jwt authToken,
                                             @RequestBody @Valid @NotNull CommentPayloadDto commentPayloadDto) {
