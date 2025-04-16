@@ -16,7 +16,7 @@ public class UserService {
     private final UserMapper userMapper;
 
 
-    public UserDto getUserInfosById(Long userId) {
+    public UserDto getUserInfos(Long userId) {
         User foundUser = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));
 

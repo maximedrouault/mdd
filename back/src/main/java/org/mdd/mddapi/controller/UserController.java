@@ -22,9 +22,9 @@ public class UserController {
 
 
     @GetMapping("/users")
-    public ResponseEntity<UserDto> getUserInfosById(@AuthenticationPrincipal @NotNull Jwt authToken) {
+    public ResponseEntity<UserDto> getUserInfos(@AuthenticationPrincipal @NotNull Jwt authToken) {
         Long userId = authService.getUserIdFromToken(authToken);
 
-        return ResponseEntity.ok(userService.getUserInfosById(userId));
+        return ResponseEntity.ok(userService.getUserInfos(userId));
     }
 }
