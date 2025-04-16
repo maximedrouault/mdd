@@ -12,7 +12,6 @@ import java.io.Serializable;
 public record CommentPayloadDto(
 
         @NotBlank String content,
-        @NotNull @Positive Long authorId,
         @NotNull @Positive Long postId
 
 ) implements Serializable {}

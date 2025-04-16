@@ -39,7 +39,7 @@ public class PostController {
 
     @PostMapping("/posts")
     public ResponseEntity<Void> savePost(@AuthenticationPrincipal @NotNull Jwt authToken,
-                                         @RequestBody @Valid PostPayloadDto postPayloadDto) {
+                                         @RequestBody @Valid @NotNull PostPayloadDto postPayloadDto) {
         Long authorId = authService.getUserIdFromToken(authToken);
 
         postService.savePost(postPayloadDto, authorId);
