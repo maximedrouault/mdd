@@ -32,9 +32,8 @@ public class CommentService {
         return commentMapper.toDto(comments);
     }
 
-    public void saveComment(CommentPayloadDto commentPayloadDto) {
+    public void saveComment(CommentPayloadDto commentPayloadDto, Long authorId) {
         Long postId = commentPayloadDto.postId();
-        Long authorId = commentPayloadDto.authorId();
         Post foundPost = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
         User foundUser = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
 

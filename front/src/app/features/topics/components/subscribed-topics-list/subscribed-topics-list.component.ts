@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable, of, switchMap} from 'rxjs';
 import {Topic} from '../../interfaces/responses/topic.interface';
 import {TopicCardComponent} from '../topic-card/topic-card.component';
@@ -16,7 +16,6 @@ import {TopicsService} from '../../services/topics.service';
 })
 export class SubscribedTopicsListComponent implements OnInit {
 
-  @Input() userId!: number;
   subscribedTopics$: Observable<Topic[]> = of();
   isSubscriptionPage: boolean = false;
 
@@ -28,12 +27,12 @@ export class SubscribedTopicsListComponent implements OnInit {
   };
 
   handleSubscription(topicId: number): void {
-    this.subscribedTopics$ = this.topicService.deleteTopicSubscription(topicId, this.userId).pipe(
+    this.subscribedTopics$ = this.topicService.deleteTopicSubscription(topicId).pipe(
       switchMap(() => this.loadSubscribedTopics())
     );
   };
 
   private loadSubscribedTopics(): Observable<Topic[]> {
-    return this.topicService.getSubscribedTopics(this.userId);
+    return this.topicService.getSubscribedTopics();
   }
 }

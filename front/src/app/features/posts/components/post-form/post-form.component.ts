@@ -10,7 +10,6 @@ import {InputText} from 'primeng/inputtext';
 import {Textarea} from 'primeng/textarea';
 import {PostPayload} from '../../interfaces/requests/post-payload-interface';
 import {PostsService} from '../../services/posts.service';
-import {AuthService} from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-post-form',
@@ -29,15 +28,11 @@ export class PostFormComponent implements OnInit {
 
   postForm!: FormGroup;
   topics!: Topic[];
-  loggedUserId: number;
 
   constructor(private readonly router: Router,
               private readonly formBuilder: FormBuilder,
               private readonly topicsService: TopicsService,
-              private readonly postService: PostsService,
-              private readonly authService: AuthService) {
-    this.loggedUserId = this.authService.getLoggedUserId();
-  }
+              private readonly postService: PostsService) {};
 
   ngOnInit(): void {
     this.topicsService.getAllTopics().subscribe(
@@ -58,7 +53,6 @@ export class PostFormComponent implements OnInit {
   onAddPost(): void {
     if (this.postForm.valid) {
       const postToAdd: PostPayload = {
-        authorId: this.loggedUserId,
         topicId: this.postForm.value.selectedTopic,
         title: this.postForm.value.title,
         content: this.postForm.value.content

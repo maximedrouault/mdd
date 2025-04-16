@@ -4,7 +4,6 @@ import {Button} from 'primeng/button';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CommentsListComponent} from '../../features/comments/components/comments-list/comments-list.component';
 import {CommentFormComponent} from '../../features/comments/components/comment-form/comment-form.component';
-import {AuthService} from '../../features/auth/services/auth.service';
 
 @Component({
   selector: 'app-post-details-page',
@@ -20,13 +19,9 @@ import {AuthService} from '../../features/auth/services/auth.service';
 export class PostDetailsPageComponent implements OnInit {
 
   postId!: number;
-  authorId: number;
 
   constructor(private readonly router: Router,
-              private readonly activatedRoute: ActivatedRoute,
-              private readonly authService: AuthService) {
-    this.authorId = this.authService.getLoggedUserId();
-  }
+              private readonly activatedRoute: ActivatedRoute) {};
 
 
   ngOnInit(): void {

@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -54,14 +55,16 @@ public class AuthService {
         userRepository.save(userToAdd);
     }
 
-    public void updateUser(UpdatePayloadDto updatePayloadDto) {
-        Long userId = updatePayloadDto.userId();
-
+    public void updateUser(UpdatePayloadDto updatePayloadDto, Long userId) {
         User foundUser = userRepository.findById(userId)
-                .orElseThrow(() -> new UserNotFoundException(userId));
+            .orElseThrow(() -> new UserNotFoundException(userId));
 
         User updatedUser = userMapper.partialUpdate(updatePayloadDto, foundUser, passwordEncoder);
 
         userRepository.save(updatedUser);
+    }
+
+    public Long getUserIdFromToken(Jwt authToken) {
+        return authToken.getClaim("userId");
     }
 }

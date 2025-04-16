@@ -4,8 +4,6 @@ import {AuthToken} from '../interfaces/responses/auth-token';
 import {LoginPayload} from '../interfaces/requests/login-payload.interface';
 import {Observable, tap} from 'rxjs';
 import {environment} from '../../../../environments/environment';
-import {jwtDecode} from 'jwt-decode';
-import {CustomJwtPayload} from '../interfaces/responses/custom-jwt-payload';
 import {RegisterPayload} from '../interfaces/requests/register-payload.interface';
 import {Router} from '@angular/router';
 import {UserInfos} from '../interfaces/responses/user-infos.interface';
@@ -15,25 +13,17 @@ import {UserEditPayload} from '../interfaces/requests/user-edit-payload.interfac
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedUserId!: number;
 
   constructor(private readonly http: HttpClient,
-              private readonly router: Router) {
-      this.getUserIdFromToken();
-  }
+              private readonly router: Router) {}
 
 
   public getAuthToken(loginPayload: LoginPayload): Observable<AuthToken> {
     return this.http.post<AuthToken>(`${environment.apiUrl}/auth/login`, loginPayload).pipe(
       tap(response => {
         localStorage.setItem('token', response.token);
-        this.getUserIdFromToken();
       })
     );
-  }
-
-  public getLoggedUserId(): number {
-    return this.loggedUserId;
   }
 
   public registerUser(registerPayload: RegisterPayload): Observable<AuthToken> {
@@ -42,29 +32,15 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('token');
-    this.loggedUserId = 0;
     this.router.navigate(['/login-choice'])
       .catch(console.error);
   }
 
-  public getUserInfo(userId: number): Observable<UserInfos> {
-    return this.http.get<UserInfos>(`${environment.apiUrl}/users/${userId}`);
+  public getUserInfos(): Observable<UserInfos> {
+    return this.http.get<UserInfos>(`${environment.apiUrl}/users`);
   }
 
-  public updateUserInfo(userInfos: UserEditPayload): Observable<UserEditPayload> {
+  public updateUserInfos(userInfos: UserEditPayload): Observable<UserEditPayload> {
     return this.http.put<UserEditPayload>(`${environment.apiUrl}/auth/update`, userInfos);
-  }
-
-
-  private getUserIdFromToken(): void {
-    const token: string | null = localStorage.getItem('token');
-
-    if (token) {
-      try {
-        this.loggedUserId = jwtDecode<CustomJwtPayload>(token).userId;
-      } catch (error) {
-        console.error('Error decoding token:', error);
-      }
-    }
   }
 }

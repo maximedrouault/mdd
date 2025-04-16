@@ -1,6 +1,9 @@
 package org.mdd.mddapi.dto.auth.request;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -8,9 +11,6 @@ import java.io.Serializable;
  * DTO for {@link org.mdd.mddapi.entity.User}
  */
 public record UpdatePayloadDto(
-
-        @Positive
-        Long userId,
 
         @NotBlank
         @Size(max = 100)

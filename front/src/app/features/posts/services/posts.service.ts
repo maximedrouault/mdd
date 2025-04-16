@@ -14,8 +14,8 @@ export class PostsService {
   constructor(private readonly http: HttpClient) { }
 
 
-  public getSubscribedPosts(userId: number): Observable<Post[]> {
-    return this.http.get<Post[]>(`${environment.apiUrl}/posts/subscribed/${userId}`);
+  public getSubscribedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>(`${environment.apiUrl}/posts/subscribed`);
   }
 
   public getPostDetails(postId: number): Observable<PostDetails> {

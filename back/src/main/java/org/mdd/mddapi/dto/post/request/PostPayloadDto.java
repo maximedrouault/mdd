@@ -11,7 +11,6 @@ import java.io.Serializable;
  */
 public record PostPayloadDto(
 
-        @NotNull @Positive Long authorId,
         @NotNull @Positive Long topicId,
         @NotBlank String title,
         @NotBlank String content

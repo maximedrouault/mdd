@@ -26,6 +26,5 @@ public interface PostMapper {
 
     // Handle the conversion between PostPayloadDto and Post entity
     @Mapping(source = "topicId", target = "topic.id")
-    @Mapping(source = "authorId", target = "author.id")
     Post toEntity(PostPayloadDto postPayloadDto);
 }

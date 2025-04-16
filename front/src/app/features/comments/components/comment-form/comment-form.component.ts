@@ -21,7 +21,6 @@ import {Message} from 'primeng/message';
 export class CommentFormComponent implements OnInit {
 
   @Input() postId!: number;
-  @Input() authorId!: number;
   commentForm!: FormGroup;
 
   constructor(private readonly formBuilder: FormBuilder,
@@ -38,7 +37,6 @@ export class CommentFormComponent implements OnInit {
     if (this.commentForm.valid) {
       const commentToAdd: CommentPayload = {
         postId: this.postId,
-        authorId: this.authorId,
         content: this.commentForm.value.comment
       }
 

@@ -22,6 +22,5 @@ public interface CommentMapper {
 
     // Handle the mapping between CommentPayloadDto and Comment entity
     @Mapping(source = "postId", target = "post.id")
-    @Mapping(source = "authorId", target = "author.id")
     Comment toEntity(CommentPayloadDto commentPayloadDto);
 }
