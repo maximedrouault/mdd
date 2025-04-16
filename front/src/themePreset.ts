@@ -1,3 +1,11 @@
+/**
+ * Theme Preset Configuration
+ *
+ * This file defines the "MyPreset" theme using PrimeNG's definePreset API with the Lara theme.
+ * It consolidates the configuration for theme primitives, semantic tokens, and component styles,
+ * ensuring a consistent look and feel across the application.
+ */
+
 import Lara from "@primeng/themes/lara";
 import {definePreset} from "@primeng/themes";
 
