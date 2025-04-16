@@ -37,7 +37,7 @@ export class UserEditComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100), passwordComplexityValidator()]],
     });
 
-    this.userInfos$ = this.authService.getUserInfo();
+    this.userInfos$ = this.authService.getUserInfos();
     this.userInfos$.subscribe((userInfos: UserInfos) => {
       this.userEditForm.patchValue({
         username: userInfos.username,
@@ -50,7 +50,7 @@ export class UserEditComponent implements OnInit {
     if (this.userEditForm.valid) {
       const updatedUserInfos: UserEditPayload = this.userEditForm.value;
 
-      this.authService.updateUserInfo(updatedUserInfos).subscribe({
+      this.authService.updateUserInfos(updatedUserInfos).subscribe({
         next: () => this.userEditForm.setErrors({ updateSuccess: true }),
         error: (error) => this.handleUpdateError(error)
       });
