@@ -8,7 +8,17 @@ import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
- * DTO for {@link org.mdd.mddapi.entity.User}
+ * DTO for {@link org.mdd.mddapi.entity.User}.
+ * Contains the necessary information for user registration.
+ *
+ * @param username The username. Must not be blank and must have a maximum length of 100 characters.
+ * @param email    The user's email address. Must be valid, not blank, and have a maximum length of 100 characters.
+ * @param password The user's password. Must not be blank, must have a length between 8 and 100 characters,
+ *                 and must include at least:
+ *                 - one digit,
+ *                 - one lowercase letter,
+ *                 - one uppercase letter,
+ *                 - one special character.
  */
 public record RegisterPayloadDto(
 
