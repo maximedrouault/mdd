@@ -40,10 +40,9 @@ public class PostService {
         return postMapper.toPostDetailsDto(post);
     }
 
-    public void savePost(PostPayloadDto postPayloadDto) {
-        Long userId = postPayloadDto.authorId();
+    public void savePost(PostPayloadDto postPayloadDto, Long authorId) {
         Long topicId = postPayloadDto.topicId();
-        User foundUser = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException(userId));
+        User foundUser = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
         Topic foundTopic = topicRepository.findById(topicId).orElseThrow(() -> new TopicNotFoundException(topicId));
 
         Post postToAdd = postMapper.toEntity(postPayloadDto);

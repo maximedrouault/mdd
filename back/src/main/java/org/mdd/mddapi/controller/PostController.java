@@ -1,6 +1,7 @@
 package org.mdd.mddapi.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.RequiredArgsConstructor;
 import org.mdd.mddapi.dto.post.request.PostPayloadDto;
@@ -25,7 +26,7 @@ public class PostController {
 
 
     @GetMapping("/posts/subscribed")
-    public ResponseEntity<Set<SubscribedPostDto>> getSubscribedPosts(@AuthenticationPrincipal Jwt authToken) {
+    public ResponseEntity<Set<SubscribedPostDto>> getSubscribedPosts(@AuthenticationPrincipal @NotNull Jwt authToken) {
         Long userId = authService.getUserIdFromToken(authToken);
 
         return ResponseEntity.ok(postService.getSubscribedPosts(userId));
@@ -37,8 +38,11 @@ public class PostController {
     }
 
     @PostMapping("/posts")
-    public ResponseEntity<Void> savePost(@RequestBody @Valid PostPayloadDto postPayloadDto) {
-        postService.savePost(postPayloadDto);
+    public ResponseEntity<Void> savePost(@AuthenticationPrincipal @NotNull Jwt authToken,
+                                         @RequestBody @Valid PostPayloadDto postPayloadDto) {
+        Long authorId = authService.getUserIdFromToken(authToken);
+
+        postService.savePost(postPayloadDto, authorId);
 
         return ResponseEntity.noContent().build();
     }
