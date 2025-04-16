@@ -9,6 +9,18 @@ import {MyPreset} from '../themePreset'
 import {authInterceptor} from './features/auth/interceptors/auth.interceptor';
 import {unAuthInterceptor} from './features/auth/interceptors/un-auth.interceptor';
 
+/**
+ * Angular Application Configuration.
+ *
+ * This configuration exports the appConfig object which defines the providers for the Angular application.
+ * It includes:
+ * - Zone change detection with event coalescing enabled.
+ * - Router setup with defined application routes.
+ * - HTTP client configured with authentication interceptors.
+ * - Asynchronous animations support.
+ * - PrimeNG settings with a custom theme preset, set in the themePreset.ts file.
+ * - Locale configured to French (fr-FR).
+ */
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),

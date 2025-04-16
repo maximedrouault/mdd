@@ -1,5 +1,13 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
+/**
+ * Creates a ValidatorFn that checks if the password meets complexity requirements.
+ * The password must include at least one number, one uppercase letter,
+ * one lowercase letter, and one special character from [!@#$%^&*(),.?":{}|<>].
+ *
+ * @returns {ValidatorFn} A validation function that returns an error object if the password
+ * does not meet the complexity requirements, otherwise null.
+ */
 export function passwordComplexityValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
@@ -17,3 +25,4 @@ export function passwordComplexityValidator(): ValidatorFn {
     return !passwordValid ? { passwordComplexity: true } : null;
   };
 }
+

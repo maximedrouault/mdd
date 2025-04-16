@@ -2,6 +2,13 @@ import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
 import {jwtDecode} from 'jwt-decode';
 
+/**
+ * Auth guard that protects routes requiring authentication.
+ * It verifies the presence and validity (expiration) of a JWT token stored in localStorage.
+ * If the token does not exist or is expired, it navigates to the 'login-choice' route.
+ *
+ * @returns {boolean} True if the token is valid and not expired, false otherwise.
+ */
 export const authGuard: CanActivateFn = (): boolean => {
   const token: string | null = localStorage.getItem('token');
   const router: Router = inject(Router);

@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+/**
+ * Service class for managing comments.
+ */
 @Service
 @RequiredArgsConstructor
 public class CommentService {
@@ -25,13 +28,24 @@ public class CommentService {
     private final UserRepository userRepository;
     private final CommentMapper commentMapper;
 
-
+    /**
+     * Retrieves all comments associated with a specific post.
+     *
+     * @param postId the ID of the post
+     * @return a set of CommentDto objects
+     */
     public Set<CommentDto> getCommentsByPostId(Long postId) {
         Set<Comment> comments = commentRepository.findByPost_Id(postId);
 
         return commentMapper.toDto(comments);
     }
 
+    /**
+     * Saves a new comment for a specific post and author.
+     *
+     * @param commentPayloadDto the payload containing comment details
+     * @param authorId the ID of the author
+     */
     public void saveComment(CommentPayloadDto commentPayloadDto, Long authorId) {
         Long postId = commentPayloadDto.postId();
         Post foundPost = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
