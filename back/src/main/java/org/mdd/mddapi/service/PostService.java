@@ -15,9 +15,11 @@ import org.mdd.mddapi.repository.PostRepository;
 import org.mdd.mddapi.repository.TopicRepository;
 import org.mdd.mddapi.repository.UserRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.Set;
 
+/**
+ * Service class for managing posts.
+ */
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -27,19 +29,39 @@ public class PostService {
     private final TopicRepository topicRepository;
     private final PostMapper postMapper;
 
-
+    /**
+     * Retrieves the posts subscribed to by a specific user.
+     *
+     * @param userId the ID of the user whose subscribed posts are to be retrieved
+     * @return a set of {@link SubscribedPostDto} representing the subscribed posts
+     */
     public Set<SubscribedPostDto> getSubscribedPosts(Long userId) {
         Set<Post> subscribedPosts = postRepository.findByTopic_Users_Id(userId);
 
         return postMapper.toSubscribedPostDto(subscribedPosts);
     }
 
+    /**
+     * Retrieves the details of a specific post.
+     *
+     * @param postId the ID of the post to retrieve
+     * @return a {@link PostDetailsDto} containing the details of the post
+     * @throws PostNotFoundException if the post with the given ID is not found
+     */
     public PostDetailsDto getPostDetails(Long postId) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new PostNotFoundException(postId));
 
         return postMapper.toPostDetailsDto(post);
     }
 
+    /**
+     * Saves a new post to the database.
+     *
+     * @param postPayloadDto the data transfer object containing the post's payload
+     * @param authorId the ID of the user who authored the post
+     * @throws UserNotFoundException if the user with the given ID is not found
+     * @throws TopicNotFoundException if the topic with the given ID is not found
+     */
     public void savePost(PostPayloadDto postPayloadDto, Long authorId) {
         Long topicId = postPayloadDto.topicId();
         User foundUser = userRepository.findById(authorId).orElseThrow(() -> new UserNotFoundException(authorId));
