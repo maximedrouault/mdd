@@ -1,11 +1,8 @@
 package org.mdd.mddapi.service;
 
 import lombok.RequiredArgsConstructor;
-import org.mdd.mddapi.entity.User;
-import org.mdd.mddapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
 import org.springframework.security.oauth2.jwt.JwsHeader;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
@@ -23,11 +20,11 @@ import java.time.temporal.ChronoUnit;
 @RequiredArgsConstructor
 public class JwtService {
 
+    private final UserService userService;
     @Value("${jwt.expiration}")
     private long expirationTime;
 
     private final JwtEncoder jwtEncoder;
-    private final UserRepository userRepository;
 
     /**
      * Generates a JWT for the given authentication object.
@@ -44,25 +41,11 @@ public class JwtService {
                 .issuedAt(now)
                 .expiresAt(expiration)
                 .subject(authentication.getName())
-                .claim("userId", getUserId(authentication.getName()))
+                .claim("userId", userService.getUserId(authentication.getName()))
                 .build();
 
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS256).build(), claimsSet);
 
         return jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
-    }
-
-    /**
-     * Retrieves the user ID based on the provided email or username.
-     *
-     * @param emailOrUsername the email or username of the user
-     * @return the user ID
-     * @throws UsernameNotFoundException if the user is not found
-     */
-    private Long getUserId(String emailOrUsername) {
-        User foundUser = userRepository.findByEmailOrUsername(emailOrUsername, emailOrUsername)
-                .orElseThrow(() -> new UsernameNotFoundException(emailOrUsername));
-
-        return foundUser.getId();
     }
 }

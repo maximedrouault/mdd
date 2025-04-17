@@ -6,6 +6,7 @@ import org.mdd.mddapi.entity.User;
 import org.mdd.mddapi.exception.UserNotFoundException;
 import org.mdd.mddapi.mapper.UserMapper;
 import org.mdd.mddapi.repository.UserRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,5 +30,19 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(userId));
 
         return userMapper.toDto(foundUser);
+    }
+
+    /**
+     * Retrieves the user ID based on the provided email or username.
+     *
+     * @param emailOrUsername the email or username of the user
+     * @return the user ID
+     * @throws UsernameNotFoundException if the user is not found
+     */
+    public Long getUserId(String emailOrUsername) {
+        User foundUser = userRepository.findByEmailOrUsername(emailOrUsername, emailOrUsername)
+                .orElseThrow(() -> new UsernameNotFoundException(emailOrUsername));
+
+        return foundUser.getId();
     }
 }
