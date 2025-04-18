@@ -1,0 +1,22 @@
+.login-choice-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  height: 70vh;
+
+  .logo {
+    text-align: center;
+  }
+
+  .choice-buttons-container {
+    display: flex;
+    justify-content: center;
+    column-gap: 5rem;
+    row-gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .choice-buttons-container * {
+    width: 13rem;
+  }
+}

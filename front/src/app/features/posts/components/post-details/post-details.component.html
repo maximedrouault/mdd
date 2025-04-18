@@ -1,0 +1,9 @@
+@if (postDetails$ | async; as postDetails) {
+  <h2 class="post-details-title">{{ postDetails.title }}</h2>
+  <div class="subheader-container">
+    <span>Crée le: {{ postDetails.creationDate | date }}</span>
+    <span>Auteur: {{ postDetails.authorName | titlecase }}</span>
+    <span>Thème: {{ postDetails.topicName | titlecase }}</span>
+  </div>
+  <p>{{ postDetails.content }}</p>
+}

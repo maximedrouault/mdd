@@ -1,0 +1,8 @@
+@if (comments$ | async; as comments) {
+  <p>Commentaires :</p>
+  @for (comment of comments; track comment.id) {
+    <app-comment-card [comment]="comment" />
+  } @empty {
+    <p>La liste des commentaires est vide.</p>
+  }
+}

@@ -1,0 +1,13 @@
+@if (subscribedPosts$ | async; as subscribedPosts) {
+  <div class="cards-container">
+    @for (subscribedPost of subscribedPosts; track subscribedPost.id) {
+      <app-post-card
+        [post]="subscribedPost"
+        (click)="navigateToPostDetails(subscribedPost.id)"
+        (keydown.enter)="navigateToPostDetails(subscribedPost.id)" >
+      </app-post-card>
+    } @empty {
+      <p>La liste des articles est vide.</p>
+    }
+  </div>
+}

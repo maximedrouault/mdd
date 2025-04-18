@@ -1,0 +1,24 @@
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .menu-mobile {
+    display: none;
+  }
+}
+
+
+//// Rules for responsive design
+@media screen and (max-width: 960px) {
+
+  .header-container {
+    .menu-desktop {
+      display: none;
+    }
+
+    .menu-mobile {
+      display: block;
+    }
+  }
+}

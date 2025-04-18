@@ -1,0 +1,23 @@
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+app-post-card {
+  flex: 1 1 calc(50% - 16px);
+  box-sizing: border-box;
+}
+
+
+// Rules for responsive design
+@media screen and (max-width: 768px) {
+
+  .cards-container {
+    flex-direction: column;
+  }
+
+  app-post-card {
+    flex: 1 1 100%;
+  }
+}

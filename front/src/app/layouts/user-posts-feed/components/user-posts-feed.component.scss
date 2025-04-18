@@ -1,0 +1,17 @@
+.subheader-container {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+// Rules for responsive design
+@media screen and (max-width: 768px) {
+
+  .subheader-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0 0.5rem 0;
+  }
+}

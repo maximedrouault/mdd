@@ -1,0 +1,23 @@
+.comment-card {
+  &-container {
+    display: flex;
+    column-gap: 1rem;
+    margin: auto;
+    flex-wrap: wrap-reverse;
+    width: 80%;
+  }
+
+  &-title {
+    flex: 1;
+    text-align: right;
+    min-width: 15%;
+  }
+
+  &-content {
+    flex: 4;
+    background-color: #EEEEEE;
+    padding: 1rem;
+    border-radius: 1rem;
+    min-width: 80%;
+  }
+}

@@ -1,0 +1,60 @@
+<main>
+  <section class="register-form-container">
+    <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
+    <p-image src="/images/logo_mdd.png" alt="Logo MDD" width="70%"  routerLink="/" class="logo" />
+    <form [formGroup]="registerForm" class="register-form" (ngSubmit)="onRegister()">
+      <h1 class="title">Inscription</h1>
+      <div>
+        <label for="username">Nom d'utilisateur</label>
+        <input type="text" pInputText id="username" formControlName="username" class="user-infos" />
+        @if (registerForm.invalid && (registerForm.get('username')?.touched || registerForm.get('username')?.dirty)) {
+          @if (registerForm.hasError('required', 'username')) {
+            <p-message severity="error" variant="simple" text="Le nom d'utilisateur est requis" />
+          } @else if (registerForm.hasError('maxlength', 'username')) {
+            <p-message severity="error" variant="simple" text="Le nom d'utilisateur doit faire moins de 100 caractères" />
+          }
+        }
+      </div>
+      <div>
+        <label for="email">Adresse e-mail</label>
+        <input type="email" pInputText id="email" formControlName="email" class="user-infos" />
+        @if (registerForm.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)) {
+          @if (registerForm.hasError('required', 'email')) {
+            <p-message severity="error" variant="simple" text="L'adresse e-mail est requise" />
+          } @else if (registerForm.hasError('email', 'email')) {
+            <p-message severity="error" variant="simple" text="L'adresse e-mail n'est pas valide" />
+          } @else if (registerForm.hasError('maxlength', 'email')) {
+            <p-message severity="error" variant="simple" text="L'adresse e-mail doit faire moins de 100 caractères" />
+          }
+        }
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" pInputText id="password" formControlName="password" class="user-infos" />
+        @if (registerForm.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)) {
+          @if (registerForm.hasError('required', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe est requis" />
+          } @else if (registerForm.hasError('minlength', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe doit faire au moins 8 caractères" />
+          } @else if (registerForm.hasError('maxlength', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe doit faire moins de 100 caractères" />
+          } @else if (registerForm.hasError('passwordComplexity', 'password')) {
+            <p-message severity="error" variant="simple"
+                       text="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+            />
+          }
+        }
+      </div>
+      <div class="register-button">
+        <p-button type="submit" [disabled]="registerForm.invalid">S'inscrire</p-button>
+      </div>
+      @if (registerForm.hasError('userAlreadyExists')) {
+        <p-message severity="error" variant="simple" text="Utilisateur déjà existant." class="text-center" />
+      } @else if (registerForm.hasError('registrationFailed')) {
+        <p-message severity="error" variant="simple" text="Erreur lors de l'inscription." class="text-center" />
+      } @else if (registerForm.hasError('loginFailed')) {
+        <p-message severity="error" variant="simple" text="Erreur lors du processus de connexion." class="text-center" />
+      }
+    </form>
+  </section>
+</main>

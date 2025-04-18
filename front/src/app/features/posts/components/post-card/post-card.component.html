@@ -1,0 +1,11 @@
+<p-card [header]="post.title" class="card-container">
+  <ng-template pTemplate="subtitle">
+    <div class="card-subtitle">
+      <p>Crée le: {{ post.creationDate | date }}</p>
+      <p>Auteur: {{ post.authorName | titlecase }}</p>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <p class="card-content">{{ post.content }}</p>
+  </ng-template>
+</p-card>

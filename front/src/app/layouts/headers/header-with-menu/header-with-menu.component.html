@@ -1,0 +1,24 @@
+<header class="header-container">
+  <p-image src="/images/logo_mdd.png" width="140px" alt="Logo MDD" routerLink="/" />
+  <p-menubar [model]="items" class="menu-desktop" />
+  <div class="menu-mobile">
+    <p-drawer [(visible)]="visible" position="right" [closable]="false">
+      <ng-template pTemplate="content">
+        <div>
+          <p-button variant="text" severity="danger" class="logout-item" (onClick)="logOut()">{{ items.at(0)?.label }}</p-button>
+        </div>
+        <div>
+          <p-button variant="text" class="drawer-item" (onClick)="navigateToItem(1)">{{ items.at(1)?.label }}</p-button>
+        </div>
+        <div>
+          <p-button variant="text" class="drawer-item" (onClick)="navigateToItem(2)">{{ items.at(2)?.label }}</p-button>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <p-button variant="text" icon="{{ items.at(3)?.icon }}" (onClick)="navigateToItem(3)"></p-button>
+      </ng-template>
+    </p-drawer>
+    <p-button (onClick)="visible = true" icon="pi pi-bars" severity="secondary" variant="text" />
+  </div>
+</header>
+<router-outlet />

@@ -1,0 +1,14 @@
+@if (allTopics$ | async; as allTopics) {
+  <div class="cards-container">
+    @for (topic of allTopics; track topic.id) {
+      <app-topic-card
+        [topic]="topic"
+        [isSubscriptionPage]="isSubscriptionPage"
+        [isSubscribed]="(isSubscribed(topic.id))"
+        (topicId)="handleSubscription($event)" >
+      </app-topic-card>
+    } @empty {
+      <p>La liste des thèmes est vide.</p>
+    }
+  </div>
+}

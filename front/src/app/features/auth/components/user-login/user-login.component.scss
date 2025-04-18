@@ -1,0 +1,50 @@
+.login-form-container {
+  display: flex;
+
+  .logo {
+    display: none;
+  }
+
+  .back-button {
+    margin-top: 10px;
+  }
+
+  .login-form {
+    width: 35%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .title {
+      text-align: center;
+    }
+
+    .user-infos {
+      width: 100%;
+    }
+
+    .login-button,
+    .text-center{
+      margin: auto;
+    }
+  }
+}
+
+
+// Rules for responsive design
+@media screen and (max-width: 768px) {
+
+  .login-form-container {
+    flex-wrap: wrap;
+
+    .logo {
+      display: block;
+      text-align: center;
+    }
+
+    .login-form {
+      width: 90%;
+    }
+  }
+}

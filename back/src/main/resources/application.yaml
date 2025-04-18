@@ -1,0 +1,32 @@
+# Spring Boot configuration file
+# Application name
+spring:
+  application:
+    name: mdd-api
+
+# Database configuration
+  datasource:
+    url: jdbc:mysql://localhost:3306/mdd?serverTimezone=UTC
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+# JPA configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+# Server configuration
+server:
+  port: 9000
+  error:
+    include-stacktrace: never
+
+# Logging configuration
+logging:
+  level:
+    org.hibernate.orm.connections.pooling: WARN
+
+# Jwt token configuration
+jwt:
+  expiration: 86400 # Jwt token expiration time in seconds (24 hours)

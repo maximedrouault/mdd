@@ -1,0 +1,19 @@
+.comment-form-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 1.5rem auto;
+
+  .comment-input-container {
+    width: 80%;
+    margin: 0 2% 0 7%;
+
+    .comment-input {
+      width: 100%;
+    }
+  }
+
+  .send-button {
+    margin-top: 20px;
+  }
+}

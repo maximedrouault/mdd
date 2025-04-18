@@ -1,0 +1,43 @@
+<main>
+  <section class="login-form-container">
+    <p-button icon="pi pi-arrow-left" variant="text" severity="secondary" class="back-button" size="large" (onClick)="goBack()" />
+    <p-image src="/images/logo_mdd.png" alt="Logo MDD" width="70%" routerLink="/" class="logo" />
+    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="onLogin()">
+      <h1 class="title">Se connecter</h1>
+      <div>
+        <label for="usernameOrEmail">E-mail ou nom d'utilisateur</label>
+        <input type="text" pInputText id="usernameOrEmail" formControlName="usernameOrEmail" class="user-infos" />
+        @if (loginForm.invalid && (loginForm.get('usernameOrEmail')?.touched || loginForm.get('usernameOrEmail')?.dirty)) {
+          @if (loginForm.hasError('required', 'usernameOrEmail')) {
+            <p-message severity="error" variant="simple" text="Le nom d'utilisateur est requis" />
+          } @else if (loginForm.hasError('maxlength', 'usernameOrEmail')) {
+            <p-message severity="error" variant="simple" text="Le nom d'utilisateur doit faire moins de 100 caractères" />
+          }
+        }
+      </div>
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" pInputText id="password" formControlName="password" class="user-infos" />
+        @if (loginForm.invalid && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)) {
+          @if (loginForm.hasError('required', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe est requis"/>
+          } @else if (loginForm.hasError('minlength', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe doit faire au moins 8 caractères"/>
+          } @else if (loginForm.hasError('maxlength', 'password')) {
+            <p-message severity="error" variant="simple" text="Le mot de passe doit faire moins de 100 caractères"/>
+          } @else if (loginForm.hasError('passwordComplexity', 'password')) {
+            <p-message severity="error" variant="simple"
+                       text="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre et un caractère spécial"
+            />
+          }
+        }
+      </div>
+      <div class="login-button">
+        <p-button type="submit" [disabled]="loginForm.invalid">Se connecter</p-button>
+      </div>
+      @if (loginForm.hasError('loginFailed')) {
+        <p-message severity="error" variant="simple" text="Nom d'utilisateur ou mot de passe incorrect" class="text-center" />
+      }
+    </form>
+  </section>
+</main>
