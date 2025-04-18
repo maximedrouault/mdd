@@ -436,8 +436,8 @@
 	"variable": [
 		{
 			"key": "token",
-			"value": "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJtZGQtYXBpIiwic3ViIjoiSm9obiBEb2UiLCJleHAiOjE3NDQ3OTM1MjksImlhdCI6MTc0NDcwNzEyOSwidXNlcklkIjoxfQ.Rca7qgxIobh6JPvmrLtUdD8OFdjXyT_BhRoecZtuMBo",
-			"type": "default"
+			"value": "",
+			"type": "string"
 		}
 	]
 }
