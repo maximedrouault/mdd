@@ -11,11 +11,14 @@ MDD (Dev World) is a full-stack platform designed to provide programming enthusi
 
 The entire application is accessible from **responsive** (mobile and desktop) interfaces and interactions are secured by **JWT tokens** ensuring data protection.
 
-**Technologies used:**
+**Technologies used :**
 
 - **Backend**: Spring Boot, Spring Security (JWT), Spring Data JPA (Hibernate), MapStruct, Lombok, MySQL.
 - **Frontend**: Angular, PrimeNG, RxJS, jwt-decode.
 
+**Database schema :**
+
+![database_schema.png](back/docs/img.png)
 ---
 
 ## 🚀Installation
@@ -29,21 +32,21 @@ cd mdd
 
 ### 2️⃣ Prerequisites
 
-- **Java 21**: [Download Java 21](https://adoptium.net/releases.html)
-- **Maven 3.9.9**: [Download Maven](https://maven.apache.org/download.cgi)
-- **Node.js 22**: [Download Node.js](https://nodejs.org/en/download/)
-- **Angular CLI 19**: install via npm - `npm install -g @angular/cli@19`
-- **MySQL 8+**: [Download MySQL](https://dev.mysql.com/downloads/mysql/)
+- **Java 21** : [Download Java 21](https://adoptium.net/releases.html)
+- **Maven 3.9.9** : [Download Maven](https://maven.apache.org/download.cgi)
+- **Node.js 22** : [Download Node.js](https://nodejs.org/en/download/)
+- **Angular CLI 19** : install via npm - `npm install -g @angular/cli@19`
+- **MySQL 8+** : [Download MySQL](https://dev.mysql.com/downloads/mysql/)
 
 ### 3️⃣ Database Configuration
 
-1. Start MySQL and create the database:
+1. Start MySQL and create the database :
 
    ```
    CREATE DATABASE mdd;
    ```
 
-2. Update the connection details in `back/src/main/resources/application.yaml`:
+2. Update the connection details in `back/src/main/resources/application.yaml` :
 
    ```
    spring:
@@ -55,11 +58,11 @@ cd mdd
 
 ### 4️⃣ Installing and starting the backend
 
-1. Navigate to the backend directory:
+1. Navigate to the backend directory :
    ```bash
    cd back
    ```
-2. Build and run the project with Maven:
+2. Build and run the project with Maven :
    ```bash
    mvn spring-boot:run
    ```
@@ -67,15 +70,15 @@ cd mdd
 
 ### 5️⃣ Installing and starting the frontend
 
-1. Navigate to the frontend directory:
+1. Navigate to the frontend directory :
    ```bash
    cd front
    ```
-2. Install npm dependencies:
+2. Install npm dependencies :
    ```bash
    npm install
    ```
-3. Start the Angular application:
+3. Start the Angular application :
    ```bash
    npm start
    ```
@@ -83,7 +86,7 @@ cd mdd
 
 ### 6️⃣ Loading Initial Data
 
-The database schema is automatically created by Spring at startup; you can then load the initial data:
+The database schema is automatically created by Spring at startup; you can then load the initial data :
 ```
 mysql --default-character-set=utf8mb4 -u YOUR_DB_USER -p mdd < back/src/main/resources/data.sql
 ```
@@ -94,7 +97,7 @@ mysql --default-character-set=utf8mb4 -u YOUR_DB_USER -p mdd < back/src/main/res
 
 The application uses JWT to secure requests.
 
-**Test accounts** (password for all: `Password123!`):
+**Test accounts** (password for all: `Password123!`) :
 
 - John Doe (`john.doe@example.com`)
 - Jane Smith (`jane.smith@example.com`)
@@ -110,3 +113,9 @@ The application uses JWT to secure requests.
 - **Adding Comments**: engage in discussions by commenting on articles.
 - **User Profile Update**: modify email, username, and password.
 - **Responsive Interface**: optimized user experience on both mobile and desktop.
+
+### 📌Postman Collection
+
+For testing the API endpoints, you can use Postman collection in `back/docs/mdd.postman_collection.json`.
+This collection includes all the endpoints with example requests.
+`
